@@ -1007,10 +1007,11 @@ Tracked pending items. Addressable before DRAFT → APPROVED.
 |---|---|---|---|---|---|
 | V-1 | P2 | 1 | Front-matter `date` and `venue` unresolved | open | Fetch metadata from original talk announcement (venue likely ALICE offline / TPC weekly; look up date from indico event list) |
 | V-2 | P2 | 1 | Slide 66 vs slide 53: ITS resolution stated as 0.6-5 cm vs 0.6-3 cm respectively | open — needs Marian | Confirm current figure. Likely 0.6-3 cm original; 0.6-5 cm later update reflecting worse high-occupancy ITS performance; needs source confirmation |
-| V-3 | P2 | 1 | External URL reachability not audited (Google Docs, gitlab.cern.ch, indico, github) | **partial — cycle 2** | Inventory + categorization built in sibling file `O2-4592_link_audit.md`; reachability polling deferred (web_fetch tool limited to user-provided URLs). Cycle 3 target: run `curl -I` sweep in network-enabled session, fill in `last_checked`/`last_status` columns |
+| V-3 | P2 | 1 | External URL reachability not audited (Google Docs, gitlab.cern.ch, indico, github) | **mostly resolved — cycle 2** | Search-based audit performed (see `O2-4592_link_audit.md`). 6 of 11 non-auth URLs verified ✓. **Two linkrot findings on slide 191:** (a) `slac.stanford.edu/chep03` → `slac.stanford.edu/econf/C0303241/`; (b) `lhcb.physik.unizh.ch/time05` (dead — `unizh.ch` domain renamed to `uzh.ch`) → `cds.cern.ch/record/827303`. 3 URLs still unverified → cycle-3 `curl -I` sweep. |
 | V-4 | P2 | 1 | Slide 184 finding promoted into canonical 159 per P2-7 — Marian approval pending | open — needs Marian | Confirm Karpathy-compounding edit is acceptable; if strict historical faithfulness preferred, revert and mark 184 as `#evolved` separately |
 | V-5 | P3 | 1 | Several slides marked `#blank` (74, 105, 135, 168, 169, 171, 189, 199, 202, 203) — intentional or true blanks? | deferred | Pass while building decks 2-10: if pattern recurs, establish convention |
 | V-6 | P3 | 2 | `#reused` tag used 7× in body but predates 3-category schema | documented | Marked deprecated in Tag taxonomy appendix. Retrofit deferred per no-retrofit policy; lint catches drift on new writes |
+| V-7 | P2 | 2 | Slide 191 contains two rotted URLs (SLAC `/chep03` path moved; `lhcb.physik.unizh.ch` domain renamed to `uzh.ch`) | open — edit recommended | Replace per `O2-4592_link_audit.md` §Actions required. Needs Marian approval since it edits a historical citation block |
 
 ## Related wiki pages
 
@@ -1079,8 +1080,8 @@ Controlled vocabulary for this file. Retrofit of body tags deferred — this app
   - P2-5: Tag taxonomy appendix added (no retrofit; forward-going lint target).
   - P2-6: `TBD` → `[VERIFY]` in front-matter; tracked in Open items V-1.
   - P2-7: Slide 184 finding absorbed into canonical slide 159 (Karpathy compounding, option a). Slide 184 retained as historical-record entry. Marian approval pending (V-4).
-- 2026-04-19 — Review cycle 2: self-lint + V-3 partial resolution.
+- 2026-04-19 — Review cycle 2: self-lint + V-3 real audit via search.
   - Cycle-2 lint confirmed: 216/216 slides present; canonical/evolved annotations consistent with the 3-category map; 17 canonical + 6 evolved slides tagged in body match the map header.
   - Cycle-2 finding V-6 (new P3): `#reused` tag (7× in body) predates the 3-category schema. Documented as deprecated in Tag taxonomy appendix; retrofit deferred.
-  - V-3 partial: URL inventory + categorization produced as sibling file `O2-4592_link_audit.md` (15 distinct external refs). Independent reachability polling deferred — `web_fetch` tool in this session is limited to user-provided URLs (same constraint Claude3-Reviewer-v0 and ClaudeOpus47 declared). Cycle 3 auditor should run a `curl -I` sweep in a network-enabled session.
-- **Status:** DRAFT → awaiting V-1, V-2, V-4 resolution (3 items need Marian input or cycle-3 audit).
+  - **V-3 mostly resolved** via search-based audit (workaround for `web_fetch` URL restriction): 6 of 11 non-auth URLs confirmed alive; 2 linkrot findings with proposed replacements → new **V-7** (P2) opened for slide 191 URL edits; 1 path-obsolescence flag for GSI indico; 3 URLs still NOT CHECKED → cycle-3 `curl -I` sweep. Full audit in sibling file `O2-4592_link_audit.md`.
+- **Status:** DRAFT → awaiting V-1, V-2, V-4, V-7 resolution (4 items; V-7 new this cycle needs Marian sign-off on historical-citation edits).
