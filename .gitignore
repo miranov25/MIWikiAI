@@ -1,0 +1,16 @@
+# JetBrains IDEs (CLion, PyCharm, IntelliJ, etc.)
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor swap/backup files
+*~
+*.swp
