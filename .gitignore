@@ -14,3 +14,12 @@ venv/
 # Editor swap/backup files
 *~
 *.swp
+
+# MIWikiAI counter pipeline outputs (per-checkout, regenerable)
+scripts/*.tsv
+scripts/*.csv
+scripts/seed*.txt
+scripts/unresolved*.txt
+scripts/reachable.txt
+scripts/reachable.iter.log
+scripts/miwikiai_counter_out/
