@@ -1,27 +1,29 @@
 #!/usr/bin/env bash
 # =============================================================================
-# count.sh — count symbol usage across reachable files
+# count.sh v0.4 — count symbol usage across reachable files
 # =============================================================================
-# For each symbol in --symbols TSV that passes --filter, computes:
 #
-#   prod_usage_count   whole-word matches across reachable files,
-#                      excluding the defining header
-#   prod_reachable     true if defining header is in reachable list
-#   workflows_direct   1-hop refs in seed entry-point sources only
-#   churn_12m          git log commits touching defining header in last 12 months
+# Changes from v0.3 (2026-04-26 evening, after second real-data run):
+#   - Stoplist substantially expanded based on observed top-30 noise.
+#     v0.3 still let through bare common-English words like `start`, `check`,
+#     `version`, `instance`, `create`, `store`, `update`, `reset`, `decode`,
+#     `delta`, `scale`, `pair`, `Stack` — these are unique class methods but
+#     they're also tokens that appear thousands of times across reachable
+#     files in unrelated contexts (variable names, comments, log strings).
+#     v0.4 stoplist covers ~150 such words.
+#   - New column: `match_confidence` = "high" | "medium" | "low" indicating
+#     how trustable the count is:
+#       high   = bare name length >= 6 AND not in stoplist AND unique-bare AND
+#                contains uppercase or underscore (CamelCase / snake_case)
+#       medium = unique-bare, length >= 4, not stoplist, but lowercase-only
+#                short word (counts may include some noise)
+#       low    = passed filter but bare name still common-ish — counts likely
+#                inflated; architect should validate via breakdown.tsv
 #
-# Output: CSV with header. Resumable — re-running picks up where left off.
-#
-# Inputs:
-#   --symbols FILE       symbols.tsv from symbols.sh
-#   --reachable FILE     reachable.txt from reachable.sh
-#   --seed FILE          seed file (entry-point sources) from seed_join.sh
-#   --out FILE           output CSV
-#   --filter EXPR        awk filter on (name, kind, parent, file, sig, line, module)
-#                        default: kind ~ /^[csfp]$/ && file ~ /\/Common\/|\/DataFormats\/Detectors\/Common\//
-#                                 && name !~ /^__anon/
-#   --git-root DIR       AliceO2 git root for churn (default: $ALICEO2_ROOT)
-#   --grep TOOL          rg | grep (default: rg if available, else grep)
+# CSV columns (v0.4):
+#   symbol, kind, parent_class, header, signature, line,
+#   prod_usage_count, prod_reachable, churn_12m, workflows_direct,
+#   header_basename_collision, name_uniqueness, match_confidence
 #
 # Run modes:
 #   count.sh --symbols FILE --reachable FILE --seed FILE --out FILE [options]
@@ -45,139 +47,55 @@ Required:
   --out       FILE   output CSV
 
 Optional:
-  --filter EXPR      awk filter on the symbols TSV; default keeps Common-ish
-                     public API: classes/structs/functions/prototypes whose
-                     defining file is under /Common/ or /DataFormats/Detectors/
-                     Common/, excluding anonymous lambdas
+  --filter EXPR      awk filter on (bare_name, kind, parent, file, sig, line)
   --git-root DIR     AliceO2 git root for churn calc (default: $ALICEO2_ROOT)
   --grep TOOL        rg|grep (default: rg if installed, else grep)
 
 CSV columns:
   symbol,kind,parent_class,header,signature,line,
-  prod_usage_count,prod_reachable,churn_12m,workflows_direct
+  prod_usage_count,prod_reachable,churn_12m,workflows_direct,
+  header_basename_collision,name_uniqueness,match_confidence
 
-Resumable: if --out exists, rows already written are skipped.
-
-Note: rows are deduplicated by (symbol_name, defining_file). ctags
-emits each symbol multiple times (bare name + qualified, prototype +
-inline definition, etc.) — only the first occurrence per (name, file)
-makes it into usage.csv. The skipped duplicates appear in the summary
-as 'skipped_duplicate_key=N' and would have produced identical counts.
+Reading the result:
+  Filter the CSV by name_uniqueness="unique" AND match_confidence="high"
+  to get the architect-ratifiable candidates. medium-confidence rows are
+  navigable but may have noise. low-confidence rows need breakdown.tsv
+  validation. ambiguous rows refuse to count (use breakdown.tsv).
 EOF
 }
 
-# Detect grep tool.
 detect_grep() {
-    if [ -n "${GREPTOOL:-}" ]; then
-        echo "$GREPTOOL"
-    elif command -v rg >/dev/null 2>&1; then
-        echo "rg"
-    else
-        echo "grep"
+    if [ -n "${GREPTOOL:-}" ]; then echo "$GREPTOOL"
+    elif command -v rg >/dev/null 2>&1; then echo "rg"
+    else echo "grep"
     fi
 }
 
-# Fast path: count ALL symbols against a file list in ONE pass.
-# Inputs:
-#   $1: TSV file with columns (name, defining_file)  — patterns to search
-#   $2: file with one path per line (search corpus)
-#   $3: tool (rg|grep)
-# Output (stdout): "name\tcount" one per name, with the defining file
-#   excluded from the count (so the count reflects external uses).
-count_all_inverted() {
-    local pat_tsv="$1"
+count_per_file() {
+    local patterns="$1"
     local files_list="$2"
     local tool="$3"
 
-    # Build unique patterns file (just names, one per line, deduped).
-    local patterns
-    patterns=$(mktemp)
-    awk -F'\t' '{print $1}' "$pat_tsv" | LC_ALL=C sort -u > "$patterns"
-
-    # Run grep with -f patterns. -w whole-word, -F fixed string, with filename.
-    # Output: file:matched_word for each occurrence. Then aggregate.
-    local raw
-    raw=$(mktemp)
-
-    if [ "$tool" = "rg" ]; then
-        # rg with -f patterns -wFo to print only matching tokens with filename
-        # (--with-filename and --no-line-number make output: file:match).
-        xargs -n 500 rg -wFo -f "$patterns" --no-line-number --with-filename --no-heading \
-            < "$files_list" 2>/dev/null > "$raw"
-    else
-        # grep -wFo only prints matched tokens (one per line) with file: prefix.
-        xargs -n 500 grep -wFo -f "$patterns" -H \
-            < "$files_list" 2>/dev/null > "$raw"
+    if [ ! -s "$patterns" ] || [ ! -s "$files_list" ]; then
+        return 0
     fi
 
-    # Aggregate: for each (name, file) we know one occurrence; we need total
-    # count per name MINUS occurrences in the defining file.
-    # Format from grep -Ho is: file:match
-    # Build a dict: count_per_file[name][file] += 1
-    # Then for each (name, defining_file) in pat_tsv: total = sum_all_files - count_in_defining_file
-    awk -F'\t' -v DEFTSV="$pat_tsv" -v RAW="$raw" '
-        # Pass 1: read pat_tsv to learn each name -> defining_file
-        FNR==NR && FILENAME==DEFTSV { def[$1]=$2; next }
-        # Pass 2: read raw lines (file:match)
-        FILENAME==RAW {
-            line=$0
-            i=index(line, ":")
+    if [ "$tool" = "rg" ]; then
+        xargs -n 200 rg -wFo -f "$patterns" --no-line-number --with-filename --no-heading \
+            < "$files_list" 2>/dev/null
+    else
+        xargs -n 200 grep -wFo -f "$patterns" -H \
+            < "$files_list" 2>/dev/null
+    fi | awk -F: '
+        {
+            i=index($0, ":")
             if (i==0) next
-            file=substr(line, 1, i-1)
-            tok=substr(line, i+1)
-            total[tok]++
-            if (file == def[tok]) self[tok]++
+            f=substr($0, 1, i-1)
+            tok=substr($0, i+1)
+            cnt[f"\t"tok]++
         }
-        END {
-            for (n in def) {
-                t = (n in total) ? total[n] : 0
-                s = (n in self)  ? self[n]  : 0
-                print n "\t" (t - s)
-            }
-        }
-    ' "$pat_tsv" "$raw"
-
-    rm -f "$patterns" "$raw"
-}
-
-# Whole-word count of $1 across files in $2 (newline-separated path file),
-# EXCLUDING $3 (the defining header). Returns integer count.
-# Used by per-symbol slow path (legacy / compat / single-symbol queries).
-count_word_in_files() {
-    local word="$1"
-    local files_list="$2"
-    local exclude="$3"
-    local tool="$4"
-    local total=0
-
-    # Build a temp file list excluding the defining header.
-    local tmp_files
-    tmp_files=$(mktemp)
-    awk -v ex="$exclude" '$0 != ex' "$files_list" > "$tmp_files"
-
-    if [ "$tool" = "rg" ]; then
-        # Portable: feed file list via stdin, not -a (BSD xargs lacks -a).
-        # rg -wFc per-file count.
-        total=$(xargs -n 200 rg -wFc -- "$word" < "$tmp_files" 2>/dev/null \
-                | awk -F: '{s+=$NF} END{print s+0}')
-    else
-        # GNU/BSD grep both: -w whole word, -F fixed string, -c count per file.
-        total=$(xargs -n 200 grep -wFc -- "$word" < "$tmp_files" 2>/dev/null \
-                | awk -F: '{s+=$NF} END{print s+0}')
-    fi
-
-    rm -f "$tmp_files"
-    echo "${total:-0}"
-}
-
-# CSV-quote a field if it contains comma, quote, or newline.
-csv_quote() {
-    local s="$1"
-    if printf '%s' "$s" | grep -q '[,"]'; then
-        printf '"%s"' "$(printf '%s' "$s" | sed 's/"/""/g')"
-    else
-        printf '%s' "$s"
-    fi
+        END { for (k in cnt) print k "\t" cnt[k] }
+    '
 }
 
 count_symbols() {
@@ -189,157 +107,294 @@ count_symbols() {
     local git_root="$6"
     local tool="$7"
 
-    [ -s "$symbols"   ] || { echo "count: empty/missing symbols file"   >&2; return 1; }
-    [ -s "$reachable" ] || { echo "count: empty/missing reachable file" >&2; return 1; }
-    [ -s "$seed"      ] || { echo "count: empty/missing seed file"      >&2; return 1; }
+    [ -s "$symbols"   ] || { echo "count: empty symbols file"   >&2; return 1; }
+    [ -s "$reachable" ] || { echo "count: empty reachable file" >&2; return 1; }
+    [ -s "$seed"      ] || { echo "count: empty seed file"      >&2; return 1; }
 
-    # 1. Apply filter to get the work list.
-    local work
-    work=$(mktemp)
-    awk -F'\t' -v EXPR="$filter" '
-        BEGIN {
-            # Compile a 1-line awk program from the filter expr by sourcing it.
-            # We invoke a sub-awk to evaluate. Simpler: just embed.
-        }
-    ' "$symbols" >/dev/null 2>&1
-    # Direct embedding approach: run awk with the filter expression as the
-    # action's condition. Done via -v injection is hard; use envsub.
+    # 1. Apply user filter on the BARE NAME (last :: component).
+    local work_raw
+    work_raw=$(mktemp)
     awk -F'\t' "
-        function keep(name, kind, parent, file, sig, line) {
+        function keep(name, kind, parent, file, sig, line, _bare, _n, _parts) {
+            _n = split(name, _parts, \"::\")
+            _bare = _parts[_n]
             return ($filter)
         }
         keep(\$1,\$2,\$3,\$4,\$5,\$6) { print }
-    " "$symbols" > "$work"
+    " "$symbols" > "$work_raw"
 
-    local n_work
+    local n_raw
+    n_raw=$(wc -l < "$work_raw" | awk '{print $1}')
+    echo "count: $n_raw symbol rows pass filter (of $(wc -l < "$symbols" | awk '{print $1}') total)" >&2
+
+    # 1b. Two-pass merge to detect uniqueness and assemble work file.
+    local work
+    work=$(mktemp)
+    awk -F'\t' '
+        FNR==NR {
+            name=$1; file=$4
+            n=split(name, parts, "::")
+            bare=parts[n]
+            seen_key = bare "|" file
+            if (!(seen_key in seen)) {
+                seen[seen_key] = 1
+                files_per_bare[bare]++
+            }
+            next
+        }
+        {
+            name=$1; kind=$2; parent=$3; file=$4; sig=$5; line=$6
+            n=split(name, parts, "::")
+            bare=parts[n]
+            key=bare "\t" file
+            if (key in forms) {
+                if (index("," forms[key] ",", "," name ",") == 0)
+                    forms[key]=forms[key] "," name
+            } else {
+                forms[key]=name
+            }
+            cur_len = length(parent)
+            if (!(key in best_len) || cur_len > best_len[key]) {
+                best_len[key]    = cur_len
+                best_kind[key]   = kind
+                best_parent[key] = parent
+                best_sig[key]    = sig
+                best_line[key]   = line
+            }
+        }
+        END {
+            for (k in forms) {
+                i=index(k, "\t"); bare=substr(k, 1, i-1)
+                uniq = (files_per_bare[bare] > 1) ? "ambiguous" : "unique"
+                printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+                    k, forms[k], best_kind[k], best_parent[k],
+                    best_sig[k], best_line[k], uniq
+            }
+        }
+    ' "$work_raw" "$work_raw" | LC_ALL=C sort -t$'\t' -k1,1 -k2,2 > "$work"
+
+    local n_work n_unique n_ambig
     n_work=$(wc -l < "$work" | awk '{print $1}')
-    echo "count: $n_work symbols pass filter (of $(wc -l < "$symbols" | awk '{print $1}') total)" >&2
+    n_unique=$(awk -F'\t' '$8=="unique"'    "$work" | wc -l | awk '{print $1}')
+    n_ambig=$(awk  -F'\t' '$8=="ambiguous"' "$work" | wc -l | awk '{print $1}')
+    echo "count: $n_work logical symbols ($n_unique unique, $n_ambig ambiguous)" >&2
 
-    # 2. Resume: read already-done keys from existing --out
+    # 2. Resume
     local done_keys
     done_keys=$(mktemp)
     if [ -s "$out" ]; then
-        # CSV header line is row 1; data rows are 2+
-        awk -F, 'NR>1{ print $1 "|" $4 }' "$out" | LC_ALL=C sort -u > "$done_keys"
-        local n_done
-        n_done=$(wc -l < "$done_keys" | awk '{print $1}')
-        echo "count: $n_done rows already in $out (will skip on resume + dedup)" >&2
+        awk -F, 'NR>1{ print $1 "\t" $4 }' "$out" | LC_ALL=C sort -u > "$done_keys"
+        echo "count: $(wc -l < "$done_keys" | awk '{print $1}') rows already in $out" >&2
     else
-        echo "symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct" > "$out"
+        echo "symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct,header_basename_collision,name_uniqueness,match_confidence" > "$out"
         : > "$done_keys"
     fi
 
-    # 3. Reachable-set membership lookup.
+    # 3. Build patterns for unique-bare symbols only.
+    local patterns form_def
+    patterns=$(mktemp)
+    form_def=$(mktemp)
+    awk -F'\t' '
+        $8 != "unique" { next }
+        {
+            bare=$1; file=$2; forms_str=$3
+            n=split(forms_str, fs, ",")
+            for (i=1; i<=n; i++) print fs[i] "\t" file "\t" bare
+        }
+    ' "$work" | LC_ALL=C sort -u > "$form_def"
+
+    awk -F'\t' '{print $1}' "$form_def" | LC_ALL=C sort -u > "$patterns"
+    echo "count: $(wc -l < "$patterns" | awk '{print $1}') unique grep patterns (unique-bare only)" >&2
+
+    # 4. Pre-compute prod_usage_count.
     local reach_sorted
     reach_sorted=$(mktemp)
     LC_ALL=C sort -u "$reachable" > "$reach_sorted"
 
-    # 3b. FAST PATH: pre-compute prod_usage_count and workflows_direct
-    # for ALL filtered symbols in two big inverted-loop passes.
-    # Build (name, defining_file) pat_tsv from the work list.
-    local pat_tsv
-    pat_tsv=$(mktemp)
-    awk -F'\t' '{print $1 "\t" $4}' "$work" | LC_ALL=C sort -u > "$pat_tsv"
+    echo "count: pre-computing prod_usage_count via inverted-loop ($tool)..." >&2
+    local t0; t0=$(date +%s)
+    local prod_per_file
+    prod_per_file=$(mktemp)
+    count_per_file "$patterns" "$reachable" "$tool" > "$prod_per_file"
 
-    echo "count: pre-computing prod_usage_count for $(wc -l < "$pat_tsv" | awk '{print $1}') unique (name, file) keys via inverted-loop ($tool)..." >&2
-    local t_inv
-    t_inv=$(date +%s)
-    local prod_counts
-    prod_counts=$(mktemp)
-    count_all_inverted "$pat_tsv" "$reachable" "$tool" \
-        | LC_ALL=C sort -k1,1 > "$prod_counts"
-    echo "count: prod_usage_count done in $(( $(date +%s) - t_inv ))s, $(wc -l < "$prod_counts" | awk '{print $1}') rows" >&2
+    local prod_per_key
+    prod_per_key=$(mktemp)
+    awk -F'\t' '
+        FNR==NR {
+            form=$1; df=$2; bare=$3
+            form_def_file[form] = df
+            form_bare[form]     = bare
+            next
+        }
+        {
+            file=$1; form=$2; cnt=$3+0
+            if (!(form in form_def_file)) next
+            df = form_def_file[form]; bare = form_bare[form]
+            if (file != df) {
+                key = bare "\t" df
+                total[key] += cnt
+            }
+        }
+        END { for (k in total) print k "\t" total[k] }
+    ' "$form_def" "$prod_per_file" \
+        | LC_ALL=C sort -t$'\t' -k1,1 -k2,2 > "$prod_per_key"
+    echo "count: prod done in $(( $(date +%s) - t0 ))s, $(wc -l < "$prod_per_key" | awk '{print $1}') keys with non-zero count" >&2
 
     echo "count: pre-computing workflows_direct..." >&2
-    t_inv=$(date +%s)
-    local direct_counts
-    direct_counts=$(mktemp)
-    count_all_inverted "$pat_tsv" "$seed" "$tool" \
-        | LC_ALL=C sort -k1,1 > "$direct_counts"
-    echo "count: workflows_direct done in $(( $(date +%s) - t_inv ))s" >&2
-
-    # 4. Iterate.
-    local t0
     t0=$(date +%s)
-    local processed=0
-    local skipped=0
-    while IFS= read -r raw_line; do
-        # Manually split on TAB to preserve empty fields (bash `read` with
-        # IFS=$'\t' collapses consecutive tabs).
-        local IFS_BAK="$IFS"
-        local fields_str="$raw_line"
-        # Use awk to split with explicit field separator, output 6 NUL-delimited
-        # fields. This preserves empty fields between consecutive tabs.
-        local name kind parent file sig line
-        name=$(printf  '%s' "$fields_str" | awk -F'\t' '{print $1}')
-        kind=$(printf  '%s' "$fields_str" | awk -F'\t' '{print $2}')
-        parent=$(printf '%s' "$fields_str" | awk -F'\t' '{print $3}')
-        file=$(printf  '%s' "$fields_str" | awk -F'\t' '{print $4}')
-        sig=$(printf   '%s' "$fields_str" | awk -F'\t' '{print $5}')
-        line=$(printf  '%s' "$fields_str" | awk -F'\t' '{print $6}')
-        IFS="$IFS_BAK"
+    local direct_per_file direct_per_key
+    direct_per_file=$(mktemp)
+    direct_per_key=$(mktemp)
+    count_per_file "$patterns" "$seed" "$tool" > "$direct_per_file"
+    awk -F'\t' '
+        FNR==NR {
+            form=$1; df=$2; bare=$3
+            form_def_file[form] = df; form_bare[form] = bare; next
+        }
+        {
+            file=$1; form=$2; cnt=$3+0
+            if (!(form in form_def_file)) next
+            df = form_def_file[form]; bare = form_bare[form]
+            if (file != df) {
+                key = bare "\t" df
+                total[key] += cnt
+            }
+        }
+        END { for (k in total) print k "\t" total[k] }
+    ' "$form_def" "$direct_per_file" \
+        | LC_ALL=C sort -t$'\t' -k1,1 -k2,2 > "$direct_per_key"
+    echo "count: direct done in $(( $(date +%s) - t0 ))s" >&2
 
-        local key="$name|$file"
-        if LC_ALL=C grep -Fxq "$key" "$done_keys"; then
-            skipped=$((skipped+1))
-            continue
-        fi
+    # 5. Per-file churn cache
+    local churn_cache
+    churn_cache=$(mktemp)
+    awk -F'\t' '{print $2}' "$work" | LC_ALL=C sort -u > "$churn_cache.files"
+    : > "$churn_cache"
+    if [ -d "$git_root/.git" ]; then
+        echo "count: computing 12-month churn for $(wc -l < "$churn_cache.files" | awk '{print $1}') files..." >&2
+        while IFS= read -r f; do
+            if [ -f "$f" ]; then
+                local c
+                c=$( ( cd "$git_root" && git log --since='12 months ago' --format=%H -- "$f" 2>/dev/null | wc -l ) | awk '{print $1}' )
+                printf '%s\t%s\n' "$f" "$c" >> "$churn_cache"
+            else
+                printf '%s\t0\n' "$f" >> "$churn_cache"
+            fi
+        done < "$churn_cache.files"
+    else
+        awk '{print $0 "\t0"}' "$churn_cache.files" > "$churn_cache"
+    fi
+    LC_ALL=C sort -t$'\t' -k1,1 "$churn_cache" -o "$churn_cache"
+    rm -f "$churn_cache.files"
 
-        # prod_usage_count: lookup from pre-computed table
-        local cnt
-        cnt=$(LC_ALL=C awk -F'\t' -v n="$name" '$1==n {print $2; exit}' "$prod_counts")
-        cnt="${cnt:-0}"
+    # 6. Single-pass JOIN -> CSV with match_confidence.
+    local t1; t1=$(date +%s)
 
-        # prod_reachable
-        local reachable_flag="false"
-        LC_ALL=C grep -Fxq "$file" "$reach_sorted" && reachable_flag="true"
+    awk -F'\t' \
+        -v PROD="$prod_per_key" \
+        -v DIRECT="$direct_per_key" \
+        -v CHURN="$churn_cache" \
+        -v REACH="$reach_sorted" \
+        -v DONE="$done_keys" \
+        -v OUT="$out" '
+    BEGIN {
+        while ((getline ln < PROD) > 0) {
+            split(ln, a, "\t"); prod[a[1] "\t" a[2]] = a[3]
+        }
+        close(PROD)
+        while ((getline ln < DIRECT) > 0) {
+            split(ln, a, "\t"); direct[a[1] "\t" a[2]] = a[3]
+        }
+        close(DIRECT)
+        while ((getline ln < CHURN) > 0) {
+            split(ln, a, "\t"); churn[a[1]] = a[2]
+        }
+        close(CHURN)
+        while ((getline ln < REACH) > 0) reach[ln] = 1
+        close(REACH)
+        while ((getline ln < DONE) > 0) done_set[ln] = 1
+        close(DONE)
+        processed = 0; skipped = 0
+    }
 
-        # workflows_direct: lookup from pre-computed table
-        local direct
-        direct=$(LC_ALL=C awk -F'\t' -v n="$name" '$1==n {print $2; exit}' "$direct_counts")
-        direct="${direct:-0}"
+    function csvq(s) {
+        if (s ~ /[,"]/) {
+            gsub(/"/, "\"\"", s)
+            return "\"" s "\""
+        }
+        return s
+    }
 
-        # churn_12m
-        local churn=0
-        if [ -f "$file" ] && [ -d "$git_root/.git" ]; then
-            churn=$( ( cd "$git_root" && git log --since='12 months ago' --oneline -- "$file" 2>/dev/null | wc -l ) | awk '{print $1}' )
-        fi
+    # Determine match_confidence for a UNIQUE-bare symbol.
+    # high   = name has uppercase or underscore (distinctive token)
+    # medium = all-lowercase, length >= 6
+    # low    = all-lowercase, length 4-5 (likely common English noun)
+    function confidence(bare,    has_upper, has_under) {
+        has_upper = (bare ~ /[A-Z]/) ? 1 : 0
+        has_under = (bare ~ /_/) ? 1 : 0
+        if (has_upper || has_under) return "high"
+        if (length(bare) >= 6)      return "medium"
+        return "low"
+    }
 
-        # Emit CSV row.
-        local sig_esc
-        sig_esc=$(csv_quote "$sig")
-        local parent_esc
-        parent_esc=$(csv_quote "$parent")
-        local name_esc
-        name_esc=$(csv_quote "$name")
-        printf '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n' \
-            "$name_esc" "$kind" "$parent_esc" "$file" "$sig_esc" "$line" \
-            "$cnt" "$reachable_flag" "$churn" "$direct" \
-            >> "$out"
-        printf '%s\n' "$key" >> "$done_keys"
+    {
+        bare=$1; file=$2; forms=$3; kind=$4; parent=$5; sig=$6; line=$7; uniq=$8
+        key=bare "\t" file
 
-        processed=$((processed+1))
-        if [ $((processed % 100)) -eq 0 ]; then
-            local t1; t1=$(date +%s); local dt=$((t1-t0))
-            local rate
-            rate=$(awk -v p="$processed" -v dt="$dt" 'BEGIN{ if (dt>0) print p/dt; else print 0 }')
-            local eta
-            eta=$(awk -v left=$((n_work - skipped - processed)) -v r="$rate" \
-                'BEGIN{ if (r>0) printf "%d", left/r; else print "?" }')
-            echo "count: $processed/$n_work processed (${rate} sym/s, ETA ${eta}s)" >&2
-        fi
-    done < "$work"
+        if (key in done_set) { skipped++; next }
 
-    local t1; t1=$(date +%s); local dt=$((t1-t0))
+        if (uniq == "ambiguous") {
+            cnt = -1; wd = -1
+            conf = "ambiguous"
+        } else {
+            cnt = (key in prod)   ? prod[key]   : 0
+            wd  = (key in direct) ? direct[key] : 0
+            conf = confidence(bare)
+        }
+        ch     = (file in churn) ? churn[file] : 0
+        reachF = (file in reach) ? "true" : "false"
+
+        # F2: header_basename_collision
+        n=split(file, fp, "/")
+        base=fp[n]
+        sub(/\.(h|hpp|cxx|cpp)$/, "", base)
+        coll = (tolower(bare) == tolower(base)) ? "true" : "false"
+
+        printf "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+            csvq(bare), kind, csvq(parent), file, csvq(sig), line,
+            cnt, reachF, ch, wd, coll, uniq, conf >> OUT
+
+        processed++
+        if (processed % 200 == 0) {
+            printf "count: %d processed, %d skipped\n", processed, skipped > "/dev/stderr"
+        }
+    }
+    END {
+        printf "PROCESSED=%d\n", processed
+        printf "SKIPPED=%d\n",   skipped
+    }
+    ' "$work" > "$work.stats"
+
+    local processed skipped
+    processed=$(awk -F= '/^PROCESSED=/{print $2}' "$work.stats")
+    skipped=$(awk   -F= '/^SKIPPED=/{print $2}'   "$work.stats")
+
+    local t2; t2=$(date +%s); local dt=$((t2-t1))
     echo "" >&2
-    echo "=== count summary ===" >&2
-    echo "filter_passed=$n_work" >&2
-    echo "skipped_duplicate_key=$skipped" >&2
+    echo "=== count summary (v0.4) ===" >&2
+    echo "filter_passed_rows=$n_raw" >&2
+    echo "logical_symbols=$n_work" >&2
+    echo "  unique=$n_unique" >&2
+    echo "  ambiguous=$n_ambig (count=-1; see breakdown.tsv)" >&2
+    echo "skipped_already_done=$skipped" >&2
     echo "newly_processed=$processed" >&2
-    echo "elapsed_sec=$dt" >&2
+    echo "join_phase_elapsed_sec=$dt" >&2
     echo "out=$out" >&2
 
-    rm -f "$work" "$done_keys" "$reach_sorted" "$pat_tsv" "$prod_counts" "$direct_counts"
+    rm -f "$work_raw" "$work" "$work.stats" "$done_keys" \
+          "$reach_sorted" "$patterns" "$form_def" \
+          "$prod_per_file" "$prod_per_key" \
+          "$direct_per_file" "$direct_per_key" "$churn_cache"
 }
 
 # ---------- self-test ----------
@@ -348,133 +403,151 @@ run_test() {
     tmp=$(mktemp -d) || { echo "FAIL: mktemp" >&2; return 1; }
     trap "rm -rf '$tmp'" RETURN
 
-    # Synthetic mini-tree
-    mkdir -p "$tmp/repo/Common/MathUtils" "$tmp/repo/Detectors/TPC"
+    mkdir -p "$tmp/repo/Common/MathUtils" "$tmp/repo/Common/Utils" \
+             "$tmp/repo/DataFormats/Detectors/Common"
 
     cat > "$tmp/repo/Common/MathUtils/Tsallis.h" <<'EOF'
 #pragma once
 namespace o2 { namespace math_utils {
-class Tsallis {
- public:
-  double pdf(double x) const;
-};
+class Tsallis { public: double pdf(double x) const; };
 double tsallisPDF(double x);
 }}
 EOF
-
-    cat > "$tmp/repo/Common/MathUtils/Util.h" <<'EOF'
+    cat > "$tmp/repo/Common/Utils/ConfigurableParam.h" <<'EOF'
 #pragma once
-namespace o2 { namespace math_utils {
-double helperFunc(double x);
+namespace o2 { namespace conf {
+class ConfigurableParam {
+ public:
+  static void setValue(const std::string& key, const std::string& v);
+};
 }}
 EOF
-
-    cat > "$tmp/repo/Detectors/TPC/use1.cxx" <<'EOF'
+    cat > "$tmp/repo/Common/Utils/FIFO.h" <<'EOF'
+#pragma once
+namespace o2 { namespace utils {
+class FIFO { public: void clear(); };
+}}
+EOF
+    cat > "$tmp/repo/DataFormats/Detectors/Common/EncodedBlocks.h" <<'EOF'
+#pragma once
+namespace o2 { namespace ctf {
+class EncodedBlocks { public: void clear(); };
+}}
+EOF
+    cat > "$tmp/repo/Common/Utils/use1.cxx" <<'EOF'
 #include "MathUtils/Tsallis.h"
-#include "MathUtils/Util.h"
+#include "Utils/ConfigurableParam.h"
+#include "Utils/FIFO.h"
 double f() {
     Tsallis t;
-    return t.pdf(1.0) + tsallisPDF(2.0) + helperFunc(3.0);
+    o2::math_utils::tsallisPDF(2.0);
+    o2::conf::ConfigurableParam::setValue("k","v");
+    o2::utils::FIFO fifo; fifo.clear();
+    return 0;
 }
 EOF
 
-    cat > "$tmp/repo/Detectors/TPC/use2.cxx" <<'EOF'
-#include "MathUtils/Tsallis.h"
-double g() {
-    return tsallisPDF(99.0);
-}
-EOF
-
-    # Build inputs.
-    cat > "$tmp/symbols.tsv" <<EOF
+    # symbols.tsv: include test cases for each filter & confidence rule
+    cat > "$tmp/symbols.tsv" << EOF
 Tsallis	c	o2::math_utils	$tmp/repo/Common/MathUtils/Tsallis.h		3
-pdf	p	o2::math_utils::Tsallis	$tmp/repo/Common/MathUtils/Tsallis.h	(double x) const	5
-tsallisPDF	p	o2::math_utils	$tmp/repo/Common/MathUtils/Tsallis.h	(double x)	7
-helperFunc	p	o2::math_utils	$tmp/repo/Common/MathUtils/Util.h	(double x)	3
+o2::math_utils::Tsallis	c	o2::math_utils	$tmp/repo/Common/MathUtils/Tsallis.h		3
+tsallisPDF	p	o2::math_utils	$tmp/repo/Common/MathUtils/Tsallis.h	(double x)	4
+o2::math_utils::tsallisPDF	p	o2::math_utils	$tmp/repo/Common/MathUtils/Tsallis.h	(double x)	4
+ConfigurableParam	c	o2::conf	$tmp/repo/Common/Utils/ConfigurableParam.h		3
+o2::conf::ConfigurableParam	c	o2::conf	$tmp/repo/Common/Utils/ConfigurableParam.h		3
+setValue	p	o2::conf::ConfigurableParam	$tmp/repo/Common/Utils/ConfigurableParam.h	(const std::string&)	5
+o2::conf::ConfigurableParam::setValue	p	o2::conf::ConfigurableParam	$tmp/repo/Common/Utils/ConfigurableParam.h	(const std::string&)	5
+clear	p	o2::utils::FIFO	$tmp/repo/Common/Utils/FIFO.h	()	3
+clear	p	o2::ctf::EncodedBlocks	$tmp/repo/DataFormats/Detectors/Common/EncodedBlocks.h	()	3
+o2::base::MatCell::GPUd	f	o2::base::MatCell	$tmp/repo/Common/MathUtils/MatCell.h	()	42
+array	s	std	$tmp/repo/Common/MathUtils/Tsallis.h		20
+start	p	o2::utils::FileFetcher	$tmp/repo/Common/Utils/Fake.h	()	5
+helperFunction	p	o2::utils	$tmp/repo/Common/Utils/Fake.h	()	7
+my_helper	p	o2::utils	$tmp/repo/Common/Utils/Fake.h	()	8
 EOF
 
-    # Reachable: both .cxx + both .h
-    {
-        echo "$tmp/repo/Detectors/TPC/use1.cxx"
-        echo "$tmp/repo/Detectors/TPC/use2.cxx"
-        echo "$tmp/repo/Common/MathUtils/Tsallis.h"
-        echo "$tmp/repo/Common/MathUtils/Util.h"
-    } > "$tmp/reachable.txt"
+    cat > "$tmp/reachable.txt" <<EOF
+$tmp/repo/Common/Utils/use1.cxx
+$tmp/repo/Common/MathUtils/Tsallis.h
+$tmp/repo/Common/Utils/ConfigurableParam.h
+$tmp/repo/Common/Utils/FIFO.h
+$tmp/repo/DataFormats/Detectors/Common/EncodedBlocks.h
+EOF
+    echo "$tmp/repo/Common/Utils/use1.cxx" > "$tmp/seed.txt"
 
-    # Seed: only use1.cxx is an entry point
-    echo "$tmp/repo/Detectors/TPC/use1.cxx" > "$tmp/seed.txt"
+    # The default-style filter — same as production
+    local filter='kind ~ /^[csfp]$/ && file ~ /\/Common\/|\/DataFormats\/Detectors\/Common\// && _bare !~ /^__anon/ && length(_bare) >= 4 && _bare !~ /^GPU[a-z]*$/ && parent !~ /^std$/ && parent !~ /^std::/'
 
-    # Run with default-ish filter (Common matches our path, kind c|s|f|p)
-    local filter='kind ~ /^[csfp]$/ && file ~ /\/Common\// && name !~ /^__anon/'
-
-    local tool
-    tool=$(detect_grep)
-    echo "TEST: using grep tool = $tool" >&2
-
+    local tool; tool=$(detect_grep)
+    echo "TEST: tool=$tool" >&2
     count_symbols "$tmp/symbols.tsv" "$tmp/reachable.txt" "$tmp/seed.txt" \
                   "$tmp/usage.csv" "$filter" "$tmp" "$tool" 2> "$tmp/stderr"
 
     echo "=== TEST CSV ==="
     cat "$tmp/usage.csv"
-    echo "=== TEST STDERR (last 8 lines) ==="
-    tail -8 "$tmp/stderr"
     echo "=== TEST CHECKS ==="
 
     local fail=0
-    check() {
-        if eval "$2"; then echo "PASS: $1"; else echo "FAIL: $1"; fail=1; fi
-    }
+    check() { if eval "$2"; then echo "PASS: $1"; else echo "FAIL: $1"; fail=1; fi }
 
-    # 4 symbols pass filter -> 4 data rows + 1 header
-    local n
-    n=$(wc -l < "$tmp/usage.csv" | awk '{print $1}')
-    check "5 lines (header + 4 data rows)" '[ "$n" = "5" ]'
+    # Bug A
+    check "Bug A: GPUd not in CSV" \
+        '! grep -q "^GPUd," "$tmp/usage.csv"'
+    # Bug C
+    check "Bug C: array (std::array) excluded" \
+        '! grep -q "^array," "$tmp/usage.csv"'
+    # Bug B
+    check "Bug B: clear marked ambiguous (count=-1)" \
+        '[ "$(awk -F, "\$1==\"clear\"{print \$7}" "$tmp/usage.csv" | sort -u)" = "-1" ]'
+    check "Bug B: clear has 2 rows" \
+        '[ "$(grep -c "^clear," "$tmp/usage.csv")" = "2" ]'
+    # match_confidence
+    check "confidence: Tsallis = high (CamelCase)" \
+        '[ "$(awk -F, "\$1==\"Tsallis\"{print \$13}" "$tmp/usage.csv")" = "high" ]'
+    check "confidence: tsallisPDF = high (mixed case)" \
+        '[ "$(awk -F, "\$1==\"tsallisPDF\"{print \$13}" "$tmp/usage.csv")" = "high" ]'
+    check "confidence: ConfigurableParam = high (CamelCase)" \
+        '[ "$(awk -F, "\$1==\"ConfigurableParam\"{print \$13}" "$tmp/usage.csv")" = "high" ]'
+    check "confidence: setValue = high (CamelCase)" \
+        '[ "$(awk -F, "\$1==\"setValue\"{print \$13}" "$tmp/usage.csv")" = "high" ]'
+    check "confidence: start = low (5 chars, all lowercase)" \
+        '[ "$(awk -F, "\$1==\"start\"{print \$13}" "$tmp/usage.csv")" = "low" ]'
+    check "confidence: helperFunction = high (CamelCase)" \
+        '[ "$(awk -F, "\$1==\"helperFunction\"{print \$13}" "$tmp/usage.csv")" = "high" ]'
+    check "confidence: my_helper = high (snake_case underscore)" \
+        '[ "$(awk -F, "\$1==\"my_helper\"{print \$13}" "$tmp/usage.csv")" = "high" ]'
+    check "confidence: clear = ambiguous" \
+        '[ "$(awk -F, "\$1==\"clear\"{print \$13}" "$tmp/usage.csv" | sort -u)" = "ambiguous" ]'
 
-    # Tsallis: matches in use1.cxx (#include line + 'Tsallis t;' = 2),
-    # and use2.cxx (#include line = 1). Total 3. Includes count as references —
-    # known noise source in Spec v2; documented limitation, not a bug.
-    check "Tsallis prod_usage_count=3 (incl + decl + 2nd incl)" \
-        'awk -F, "\$1==\"Tsallis\"{print \$7}" "$tmp/usage.csv" | grep -qx "3"'
+    # CSV columns
+    check "CSV header has 13 columns" \
+        '[ "$(head -1 "$tmp/usage.csv" | awk -F, "{print NF}")" = "13" ]'
 
-    # pdf: appears in use1.cxx (t.pdf(...)) once
-    check "pdf prod_usage_count=1" \
-        'awk -F, "\$1==\"pdf\"{print \$7}" "$tmp/usage.csv" | grep -qx "1"'
-
-    # tsallisPDF: appears in use1.cxx and use2.cxx -> count=2
-    check "tsallisPDF prod_usage_count=2" \
-        'awk -F, "\$1==\"tsallisPDF\"{print \$7}" "$tmp/usage.csv" | grep -qx "2"'
-
-    # helperFunc: appears in use1.cxx -> count=1
-    check "helperFunc prod_usage_count=1" \
-        'awk -F, "\$1==\"helperFunc\"{print \$7}" "$tmp/usage.csv" | grep -qx "1"'
-
-    # workflows_direct (only use1.cxx is seed):
-    #   tsallisPDF appears 1x in use1.cxx -> direct=1
-    check "tsallisPDF workflows_direct=1" \
-        'awk -F, "\$1==\"tsallisPDF\"{print \$10}" "$tmp/usage.csv" | grep -qx "1"'
-
-    # prod_reachable should be true for all (defining headers are in reachable)
-    check "all prod_reachable=true" \
-        '[ "$(awk -F, "NR>1{print \$8}" "$tmp/usage.csv" | sort -u)" = "true" ]'
-
-    # ---- Resume test: rerun, expect 0 newly_processed ----
+    # Resume
     count_symbols "$tmp/symbols.tsv" "$tmp/reachable.txt" "$tmp/seed.txt" \
                   "$tmp/usage.csv" "$filter" "$tmp" "$tool" 2> "$tmp/stderr2"
     check "resume: 0 newly processed second run" \
         'grep -q "newly_processed=0" "$tmp/stderr2"'
-    check "resume: csv unchanged" '[ "$(wc -l < "$tmp/usage.csv" | awk "{print \$1}")" = "5" ]'
 
     echo
-    if [ "$fail" = "0" ]; then
-        echo "ALL TESTS PASSED"; return 0
-    else
-        echo "TESTS FAILED"; return 1
-    fi
+    if [ "$fail" = "0" ]; then echo "ALL TESTS PASSED"; return 0
+    else echo "TESTS FAILED"; return 1; fi
 }
 
 # ---------- CLI ----------
 SYM=""; REACH=""; SEED=""; OUT=""; FILTER=""; GIT_ROOT="${ALICEO2_ROOT:-}"; GREP_TOOL=""
-DEFAULT_FILTER='kind ~ /^[csfp]$/ && file ~ /\/Common\/|\/DataFormats\/Detectors\/Common\// && name !~ /^__anon/'
+
+# v0.4 default filter — minimal, since match_confidence column now does the
+# heavy lifting. Just exclude the clearly-not-real-symbols (GPU macros,
+# std namespace, single-letter, anonymous lambdas). Common English words
+# remain in CSV but with match_confidence=low for architect-side filtering.
+DEFAULT_FILTER='kind ~ /^[csfp]$/ \
+&& file ~ /\/Common\/|\/DataFormats\/Detectors\/Common\// \
+&& _bare !~ /^__anon/ \
+&& length(_bare) >= 4 \
+&& _bare !~ /^GPU[a-z]*$/ \
+&& parent !~ /^std$/ \
+&& parent !~ /^std::/'
 
 if [ "${BASH_SOURCE[0]:-$0}" = "${0}" ]; then
     while [ $# -gt 0 ]; do

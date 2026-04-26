@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # =============================================================================
-# parse_o2dpg.sh v3 — extract binary token invocations from O2DPG scripts
+# parse_o2dpg.sh v4 — extract binary token invocations from O2DPG scripts
 # =============================================================================
-# Whitelist of file types: only .sh and .py are scanned. Everything else
-# (.log, .md, .json, .xml, .C, *.dist-info/*) is noise and is skipped.
-# Directories venv/, .git/, node_modules/ are pruned outright.
+# Default: scan every text file under O2DPG_ROOT for `o2-...` binary tokens.
+# Directory exclusions (env O2DPG_EXCLUDE_DIRS, default
+# venv,.git,node_modules,.cache,__pycache__) are pruned outright. File-glob
+# exclusions (env O2DPG_EXCLUDE_GLOBS, default *.dist-info,*.egg-info) skip
+# Python distribution noise.
+#
+# Optionally restrict by extension via env O2DPG_INCLUDE_EXT (comma-separated,
+# no leading dot, e.g. "sh,py"). Default empty = scan-everything.
 #
 # Output (TSV, stdout): <abs_script_path>\t<category>\t<binary_token>
 # Categories (first match wins): MC | QC | calibration | production | other
