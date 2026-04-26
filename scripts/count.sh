@@ -57,6 +57,12 @@ CSV columns:
   prod_usage_count,prod_reachable,churn_12m,workflows_direct
 
 Resumable: if --out exists, rows already written are skipped.
+
+Note: rows are deduplicated by (symbol_name, defining_file). ctags
+emits each symbol multiple times (bare name + qualified, prototype +
+inline definition, etc.) — only the first occurrence per (name, file)
+makes it into usage.csv. The skipped duplicates appear in the summary
+as 'skipped_duplicate_key=N' and would have produced identical counts.
 EOF
 }
 
@@ -217,7 +223,7 @@ count_symbols() {
         awk -F, 'NR>1{ print $1 "|" $4 }' "$out" | LC_ALL=C sort -u > "$done_keys"
         local n_done
         n_done=$(wc -l < "$done_keys" | awk '{print $1}')
-        echo "count: resuming — $n_done rows already in $out" >&2
+        echo "count: $n_done rows already in $out (will skip on resume + dedup)" >&2
     else
         echo "symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct" > "$out"
         : > "$done_keys"
@@ -328,7 +334,7 @@ count_symbols() {
     echo "" >&2
     echo "=== count summary ===" >&2
     echo "filter_passed=$n_work" >&2
-    echo "skipped_resumed=$skipped" >&2
+    echo "skipped_duplicate_key=$skipped" >&2
     echo "newly_processed=$processed" >&2
     echo "elapsed_sec=$dt" >&2
     echo "out=$out" >&2
