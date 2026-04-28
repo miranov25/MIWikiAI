@@ -1,0 +1,326 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    citecolor=blue!60!black,
+    urlcolor=blue!60!black
+}
+
+\title{Multiple Scattering and Curvature Contributions\\
+to the ALICE TRD Midpoint Residual}
+\author{M.~Ivanov and the O2DistAI team\\[2pt]
+{\normalsize JIRA: ATO-628, PHASE 0.4 --- TRD+TOF Alignment}}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+
+%======================================================================
+\section{Introduction}
+%======================================================================
+
+We estimate the multiple scattering (MS) and track curvature uncertainty
+contributions to the midpoint residual in the ALICE Transition Radiation
+Detector (TRD) for pions at $p = 1$, 2, 5, and 10~GeV/$c$.
+
+The midpoint residual is defined as
+\begin{equation}
+\label{eq:midpoint}
+\mathrm{Res}_i = d_i - \tfrac{1}{2}\bigl(d_{i-1} + d_{i+1}\bigr)\,,
+\end{equation}
+where $d_i$ denotes the \emph{residual of the cluster (tracklet) position
+at TRD layer~$i$ with respect to the fitted curved track}.
+The quantities $d_{i-1}$ and $d_{i+1}$ are the corresponding residuals
+at the neighboring layers.
+
+This estimator removes any linear component of the track
+(straight-line propagation) but is sensitive to two effects:
+\begin{enumerate}
+\item \textbf{Multiple scattering} --- random angular deflections in the
+      layer material produce a non-linear displacement that the midpoint
+      formula cannot subtract.
+\item \textbf{Track curvature mismatch} --- the residual retains the
+      sagitta of the curved track; any uncertainty in the measured track
+      momentum translates into a residual sagitta after the track
+      fitter's curvature subtraction.
+\end{enumerate}
+
+%======================================================================
+\section{Input parameters}
+%======================================================================
+
+\begin{table}[h]
+\centering
+\caption{Input parameters for the estimate.}
+\label{tab:inputs}
+\begin{tabular}{lll}
+\toprule
+Parameter & Value & Source \\
+\midrule
+$x/X_0$ per TRD layer & ${\approx}\,2.5\%$ (conservative) & Total TRD ${\sim}15\%\;/\;6$ layers \\
+Inter-layer spacing $L$ & ${\approx}\,16$~cm & $\Delta r \approx 80$~cm, 6 layers \\
+Layer thickness $t$ & ${\approx}\,10$~cm & Radiator + drift + readout \\
+Magnetic field $B$ & 0.5~T & ALICE solenoid \\
+TPC momentum resolution $\delta p/p$ & ${\sim}\,1$--$2\%$ & At $1$--$10$~GeV/$c$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+$L = 16$~cm is the adjacent-layer center-to-center spacing; the
+outer-point chord (layer $i{-}1$ to layer $i{+}1$) is $2L = 32$~cm.
+The formulas $s = L^2/(2R)$ and $s = (2L)^2/(8R)$ are equivalent.
+
+The value $x/X_0 = 2.5\%$ is a conservative estimate based on the total
+TRD radiation length of ${\sim}15\%$ divided equally among six layers.
+Individual layer budgets vary from ${\sim}2.0\%$ to ${\sim}2.8\%$
+depending on the chamber type and the distribution of material
+(pad plane ${\sim}0.8\%$, radiator ${\sim}0.5\%$, gas ${\sim}0.2\%$,
+support ${\sim}1\%$).
+
+%======================================================================
+\section{Multiple scattering contribution}
+%======================================================================
+
+\subsection{RMS scattering angle per layer}
+
+The Highland formula gives the RMS projected scattering angle for a
+particle traversing material of thickness $x/X_0$:
+\begin{equation}
+\label{eq:highland}
+\theta_0 = \frac{13.6~\mathrm{MeV}}{\beta c\,p}\,
+\sqrt{x/X_0}\;\bigl[1 + 0.038\,\ln(x/X_0)\bigr]\,.
+\end{equation}
+With $x/X_0 = 0.025$ and $\beta \approx 1$ for pions above 1~GeV/$c$:
+\begin{equation}
+\theta_0 \approx \frac{1.85~\mathrm{mrad}}{p~[\mathrm{GeV}/c]}\,.
+\end{equation}
+
+\subsection{MS contribution to the midpoint residual}
+
+In the thin-scatterer model (measurement precedes scattering at each
+layer), the midpoint residual~\eqref{eq:midpoint} picks up
+contributions from:
+\begin{enumerate}
+\item \textbf{Scattering at layer~$i$} (dominant): the deflection
+      $\theta_i$ shifts $d_{i+1}$ by $\theta_i L$ but does not affect
+      $d_i$ or $d_{i-1}$.  Substituting into~\eqref{eq:midpoint}:
+\begin{equation}
+\mathrm{Res}_i^{(\mathrm{inter})} = -\tfrac{1}{2}\,\theta_i\,L
+\qquad\Longrightarrow\qquad
+\sigma_{\mathrm{inter}} = \tfrac{1}{2}\,\theta_0\,L\,.
+\end{equation}
+
+\item \textbf{Scattering within layer~$i$} (sub-dominant):
+      scattering in the first half of the layer material
+      displaces the particle at the measurement point:
+\begin{equation}
+\sigma_{\mathrm{intra}} =
+\frac{\theta_{0,\mathrm{half}}\times t/2}{\sqrt{3}}
+\approx \frac{36~\mu\mathrm{m}}{p~[\mathrm{GeV}/c]}\,.
+\end{equation}
+
+\item \textbf{Scattering at layers $i{\pm}1$}: their linear
+      contributions cancel exactly in the midpoint formula (by
+      construction).
+\end{enumerate}
+
+\noindent
+Combined in quadrature:
+\begin{equation}
+\boxed{
+\sigma_{\mathrm{MS}}(\mathrm{Res}_i)
+= \sqrt{\sigma_{\mathrm{inter}}^2 + \sigma_{\mathrm{intra}}^2}
+\approx \frac{152~\mu\mathrm{m}}{p~[\mathrm{GeV}/c]}
+}
+\end{equation}
+The inter-layer term contributes 95\% of the variance.
+
+%======================================================================
+\section{Curvature (sagitta) contribution}
+%======================================================================
+
+\subsection{The sagitta}
+
+A charged particle in a uniform magnetic field~$B$ follows a circular
+arc of radius $R = p/(0.3\,B)$ (with $p$ in GeV/$c$, $B$ in~T, $R$
+in~m).  The midpoint residual measures the sagitta~--- the deviation of
+the middle point from the chord connecting the outer two:
+\begin{equation}
+s = \frac{L^2}{2R} = \frac{L^2 \times 0.3\,B}{2\,p}\,.
+\end{equation}
+With $L = 0.16$~m, $B = 0.5$~T:
+\begin{equation}
+s = \frac{1920~\mu\mathrm{m}}{p~[\mathrm{GeV}/c]}\,.
+\end{equation}
+
+\subsection{Sagitta uncertainty from momentum resolution}
+
+The track fitter subtracts the best-estimate curvature from the cluster
+positions.  What remains in the midpoint residual is the \emph{uncertainty}
+in that subtraction:
+\begin{equation}
+\boxed{
+\delta s = s \times \frac{\delta p}{p}
+= \frac{1920}{p}\times\frac{\delta p}{p}~\mu\mathrm{m}
+}
+\end{equation}
+
+\begin{table}[h]
+\centering
+\caption{Sagitta and its uncertainty from TPC momentum resolution.}
+\label{tab:sagitta}
+\begin{tabular}{ccccc}
+\toprule
+$p$ (GeV/$c$) & $s$ ($\mu$m) & $\delta s$ at 1\% & $\delta s$ at 1.5\% & $\delta s$ at 2\% \\
+\midrule
+1  & 1920 & 19.2 & 28.8 & 38.4 \\
+2  &  960 &  9.6 & 14.4 & 19.2 \\
+5  &  384 &  3.8 &  5.8 &  7.7 \\
+10 &  192 &  1.9 &  2.9 &  3.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+The full sagitta is large (mm scale) but the track fitter removes most
+of it.  Only the residual from $\delta p/p$ uncertainty survives, which
+at 1--2\% resolution is $\mathcal{O}(1$--$40)$~$\mu$m --- comparable to
+or smaller than the MS contribution.
+
+%======================================================================
+\section{Combined results}
+%======================================================================
+
+All contributions are added in quadrature:
+\begin{equation}
+\sigma(\mathrm{Res}_i) = \sqrt{
+\sigma_{\mathrm{MS}}^2 + \delta s^2 + \sigma_{\mathrm{intrinsic}}^2}\,,
+\end{equation}
+where $\sigma_{\mathrm{intrinsic}} = \sqrt{3/2}\;\sigma_{\mathrm{det}}
+\approx 490~\mu$m for $\sigma_{\mathrm{det}} \approx 400~\mu$m
+(the midpoint of three independent measurements with equal resolution
+has variance $\tfrac{3}{2}\sigma_{\mathrm{det}}^2$).
+
+\begin{table}[h]
+\centering
+\caption{Full breakdown of midpoint residual contributions
+($\delta p/p = 1.5\%$).}
+\label{tab:full}
+\begin{tabular}{cccccccc}
+\toprule
+$p$ & $\theta_0$ & $\sigma_{\mathrm{MS}}$ & $s$ & $\delta s$ &
+$\sigma_{\mathrm{intr}}$ & $\sigma_{\mathrm{total}}$ &
+$\frac{\sigma_{\mathrm{MS}}\oplus\delta s}{\sigma_{\mathrm{intr}}}$ \\
+(GeV/$c$) & ($\mu$rad) & ($\mu$m) & ($\mu$m) & ($\mu$m) &
+($\mu$m) & ($\mu$m) & \\
+\midrule
+1  & 1850 & 152 & 1920 & 29 & 490 & 514 & 32\% \\
+2  &  925 &  76 &  960 & 14 & 490 & 496 & 16\% \\
+5  &  370 &  30 &  384 &  6 & 490 & 491 &  6\% \\
+10 &  185 &  15 &  192 &  3 & 490 & 490 &  3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Non-intrinsic (physics) contributions only: MS $\oplus$
+curvature.}
+\label{tab:physics}
+\begin{tabular}{ccccc}
+\toprule
+$p$ (GeV/$c$) & $\sigma_{\mathrm{MS}}$ ($\mu$m)
+& $\delta s$ ($\mu$m) & Combined ($\mu$m) &
+Fraction of $\sigma_{\mathrm{intr}}$ \\
+\midrule
+1  & 152 & 29 & 155 & 32\% \\
+2  &  76 & 14 &  77 & 16\% \\
+5  &  30 &  6 &  31 &  6\% \\
+10 &  15 &  3 &  15 &  3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%======================================================================
+\section{Interpretation}
+%======================================================================
+
+Multiple scattering dominates over curvature uncertainty at all momenta
+in the 1--10~GeV/$c$ range.  The MS contribution is $5$--$10\times$
+larger than~$\delta s$ because MS scales as $1/p$ while $\delta s$
+scales as $(\delta p/p)/p$ --- at the 1--2\% momentum resolution level,
+the curvature correction is already very good.
+
+\begin{itemize}
+\item At $p = 1$~GeV/$c$: combined physics contribution 155~$\mu$m
+      (32\% of intrinsic).  Both MS and curvature are significant for
+      alignment.
+
+\item At $p = 2$~GeV/$c$: combined 77~$\mu$m (16\%).  MS dominates;
+      curvature is a small correction.
+
+\item At $p = 5$~GeV/$c$: combined 31~$\mu$m (6\%).  Both effects are
+      sub-dominant.  This is the sweet spot for alignment extraction.
+
+\item At $p = 10$~GeV/$c$: combined 15~$\mu$m (3\%).  Negligible
+      relative to detector resolution; statistics become the limiting
+      factor.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Key insight.}
+The sagitta itself is large (1920~$\mu$m at 1~GeV/$c$, 192~$\mu$m at
+10~GeV/$c$) --- but the track fitter removes it using the measured
+momentum.  Only the \emph{uncertainty} in that removal ($\delta s =
+s \times \delta p/p$) contributes to the midpoint residual.
+
+\medskip
+\noindent\textbf{Operational consequence.}
+\emph{If structured residuals of 100--300~$\mu$m are observed at
+$p > 5$~GeV/$c$, they are alignment or calibration effects, not
+kinematic (MS or curvature) contamination.}
+At these momenta the combined kinematic floor is below 31~$\mu$m.
+
+\medskip
+\noindent\textbf{Optimal momentum window for alignment extraction:}
+$p \approx 3$--$10$~GeV/$c$, where MS\,+\,curvature combined are
+below ${\sim}50~\mu$m (${<}10\%$ of intrinsic) while track statistics
+remain adequate.  Below 3~GeV/$c$, MS contamination is significant;
+above 10~GeV/$c$, statistics become sparse.
+
+%======================================================================
+\section{Notes}
+%======================================================================
+
+\begin{itemize}
+\item The layer spacing $L = 16$~cm is the center-to-center distance
+      between adjacent chambers (TRD radial extent ${\sim}80$~cm over
+      6~layers).  The actual measurement-point spacing depends on
+      whether the tracklet position is reconstructed at the anode plane
+      or at the chamber midpoint.
+
+\item The $x/X_0 = 2.5\%$ per layer is a conservative average.
+      The Highland formula with average $x/X_0$ is accurate to
+      ${\sim}10\%$.
+
+\item For the $z$-direction midpoint residual, the same MS formula
+      applies (scattering is isotropic in the small-angle limit).
+      The curvature term is absent in $z$ (no bending in the
+      solenoid field along the beam axis).
+
+\item All numerical values are design-level estimates intended for
+      order-of-magnitude guidance in TRD alignment weight
+      parameterization.
+\end{itemize}
+
+\end{document}
