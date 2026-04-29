@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 # =============================================================================
-# count.sh v0.4 — count symbol usage across reachable files
+# count.sh v0.5 — count symbol usage across reachable files
 # =============================================================================
+#
+# Changes from v0.4 (2026-04-26T19:06Z, after cycle-2 panel review):
+#   - R-1: default filter extended to exclude GPUCA_* macro family.
+#     v0.4 filter /^GPU[a-z]*$/ matched lowercase suffix only, so
+#     GPUCA_DETERMINISTIC_CODE and similar leaked through with corrupt
+#     1400-char signatures. Added /^GPUCA_/ exclusion. (Sonnet3 finding.)
 #
 # Changes from v0.3 (2026-04-26 evening, after second real-data run):
 #   - Stoplist substantially expanded based on observed top-30 noise.
@@ -381,7 +387,7 @@ count_symbols() {
 
     local t2; t2=$(date +%s); local dt=$((t2-t1))
     echo "" >&2
-    echo "=== count summary (v0.4) ===" >&2
+    echo "=== count summary (v0.5) ===" >&2
     echo "filter_passed_rows=$n_raw" >&2
     echo "logical_symbols=$n_work" >&2
     echo "  unique=$n_unique" >&2
@@ -460,6 +466,7 @@ o2::conf::ConfigurableParam::setValue	p	o2::conf::ConfigurableParam	$tmp/repo/Co
 clear	p	o2::utils::FIFO	$tmp/repo/Common/Utils/FIFO.h	()	3
 clear	p	o2::ctf::EncodedBlocks	$tmp/repo/DataFormats/Detectors/Common/EncodedBlocks.h	()	3
 o2::base::MatCell::GPUd	f	o2::base::MatCell	$tmp/repo/Common/MathUtils/MatCell.h	()	42
+GPUCA_DETERMINISTIC_CODE	p	o2::gpu::GPUCommonMath	$tmp/repo/Common/MathUtils/GPUDef.h	(int x)	7
 array	s	std	$tmp/repo/Common/MathUtils/Tsallis.h		20
 start	p	o2::utils::FileFetcher	$tmp/repo/Common/Utils/Fake.h	()	5
 helperFunction	p	o2::utils	$tmp/repo/Common/Utils/Fake.h	()	7
@@ -476,7 +483,7 @@ EOF
     echo "$tmp/repo/Common/Utils/use1.cxx" > "$tmp/seed.txt"
 
     # The default-style filter — same as production
-    local filter='kind ~ /^[csfp]$/ && file ~ /\/Common\/|\/DataFormats\/Detectors\/Common\// && _bare !~ /^__anon/ && length(_bare) >= 4 && _bare !~ /^GPU[a-z]*$/ && parent !~ /^std$/ && parent !~ /^std::/'
+    local filter='kind ~ /^[csfp]$/ && file ~ /\/Common\/|\/DataFormats\/Detectors\/Common\// && _bare !~ /^__anon/ && length(_bare) >= 4 && _bare !~ /^GPU[a-z]*$/ && _bare !~ /^GPUCA_/ && parent !~ /^std$/ && parent !~ /^std::/'
 
     local tool; tool=$(detect_grep)
     echo "TEST: tool=$tool" >&2
@@ -493,6 +500,9 @@ EOF
     # Bug A
     check "Bug A: GPUd not in CSV" \
         '! grep -q "^GPUd," "$tmp/usage.csv"'
+    # R-1: GPUCA_* macro family also excluded
+    check "R-1: GPUCA_DETERMINISTIC_CODE not in CSV" \
+        '! grep -q "^GPUCA_" "$tmp/usage.csv"'
     # Bug C
     check "Bug C: array (std::array) excluded" \
         '! grep -q "^array," "$tmp/usage.csv"'
@@ -546,6 +556,7 @@ DEFAULT_FILTER='kind ~ /^[csfp]$/ \
 && _bare !~ /^__anon/ \
 && length(_bare) >= 4 \
 && _bare !~ /^GPU[a-z]*$/ \
+&& _bare !~ /^GPUCA_/ \
 && parent !~ /^std$/ \
 && parent !~ /^std::/'
 

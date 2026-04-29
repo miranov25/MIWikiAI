@@ -76,19 +76,29 @@ breakdown() {
     tmp=$(mktemp -d) || return 1
     trap "rm -rf '$tmp'" RETURN
 
-    # 1. Pick top-N symbols from usage.csv by prod_usage_count.
+    # 1. Pick top-N symbols from usage.csv by prod_usage_count, AND
+    # ALL ambiguous symbols (R-2 fix: ambiguous rows have count=-1 and so
+    # never made it into the top-N picker; but ambiguous is exactly the case
+    # where breakdown.tsv is most needed, so we always include them).
     # Use python for robust CSV parsing (signature column may have commas).
     python3 - "$usage" "$top_n" > "$tmp/top_symbols.tsv" <<'PYEOF'
 import csv, sys
 path, n = sys.argv[1], int(sys.argv[2])
 rows=[]
+ambig=[]
 with open(path, newline='') as f:
     for r in csv.DictReader(f):
         try:    cnt = int(r['prod_usage_count'])
         except: cnt = 0
-        rows.append( (cnt, r['symbol'], r['header']) )
+        # Track ambiguous rows separately
+        if r.get('name_uniqueness','') == 'ambiguous':
+            ambig.append( (cnt, r['symbol'], r['header']) )
+        else:
+            rows.append( (cnt, r['symbol'], r['header']) )
 rows.sort(reverse=True)
-for cnt, sym, hdr in rows[:n]:
+selected = rows[:n] + ambig            # ambig appended; dedup not needed
+                                       # since ambig != non-ambig by construction
+for cnt, sym, hdr in selected:
     print(f"{sym}\t{hdr}\t{cnt}")
 PYEOF
 
@@ -223,20 +233,50 @@ double g() {
 }
 EOF
 
+    cat > "$tmp/repo/Common/MathUtils/Bar.h" <<'EOF'
+#pragma once
+namespace o2 { namespace gpu {
+class Transform3D { public: void set(); };
+}}
+EOF
+    cat > "$tmp/repo/Common/MathUtils/Baz.h" <<'EOF'
+#pragma once
+namespace o2 { namespace mu {
+class Transform3D { public: void set(); };
+}}
+EOF
+
+    cat > "$tmp/repo/Detectors/TPC/use3.cxx" <<'EOF'
+#include "MathUtils/Bar.h"
+void h() {
+    o2::gpu::Transform3D t;
+    t.set();
+}
+EOF
+
     cat > "$tmp/usage.csv" <<EOF
-symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct,header_basename_collision
-findClosestIndices,p,o2::mu,$tmp/repo/Common/MathUtils/Foo.h,(double x),3,4,true,0,1,false
+symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct,header_basename_collision,name_uniqueness,match_confidence
+findClosestIndices,p,o2::mu,$tmp/repo/Common/MathUtils/Foo.h,(double x),3,4,true,0,1,false,unique,high
+Transform3D,c,o2::gpu,$tmp/repo/Common/MathUtils/Bar.h,,3,-1,true,0,-1,false,ambiguous,ambiguous
+Transform3D,c,o2::mu,$tmp/repo/Common/MathUtils/Baz.h,,3,-1,true,0,-1,false,ambiguous,ambiguous
 EOF
 
     cat > "$tmp/symbols.tsv" <<EOF
 findClosestIndices	p	o2::mu	$tmp/repo/Common/MathUtils/Foo.h	(double x)	3
 o2::mu::findClosestIndices	p	o2::mu	$tmp/repo/Common/MathUtils/Foo.h	(double x)	3
+Transform3D	c	o2::gpu	$tmp/repo/Common/MathUtils/Bar.h		3
+o2::gpu::Transform3D	c	o2::gpu	$tmp/repo/Common/MathUtils/Bar.h		3
+Transform3D	c	o2::mu	$tmp/repo/Common/MathUtils/Baz.h		3
+o2::mu::Transform3D	c	o2::mu	$tmp/repo/Common/MathUtils/Baz.h		3
 EOF
 
     cat > "$tmp/reachable.txt" <<EOF
 $tmp/repo/Detectors/TPC/use1.cxx
 $tmp/repo/Detectors/TPC/use2.cxx
+$tmp/repo/Detectors/TPC/use3.cxx
 $tmp/repo/Common/MathUtils/Foo.h
+$tmp/repo/Common/MathUtils/Bar.h
+$tmp/repo/Common/MathUtils/Baz.h
 EOF
 
     local tool; tool=$(detect_grep)
@@ -266,6 +306,14 @@ EOF
 
     check "rows sorted by count descending" \
         '[ "$(head -1 "$tmp/breakdown.tsv" | cut -f3)" -ge "$(tail -1 "$tmp/breakdown.tsv" | cut -f3)" ]'
+
+    # R-2: ambiguous symbols (count=-1 in usage.csv) must still produce
+    # breakdown rows. The use3.cxx file references `o2::gpu::Transform3D`
+    # → 1 match. The o2::mu::Transform3D row produces 0 references.
+    check "R-2: Transform3D (ambiguous) has breakdown rows" \
+        'awk -F"\t" "\$1==\"Transform3D\"" "$tmp/breakdown.tsv" | grep -q .'
+    check "R-2: Transform3D references use3.cxx" \
+        'awk -F"\t" "\$1==\"Transform3D\" && \$2 ~ /use3.cxx/" "$tmp/breakdown.tsv" | grep -q .'
 
     echo
     if [ "$fail" = "0" ]; then echo "ALL TESTS PASSED"; return 0
