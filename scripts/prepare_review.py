@@ -35,7 +35,7 @@ from mistletoe.block_token import (
 )
 from mistletoe.span_token import RawText, InlineCode, Strong, LineBreak
 
-VERSION = "1.2"
+VERSION = "1.3"
 
 # ---------------------------------------------------------------------------
 # AST helpers
@@ -181,38 +181,178 @@ _VERBATIM_RE = re.compile(
 )
 
 
+# Pattern for QRC-compliant bracket form: [VERBATIM <path>:L<a>-L<b>] or similar
+_VERBATIM_BRACKET_RE = re.compile(
+    r'\[VERBATIM\s+'
+    r'(?P<path>[A-Za-z0-9_\-./]+\.(?:h|hpp|cxx|cpp|cc|c))'
+    r'\s*:?\s*L(?P<lstart>\d+)\s*[-:]\s*L?(?P<lend>\d+)\s*\]',
+    re.IGNORECASE
+)
+
+# Pattern for informal code-comment form: // VERBATIM from <path> L<a>-L<b>
+_VERBATIM_COMMENT_RE = re.compile(
+    r'//\s*VERBATIM\s+from\s+'
+    r'(?P<path>[A-Za-z0-9_\-./]+\.(?:h|hpp|cxx|cpp|cc|c))'
+    r'\s+L(?P<lstart>\d+)\s*[-:]\s*L?(?P<lend>\d+)',
+    re.IGNORECASE
+)
+
+# Pattern for informal prose form: (verbatim from `<path>` L<a>-L<b>)
+_VERBATIM_PROSE_RE = re.compile(
+    r'\(verbatim\s+from\s+`?'
+    r'(?P<path>[A-Za-z0-9_\-./]+\.(?:h|hpp|cxx|cpp|cc|c))'
+    r'`?\s+L(?P<lstart>\d+)\s*[-:]\s*L?(?P<lend>\d+)\s*\)',
+    re.IGNORECASE
+)
+
+
+def _extract_following_code_block(artifact_text, tag_match_end):
+    """Given an offset just after a VERBATIM tag in artifact text, find the next
+    ``` fenced code block and return its inner content as a list of lines.
+
+    Returns (block_lines, block_start_line_in_artifact) or (None, None) if no
+    fenced block follows within ~20 lines.
+    """
+    # Find the next ``` opening fence
+    remaining = artifact_text[tag_match_end:]
+    # Look for ``` within next ~2000 chars (~40 lines)
+    open_fence_pos = remaining.find('```')
+    if open_fence_pos == -1 or open_fence_pos > 2000:
+        return None, None
+    # Find the line after the opening fence (skip language tag like ```cpp\n)
+    after_open = remaining.find('\n', open_fence_pos)
+    if after_open == -1:
+        return None, None
+    # Find the closing fence
+    after_open_pos = after_open + 1  # in remaining
+    close_fence_pos = remaining.find('```', after_open_pos)
+    if close_fence_pos == -1:
+        return None, None
+    block_content = remaining[after_open_pos:close_fence_pos]
+    # Strip trailing newline before fence
+    if block_content.endswith('\n'):
+        block_content = block_content[:-1]
+    return block_content.splitlines(), None
+
+
+def _read_source_range(source_path, l_start, l_end):
+    """Read lines l_start..l_end (1-indexed, inclusive) from source_path.
+    Returns list of lines (without trailing newlines)."""
+    try:
+        with open(source_path, 'r', encoding='utf-8', errors='replace') as f:
+            all_lines = f.readlines()
+    except Exception:
+        return None
+    if l_start < 1 or l_end > len(all_lines) or l_start > l_end:
+        return None
+    return [line.rstrip('\n') for line in all_lines[l_start-1:l_end]]
+
+
+def _diff_block_vs_source(block_lines, source_lines, max_lines_shown=5):
+    """Compare two lists of strings line-by-line. Returns a list of mismatch
+    descriptions (empty list if identical)."""
+    if block_lines == source_lines:
+        return []
+    mismatches = []
+    n = max(len(block_lines), len(source_lines))
+    for i in range(n):
+        a = block_lines[i] if i < len(block_lines) else '<missing>'
+        b = source_lines[i] if i < len(source_lines) else '<missing>'
+        if a != b:
+            mismatches.append(f"    block-L{i+1}: {a!r}")
+            mismatches.append(f"    source-L{i+1}: {b!r}")
+            if len(mismatches) // 2 >= max_lines_shown:
+                break
+    if len(block_lines) != len(source_lines):
+        mismatches.append(f"    (block has {len(block_lines)} lines, source range has {len(source_lines)} lines)")
+    return mismatches
+
+
 def check_verbatim(artifact_path, source_root):
-    """Verify every [VERBATIM <file>:Lx-Ly] resolves to existing source + valid range."""
+    """Verify every VERBATIM citation resolves AND content is character-exact.
+
+    v1.3:
+      - Bug B fix: for each VERBATIM tag, diff the immediately-following
+        fenced code block against the cited source range character-exact.
+      - Bug C fix: distinguish QRC-compliant `[VERBATIM <path>:L<a>-L<b>]`
+        bracket form from informal `// VERBATIM from ...` code-comment and
+        `(verbatim from ...)` prose forms. WARN if body contains fenced code
+        blocks but no QRC-bracket forms (label discipline regression).
+    """
     with open(artifact_path, 'r', encoding='utf-8') as f:
         text = f.read()
+
+    # Determine front-matter span
+    lines = text.splitlines()
+    fm_end_offset = 0
+    if lines and lines[0].strip() == '---':
+        for i in range(1, len(lines)):
+            if lines[i].strip() == '---':
+                fm_end_offset = sum(len(l) + 1 for l in lines[:i+1])
+                break
+
+    body_text = text[fm_end_offset:]
+
+    # Collect all three forms (each match has same group names: path, lstart, lend)
+    bracket_tags = list(_VERBATIM_BRACKET_RE.finditer(text))
+    comment_tags = list(_VERBATIM_COMMENT_RE.finditer(text))
+    prose_tags = list(_VERBATIM_PROSE_RE.finditer(text))
+
+    # Body-only counts for label discipline check
+    bracket_in_body = [m for m in bracket_tags if m.start() >= fm_end_offset]
+    comment_in_body = [m for m in comment_tags if m.start() >= fm_end_offset]
+    prose_in_body = [m for m in prose_tags if m.start() >= fm_end_offset]
+
+    # Count fenced code blocks in body
+    fenced_blocks_in_body = body_text.count('\n```')
 
     out = []
     out.append(f"=== VERBATIM check for {artifact_path} ===")
     out.append(f"Source root: {source_root}")
     out.append("")
-
-    citations = list(_VERBATIM_RE.finditer(text))
-    # Free-text VERBATIM (with no line range) — count for transparency
-    all_verbatim = re.findall(r'VERBATIM[^\]\n]*', text)
-    free_text = max(0, len(all_verbatim) - len(citations))
-
-    out.append(f"Total VERBATIM tags: {len(all_verbatim)}")
-    out.append(f"Verifiable (with file + line range): {len(citations)}")
-    out.append(f"Free-text (no line range, not checked): {free_text}")
+    out.append(f"--- Citation tag inventory ---")
+    out.append(f"  [VERBATIM <path>:L<a>-L<b>] (QRC-compliant bracket form): {len(bracket_tags)} total, {len(bracket_in_body)} in body")
+    out.append(f"  // VERBATIM from <path> L<a>-L<b>  (informal code-comment): {len(comment_tags)} total, {len(comment_in_body)} in body")
+    out.append(f"  (verbatim from <path> L<a>-L<b>)   (informal prose):       {len(prose_tags)} total, {len(prose_in_body)} in body")
+    out.append(f"  Fenced code blocks in body: ~{fenced_blocks_in_body // 2}")  # ``` opens and closes
     out.append("")
+
+    # Bug C: label discipline warning
+    label_discipline_warning = None
+    if fenced_blocks_in_body >= 4 and len(bracket_in_body) == 0:
+        label_discipline_warning = (
+            f"WARN: body has fenced code blocks but ZERO QRC-compliant `[VERBATIM <path>:L<a>-L<b>]` "
+            f"bracket tags. Found {len(comment_in_body)} informal `// VERBATIM from` comment tags "
+            f"and {len(prose_in_body)} informal `(verbatim from ...)` prose tags. "
+            f"Per QRC v0.5.4 §3.1, every fenced block citing source MUST have a bracket tag on the line above it. "
+            f"Code-comment and prose forms are NOT substitutes."
+        )
+        out.append(label_discipline_warning)
+        out.append("")
 
     if not source_root or not os.path.isdir(source_root):
         out.append(f"SKIPPED: source root not found at {source_root}")
         return 2, '\n'.join(out)
 
+    # Run character-exact diff on every detected tag (all three forms)
     errors = 0
-    for cit in citations:
-        cited_path = cit.group('path')
-        l_start = int(cit.group('lstart'))
-        l_end = int(cit.group('lend'))
+    warnings = 0
+    all_tags = []
+    for m in bracket_tags:
+        all_tags.append(('bracket', m))
+    for m in comment_tags:
+        all_tags.append(('comment', m))
+    # Prose form is too noisy to diff (no fenced block follows necessarily); skip diffing,
+    # only verify path+range existence
+    prose_only_tags = [('prose', m) for m in prose_tags]
+
+    for tag_kind, m in all_tags:
+        cited_path = m.group('path')
+        l_start = int(m.group('lstart'))
+        l_end = int(m.group('lend'))
         basename = os.path.basename(cited_path)
 
-        # Find candidates by basename
+        # Resolve source file
         try:
             result = subprocess.run(
                 ['find', source_root, '-name', basename, '-type', 'f'],
@@ -225,38 +365,84 @@ def check_verbatim(artifact_path, source_root):
             continue
 
         if not candidates:
-            out.append(f"  ERROR: no source file matching basename {basename}")
+            out.append(f"  ERROR ({tag_kind}): {basename} L{l_start}-{l_end} — no source file matching basename")
             errors += 1
             continue
 
-        # If multiple candidates, prefer one whose path ends in cited_path
         if len(candidates) > 1:
             preferred = [c for c in candidates if c.endswith(cited_path)]
             if preferred:
                 candidates = preferred
-
         src = candidates[0]
+
+        source_lines = _read_source_range(src, l_start, l_end)
+        if source_lines is None:
+            out.append(f"  ERROR ({tag_kind}): {basename} L{l_start}-{l_end} — out of range or unreadable")
+            errors += 1
+            continue
+
+        # Character-exact diff against the immediately-following fenced block
+        block_lines, _ = _extract_following_code_block(text, m.end())
+        if block_lines is None:
+            # No fenced block follows. For comment-form this is expected (the
+            # comment IS inside the block). For bracket-form per QRC §3.1 the
+            # block should follow.
+            if tag_kind == 'bracket':
+                out.append(f"  WARN ({tag_kind}): {basename} L{l_start}-{l_end} — no fenced code block follows tag (expected per QRC §3.1)")
+                warnings += 1
+            else:
+                out.append(f"  OK ({tag_kind}): {basename} L{l_start}-{l_end} — path+range resolved (no diff for code-comment form)")
+            continue
+
+        # For comment form, the comment line itself is line 1 of the block.
+        # We compare lines[1:] of block (skipping the comment) to source_lines.
+        if tag_kind == 'comment':
+            if block_lines and block_lines[0].strip().startswith('// VERBATIM from'):
+                block_to_compare = block_lines[1:]
+            else:
+                block_to_compare = block_lines
+        else:
+            block_to_compare = block_lines
+
+        diff = _diff_block_vs_source(block_to_compare, source_lines)
+        if diff:
+            out.append(f"  FAIL ({tag_kind}): {basename} L{l_start}-{l_end} — block does NOT match source character-exact:")
+            for d in diff[:12]:
+                out.append(d)
+            errors += 1
+        else:
+            out.append(f"  OK ({tag_kind}): {basename} L{l_start}-{l_end} — character-exact match against {src}")
+
+    # Prose-form: only verify path + range existence
+    for tag_kind, m in prose_only_tags:
+        cited_path = m.group('path')
+        l_start = int(m.group('lstart'))
+        l_end = int(m.group('lend'))
+        basename = os.path.basename(cited_path)
         try:
-            with open(src, 'r', encoding='utf-8', errors='replace') as f:
-                lines = f.readlines()
-        except Exception as e:
-            out.append(f"  ERROR: cannot read {src}: {e}")
+            result = subprocess.run(
+                ['find', source_root, '-name', basename, '-type', 'f'],
+                capture_output=True, text=True, timeout=30
+            )
+            candidates = [p for p in result.stdout.strip().split('\n') if p]
+        except subprocess.TimeoutExpired:
             errors += 1
             continue
-
-        if l_start < 1 or l_end > len(lines) or l_start > l_end:
-            out.append(f"  ERROR: {basename} L{l_start}-{l_end} out of range (file has {len(lines)} lines)")
+        if not candidates:
+            out.append(f"  ERROR ({tag_kind}): {basename} L{l_start}-{l_end} — no source file matching basename")
             errors += 1
             continue
-
-        out.append(f"  OK: {basename} L{l_start}-{l_end} resolved to {src}")
+        out.append(f"  OK ({tag_kind}): {basename} L{l_start}-{l_end} — path resolved (prose form, no diff)")
 
     out.append("")
-    if errors:
-        out.append(f"VERBATIM check found {errors} error(s).")
+    # Verdict
+    if errors > 0:
+        out.append(f"VERBATIM check FAILED: {errors} error(s)" + (f", {warnings} warning(s)" if warnings else "") + (", label-discipline WARN" if label_discipline_warning else ""))
         return 1, '\n'.join(out)
-
-    out.append("OK: all verifiable VERBATIM citations resolved.")
+    if label_discipline_warning:
+        out.append(f"VERBATIM check: paths and ranges OK, but label-discipline WARN (see above) — treat as FAIL pending QRC-format restoration.")
+        return 1, '\n'.join(out)
+    out.append(f"OK: all VERBATIM citations resolved" + (" character-exact" if all_tags else "") + ".")
     return 0, '\n'.join(out)
 
 
@@ -266,10 +452,25 @@ def check_verbatim(artifact_path, source_root):
 
 # Metric extraction regex applies ONLY to text within an authoritative Signal
 # paragraph (selected via AST). It does NOT scan free text.
+#
+# v1.3 (Bug D fix): includes all 6 QRC §2.6 mandated fields. Numeric metrics
+# get matched against usage.csv; categorical fields (confidence, collision,
+# uniqueness) only get presence-checked (their values come from CSV verbatim).
 _METRIC_PATTERNS = {
     'prod_usage_count': re.compile(r'prod_usage_count\s*=\s*(-?\d+)'),
     'workflows_direct': re.compile(r'workflows_direct\s*=\s*(-?\d+)'),
     'churn_12m':        re.compile(r'churn_12m\s*=\s*(-?\d+)'),
+}
+
+# QRC v0.5.4 §2.6 mandates all 6 fields in every Signal block.
+# Bug D: WARN if any are missing.
+_REQUIRED_SIGNAL_FIELDS = [
+    'prod_usage_count', 'confidence', 'churn_12m',
+    'workflows_direct', 'collision', 'uniqueness',
+]
+_FIELD_PRESENCE_RE = {
+    field: re.compile(r'\b' + field + r'\s*=', re.IGNORECASE)
+    for field in _REQUIRED_SIGNAL_FIELDS
 }
 
 
@@ -344,6 +545,7 @@ def check_counters(artifact_path, usage_csv_path):
     # Walk paragraphs, find Signal: blocks
     findings = []
     warnings = []
+    field_warnings = []   # Bug D: per-block missing-field warnings
     checks_done = 0
     signal_blocks = 0
 
@@ -358,6 +560,17 @@ def check_counters(artifact_path, usage_csv_path):
             warnings.append(
                 f"Signal: paragraph #{idx} found but no preceding ### heading")
             continue
+
+        # Bug D: check all 6 mandated fields are present per QRC v0.5.4 §2.6
+        missing_fields = [
+            f for f in _REQUIRED_SIGNAL_FIELDS
+            if not _FIELD_PRESENCE_RE[f].search(signal_text)
+        ]
+        if missing_fields:
+            field_warnings.append(
+                f"  symbol '{sym}': Signal block missing {len(missing_fields)} of 6 mandated fields: "
+                f"{', '.join(missing_fields)}"
+            )
 
         if sym not in usage:
             warnings.append(
@@ -391,6 +604,12 @@ def check_counters(artifact_path, usage_csv_path):
             out.append(f"  WARN: {w}")
         out.append("")
 
+    if field_warnings:
+        out.append(f"FIELD-PRESENCE WARN ({len(field_warnings)} blocks missing mandated fields per QRC v0.5.4 §2.6):")
+        for w in field_warnings:
+            out.append(w)
+        out.append("")
+
     for f in findings:
         out.append(f)
 
@@ -399,7 +618,12 @@ def check_counters(artifact_path, usage_csv_path):
         out.append(f"Counter check found {len(findings)} authoritative-block mismatch(es).")
         return 1, '\n'.join(out)
 
-    out.append("OK: all Signal-block counter claims match usage.csv.")
+    if field_warnings:
+        out.append(f"Counter check: numeric values match usage.csv, but {len(field_warnings)} Signal block(s) "
+                   f"are missing mandated fields. Treating as FAIL pending field restoration.")
+        return 1, '\n'.join(out)
+
+    out.append("OK: all Signal-block counter claims match usage.csv and all 6 mandated fields present.")
     return 0, '\n'.join(out)
 
 
@@ -407,7 +631,20 @@ def check_counters(artifact_path, usage_csv_path):
 # CHECK 4: prose-fabrication — known-fabricated identifier grep
 # ---------------------------------------------------------------------------
 
-DEFAULT_FABRICATION_TERMS = ['kCCDBPRIO', 'kRTF', 'kEXIM']
+# DEFAULT_FABRICATION_TERMS lists known-fabricated identifiers from prior cycles.
+# v1.3: includes BOTH k-prefixed enum forms (cycle-2 EParamProvenance fabrication)
+# AND bare-name annotation forms (cycle-4 L521 fabrication: showProv=true output annotations).
+# The bare forms appear in printKeyValues-style output documentation where the artifact
+# claims runtime annotations like "[CODE|CCDB|RT|RTF|CCDBPRIO|EXIM]".
+DEFAULT_FABRICATION_TERMS = [
+    # k-prefix enum forms (cycle-2 class)
+    'kCCDBPRIO', 'kRTF', 'kEXIM',
+    # bare-name annotation forms (cycle-4 class — Bug A from cycle-4 synthesis §3.1)
+    # CRITICAL: these are word-boundary-matched in check_prose_fabric to avoid
+    # spurious matches against substrings (e.g., "RTF" must not match in "kRTF" — handled
+    # via the k-prefix terms — and must not match in random words containing those letters).
+    'CCDBPRIO', 'RTF', 'EXIM',
+]
 
 
 def check_prose_fabric(artifact_path, source_root, terms=None):
@@ -439,17 +676,21 @@ def check_prose_fabric(artifact_path, source_root, terms=None):
                 fm_end = i + 1  # 1-indexed inclusive
                 break
 
-    # Classify each occurrence by location
+    # Classify each occurrence by location and term category
+    # Use word boundaries (\b) to avoid matching 'RTF' inside 'kRTF' (which is a k-prefix term in its own right)
     body_hits = []
     fm_hits = []
+    # Build a regex that matches any term as a whole word
+    term_pattern = '|'.join(re.escape(t) for t in terms)
+    term_re = re.compile(r'\b(' + term_pattern + r')\b')
     for i, line in enumerate(lines, start=1):
-        for term in terms:
-            if term in line:
-                if i <= fm_end:
-                    fm_hits.append((i, line, 'front-matter'))
-                else:
-                    body_hits.append((i, line, 'body'))
-                break  # don't double-count if multiple terms in same line
+        match = term_re.search(line)
+        if match:
+            term_found = match.group(1)
+            if i <= fm_end:
+                fm_hits.append((i, line, term_found, 'front-matter'))
+            else:
+                body_hits.append((i, line, term_found, 'body'))
 
     out = []
     out.append(f"=== Prose-vs-VERBATIM fabrication check for {artifact_path} ===")
@@ -465,15 +706,15 @@ def check_prose_fabric(artifact_path, source_root, terms=None):
     else:
         if fm_hits:
             out.append(f"FRONT-MATTER OCCURRENCES (acceptable — disclosure context): {len(fm_hits)}")
-            for i, line, _ in fm_hits[:10]:
-                out.append(f"  L{i}: {line.rstrip()[:160]}")
+            for i, line, term, _ in fm_hits[:10]:
+                out.append(f"  L{i} [{term}]: {line.rstrip()[:160]}")
             if len(fm_hits) > 10:
                 out.append(f"  ... and {len(fm_hits) - 10} more")
             out.append("")
         if body_hits:
             out.append(f"BODY OCCURRENCES (P0 — fabrication asserted as fact): {len(body_hits)}")
-            for i, line, _ in body_hits[:10]:
-                out.append(f"  L{i}: {line.rstrip()[:160]}")
+            for i, line, term, _ in body_hits[:10]:
+                out.append(f"  L{i} [{term}]: {line.rstrip()[:160]}")
             if len(body_hits) > 10:
                 out.append(f"  ... and {len(body_hits) - 10} more")
     out.append("")

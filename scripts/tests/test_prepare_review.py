@@ -120,21 +120,46 @@ def test_counter_scope_table_ignored():
 
 
 def test_counter_symbol_not_in_csv():
-    """Symbol referenced in Signal: but not present in CSV → WARN, not failure."""
-    # Build an in-memory test: Signal: block for 'Baz' (not in usage.csv)
+    """Symbol referenced in Signal: but not present in CSV → WARN, not failure (when fields complete)."""
+    # Build an in-memory test: Signal: block for 'Baz' (not in usage.csv), all 6 fields present
     import tempfile
     with tempfile.NamedTemporaryFile('w', suffix='.md', delete=False) as f:
         f.write("""# Test
 ### 4.1 `Baz` (class)
-**Signal:** prod_usage_count=99
+**Signal:** prod_usage_count=99, confidence=high, churn_12m=0, workflows_direct=1, collision=false, uniqueness=unique
 """)
         path = f.name
     try:
         rc, out = prepare_review.check_counters(path, str(FIXTURES / 'usage.csv'))
-        # Not in CSV → warning, but not failure (rc=0)
+        # Not in CSV → warning (categorical), all fields present → no field-warn → rc=0
         assert 'Baz' in out
         assert 'not found in usage.csv' in out
         assert rc == 0  # warns are non-fatal per design
+    finally:
+        os.unlink(path)
+
+
+def test_counter_signal_missing_fields_warns():
+    """Bug D fix: Signal block missing mandated fields → field-presence WARN → rc=1.
+
+    QRC v0.5.4 §2.6 mandates 6 fields in every Signal block. Cycle-4 CONV-ξ found
+    a Signal block with only 3 fields and prefilter v1.2 said PASS. v1.3 must FAIL
+    or WARN this case.
+    """
+    import tempfile
+    with tempfile.NamedTemporaryFile('w', suffix='.md', delete=False) as f:
+        f.write("""# Test
+### 4.1 `Foo` (class)
+**Signal:** prod_usage_count=10, workflows_direct=2, churn_12m=0
+""")
+        path = f.name
+    try:
+        rc, out = prepare_review.check_counters(path, str(FIXTURES / 'usage.csv'))
+        assert 'FIELD-PRESENCE WARN' in out, f"Expected FIELD-PRESENCE WARN, got:\n{out}"
+        assert 'confidence' in out
+        assert 'collision' in out
+        assert 'uniqueness' in out
+        assert rc == 1, f"Expected FAIL on incomplete Signal block, got rc={rc}"
     finally:
         os.unlink(path)
 
@@ -256,6 +281,112 @@ The enum has values including kCCDBPRIO which controls priority.
         assert 'BODY OCCURRENCES' in out
     finally:
         os.unlink(path)
+
+
+# -----------------------------------------------------------------------------
+# Bug A: bare-name fabrication detection (cycle-4 L521 class)
+# -----------------------------------------------------------------------------
+
+def test_prose_fabrication_bare_name_detected():
+    """Bug A fix: bare-name annotation fabrication ([CODE|CCDB|RT|RTF|CCDBPRIO|EXIM])
+    in main body must FAIL the prose check.
+
+    Reproduces cycle-4 L521 fabrication: artifact prose claims bare-name annotations
+    RTF, CCDBPRIO, EXIM exist as runtime annotation states. Source has only 3.
+    Prefilter v1.2 missed this because it searched only k-prefixed forms.
+    v1.3 must catch it via word-boundary-matched bare-name terms.
+    """
+    import tempfile
+    with tempfile.TemporaryDirectory() as empty_source:
+        rc, out = prepare_review.check_prose_fabric(
+            str(FIXTURES / 'bare_name_fabrication.md'),
+            empty_source
+        )
+    assert rc == 1, f"Expected FAIL on bare-name fabrication fixture, got rc={rc}\n{out}"
+    assert 'BODY OCCURRENCES' in out
+    # Must name at least one of the bare-name terms (CCDBPRIO, RTF, or EXIM)
+    assert any(t in out for t in ['CCDBPRIO', 'RTF', 'EXIM']), \
+        f"Expected one of CCDBPRIO/RTF/EXIM in output:\n{out}"
+
+
+def test_prose_fabrication_word_boundary_no_false_positive():
+    """Word boundary matching: 'RTF' must NOT trigger false-positive when found
+    inside larger words or as substrings of legitimate identifiers.
+
+    Edge case: artifact contains 'kRTF' once in front-matter (disclosure). The
+    bare term 'RTF' regex must use \\b word boundaries so 'RTF' inside 'kRTF'
+    only matches the k-prefix term, not the bare term — preventing double-count.
+    """
+    import tempfile
+    fixture = """---
+revision_history:
+  - summary: "kRTF removed from main body."
+---
+
+# Test artifact
+
+The class is well-behaved with no fabrications.
+"""
+    with tempfile.NamedTemporaryFile('w', suffix='.md', delete=False) as f:
+        f.write(fixture)
+        path = f.name
+    try:
+        with tempfile.TemporaryDirectory() as empty_source:
+            rc, out = prepare_review.check_prose_fabric(path, empty_source)
+        # kRTF in front-matter → 1 hit total; rc=0 (PASS) because front-matter is disclosure.
+        # No body hit because body is clean.
+        assert rc == 0, f"Expected PASS (front-matter disclosure only), got rc={rc}\n{out}"
+        assert 'FRONT-MATTER OCCURRENCES' in out
+        # Should be 1, not 2 (no double-counting of kRTF as both kRTF and RTF)
+        assert ': 1' in out or 'OCCURRENCES (acceptable — disclosure context): 1' in out
+    finally:
+        os.unlink(path)
+
+
+# -----------------------------------------------------------------------------
+# Bug B: VERBATIM character-exact diff (cycle-4 CONV-δ / CONV-ζ / CONV-ν class)
+# -----------------------------------------------------------------------------
+
+def test_verbatim_paraphrased_block_fails():
+    """Bug B fix: VERBATIM block whose content paraphrases (does not exactly match)
+    the cited source range must FAIL.
+
+    Reproduces cycle-4 CONV-δ (EParamProvenance), CONV-ζ (S8 cross-file substitution),
+    CONV-ν (getValueAs lambda omission). Prefilter v1.2 only checked path+range
+    existence; v1.3 must diff block content against source character-by-character.
+    """
+    rc, out = prepare_review.check_verbatim(
+        str(FIXTURES / 'verbatim_paraphrased.md'),
+        str(FIXTURES / 'mock_source')
+    )
+    assert rc == 1, f"Expected FAIL on paraphrased VERBATIM block, got rc={rc}\n{out}"
+    assert 'does NOT match source character-exact' in out, \
+        f"Expected character-exact diff failure message in output:\n{out}"
+
+
+# -----------------------------------------------------------------------------
+# Bug C: label-discipline (informal forms instead of QRC bracket tags)
+# -----------------------------------------------------------------------------
+
+def test_verbatim_informal_forms_warned():
+    """Bug C fix: artifact body using ONLY informal '// VERBATIM from' code-comments
+    or '(verbatim from ...)' prose forms (zero QRC-compliant [VERBATIM <path>:L<a>-L<b>]
+    bracket tags) must WARN about label discipline regression.
+
+    Reproduces cycle-4 CONV-γ: v0.4 artifact dropped 35 [VERBATIM] tags, replaced
+    with code-comment forms. Prefilter v1.2 counted 4 occurrences (all front-matter
+    prose) and PASSed. v1.3 must distinguish QRC-compliant brackets from informal
+    forms and WARN when body has fenced blocks but no QRC brackets.
+    """
+    rc, out = prepare_review.check_verbatim(
+        str(FIXTURES / 'informal_verbatim_only.md'),
+        str(FIXTURES / 'mock_source')
+    )
+    # Must contain label-discipline warning
+    assert 'ZERO QRC-compliant' in out or 'label-discipline' in out.lower(), \
+        f"Expected label-discipline warning in output:\n{out}"
+    # rc should be 1 (FAIL) — body has fenced blocks but no QRC bracket tags
+    assert rc == 1, f"Expected FAIL on informal-forms-only artifact, got rc={rc}\n{out}"
 
 
 # -----------------------------------------------------------------------------

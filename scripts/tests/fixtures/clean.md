@@ -21,13 +21,13 @@ This scope-table cell mentions prod_usage_count=10 but it is NOT a Signal block.
 ### 4.1 `Foo` (class)
 
 **Defined in:** `Foo.h:L100`
-**Signal:** prod_usage_count=10, workflows_direct=2, churn_12m=0
+**Signal:** prod_usage_count=10, confidence=high, churn_12m=0, workflows_direct=2, collision=false, uniqueness=unique
 
 The class Foo has well-defined behavior.
 
 ### 4.2 `Bar` (class)
 
 **Defined in:** `Bar.h:L50`
-**Signal:** prod_usage_count=5, workflows_direct=1, churn_12m=0
+**Signal:** prod_usage_count=5, confidence=high, churn_12m=0, workflows_direct=1, collision=false, uniqueness=unique
 
 Bar is also well-behaved.
