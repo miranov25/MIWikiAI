@@ -35,20 +35,30 @@ from mistletoe.block_token import (
 )
 from mistletoe.span_token import RawText, InlineCode, Strong, LineBreak
 
-VERSION = "1.3"
+VERSION = "1.4"
 
 # ---------------------------------------------------------------------------
 # AST helpers
 # ---------------------------------------------------------------------------
 
 def _text_of(node):
-    """Recursively collect raw text content from any AST node, joined."""
+    """Recursively collect raw text content from any AST node, joined.
+
+    v1.4 fix: mistletoe Heading nodes have a `.content` attribute that holds
+    a stale value (last heading's literal text); short-circuiting on it for
+    any non-leaf node returns wrong content. We must recurse into children
+    for any node that has children, even if it also has `content`.
+    The `content` attribute is only authoritative for leaf span tokens
+    (RawText, InlineCode, etc.).
+    """
+    # If node has children, ALWAYS recurse — content attribute is unreliable for block tokens
+    children = getattr(node, 'children', None)
+    if children:
+        return ''.join(_text_of(c) for c in children)
+    # Leaf node: content is authoritative
     if hasattr(node, 'content') and isinstance(node.content, str):
         return node.content
-    parts = []
-    for c in (getattr(node, 'children', None) or []):
-        parts.append(_text_of(c))
-    return ''.join(parts)
+    return ''
 
 
 def _heading_text(heading):
@@ -185,7 +195,11 @@ _VERBATIM_RE = re.compile(
 _VERBATIM_BRACKET_RE = re.compile(
     r'\[VERBATIM\s+'
     r'(?P<path>[A-Za-z0-9_\-./]+\.(?:h|hpp|cxx|cpp|cc|c))'
-    r'\s*:?\s*L(?P<lstart>\d+)\s*[-:]\s*L?(?P<lend>\d+)\s*\]',
+    r'\s*:?\s*L(?P<lstart>\d+)'
+    # v1.4 Enh-1: lend group OPTIONAL — supports single-line :L<n> citations.
+    # When missing, single-line check treats lstart..lstart as 1-line range.
+    r'(?:\s*[-:]\s*L?(?P<lend>\d+))?'
+    r'\s*\]',
     re.IGNORECASE
 )
 
@@ -349,7 +363,9 @@ def check_verbatim(artifact_path, source_root):
     for tag_kind, m in all_tags:
         cited_path = m.group('path')
         l_start = int(m.group('lstart'))
-        l_end = int(m.group('lend'))
+        # v1.4 Enh-1: single-line :L<n> citations — lend group is None; treat as 1-line range
+        lend_match = m.group('lend')
+        l_end = int(lend_match) if lend_match else l_start
         basename = os.path.basename(cited_path)
 
         # Resolve source file
@@ -417,7 +433,9 @@ def check_verbatim(artifact_path, source_root):
     for tag_kind, m in prose_only_tags:
         cited_path = m.group('path')
         l_start = int(m.group('lstart'))
-        l_end = int(m.group('lend'))
+        # v1.4 Enh-1: single-line :L<n> citations — lend group is None; treat as 1-line range
+        lend_match = m.group('lend')
+        l_end = int(lend_match) if lend_match else l_start
         basename = os.path.basename(cited_path)
         try:
             result = subprocess.run(

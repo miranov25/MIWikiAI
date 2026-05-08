@@ -29,7 +29,7 @@ from pathlib import Path
 # Ensure scripts/ is on path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import prepare_review
+import prepare_review as prepare_review
 
 FIXTURES = Path(__file__).parent / 'fixtures'
 
@@ -542,3 +542,68 @@ upstream:
         assert common == 'Common/Utils', f"Expected 'Common/Utils', got '{common}'"
     finally:
         os.unlink(path)
+
+
+# v1.4 Enhancement 1 tests: single-line :L<n> citations (cycle-5 coverage gap closed)
+
+def test_verbatim_singleline_correct_passes(tmp_path):
+    """v1.4 Enh-1: [VERBATIM <path>:L<n>] (single-line) with char-exact match PASSes.
+
+    v1.3 had no coverage for single-line citations — they fell through the regex
+    and never reached char-exact diff. v1.4 brings them into the coverage envelope
+    by making the lend regex group optional.
+    """
+    src_dir = tmp_path / "src"
+    src_dir.mkdir()
+    src_file = src_dir / "single.h"
+    src_file.write_text("hello\nworld\nthird\n")  # L1=hello
+
+    artifact = tmp_path / "artifact.md"
+    artifact.write_text(
+        "---\nversion: 0.1\n---\n\n"
+        "## Section\n\n"
+        "[VERBATIM single.h:L1]\n"
+        "```cpp\n"
+        "hello\n"
+        "```\n"
+    )
+
+    rc, out = prepare_review.check_verbatim(str(artifact), str(src_dir))
+    assert rc == 0, f"single-line :L<n> with correct content should PASS, got rc={rc}\n{out}"
+
+
+def test_verbatim_singleline_fabricated_fails(tmp_path):
+    """v1.4 Enh-1: [VERBATIM <path>:L<n>] (single-line) with fabricated content FAILs.
+
+    This is the cycle-5 cxx:L498 scenario in miniature — Coder cited L498 (single
+    line) and inserted a fabricated continuation phrase. v1.3 missed it because
+    the regex required L<a>-L<b> range form. v1.4 must catch it.
+
+    Per cycle-5 §3.5 measurement: closes the 1 confirmed False PASS / 5 bracket
+    tags = 20% Tier-1 FN rate observed on Common_utilities_API.md v0.5.
+    """
+    src_dir = tmp_path / "src"
+    src_dir.mkdir()
+    src_file = src_dir / "param.cxx"
+    src_file.write_text(
+        "// Take a vector of strings, and\n"
+        "// return a vector of pairs\n"
+        "auto fn = [](){};\n"
+    )
+
+    artifact = tmp_path / "artifact.md"
+    artifact.write_text(
+        "---\nversion: 0.1\n---\n\n"
+        "## Section\n\n"
+        "[VERBATIM param.cxx:L1]\n"
+        "```cpp\n"
+        "// Take a vector of strings, and propagate to registry\n"
+        "```\n"
+    )
+
+    rc, out = prepare_review.check_verbatim(str(artifact), str(src_dir))
+    assert rc == 1, f"single-line :L<n> with fabricated content should FAIL, got rc={rc}\n{out}"
+    assert 'does NOT match' in out or 'mismatch' in out.lower() or 'FAIL' in out, \
+        f"Expected character-exact diff failure message in output:\n{out}"
+
+
