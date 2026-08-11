@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DataFormats_AO2D v0.5.1 — ALICE O² ASoA and AO2D semantic
+reference</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="DataFormats_AO2D_v0_5_1.css" />
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a
+href="#dataformats_ao2d-alice-o²-asoa-and-ao2d-authoritative-semantic-reference"
+id="toc-dataformats_ao2d-alice-o²-asoa-and-ao2d-authoritative-semantic-reference">DataFormats_AO2D
+— ALICE O² ASoA and AO2D authoritative semantic reference</a>
+<ul>
+<li><a href="#what-this-document-is-for"
+id="toc-what-this-document-is-for">What this document is for</a></li>
+<li><a href="#ao2dai-non-negotiable-invariants"
+id="toc-ao2dai-non-negotiable-invariants">AO2DAI non-negotiable
+invariants</a></li>
+<li><a
+href="#semantic-status-descriptors-and-miwikiai-provenance-labels"
+id="toc-semantic-status-descriptors-and-miwikiai-provenance-labels">Semantic
+status descriptors and MIWikiAI provenance labels</a></li>
+</ul></li>
+<li><a href="#alice-o²-and-ao2d" id="toc-alice-o²-and-ao2d">1. ALICE, O²
+and AO2D</a>
+<ul>
+<li><a href="#alice" id="toc-alice">1.1 ALICE</a></li>
+<li><a href="#o²-and-o2physics" id="toc-o²-and-o2physics">1.2 O² and
+O2Physics</a></li>
+<li><a href="#why-ao2d-exists" id="toc-why-ao2d-exists">1.3 Why AO2D
+exists</a></li>
+<li><a href="#one-sentence-definition"
+id="toc-one-sentence-definition">1.4 One-sentence definition</a></li>
+</ul></li>
+<li><a href="#structure-of-arrays-and-asoa"
+id="toc-structure-of-arrays-and-asoa">2. Structure of Arrays and
+ASoA</a>
+<ul>
+<li><a href="#aos-versus-soa" id="toc-aos-versus-soa">2.1 AoS versus
+SoA</a></li>
+<li><a href="#what-asoa-adds" id="toc-what-asoa-adds">2.2 What ASoA
+adds</a></li>
+<li><a href="#a-table-is-not-a-row-wise-serialized-c-object"
+id="toc-a-table-is-not-a-row-wise-serialized-c-object">2.3 A table is
+not a row-wise serialized C++ object</a></li>
+</ul></li>
+<li><a href="#three-representations-of-the-same-information"
+id="toc-three-representations-of-the-same-information">3. Three
+representations of the same information</a>
+<ul>
+<li><a href="#c-declaration-layer" id="toc-c-declaration-layer">3.1 C++
+declaration layer</a></li>
+<li><a href="#in-memory-analysis-layer"
+id="toc-in-memory-analysis-layer">3.2 In-memory analysis layer</a></li>
+<li><a href="#physical-ao2d-layer" id="toc-physical-ao2d-layer">3.3
+Physical AO2D layer</a></li>
+<li><a href="#why-all-three-are-required"
+id="toc-why-all-three-are-required">3.4 Why all three are
+required</a></li>
+</ul></li>
+<li><a href="#how-an-o²-table-is-defined"
+id="toc-how-an-o²-table-is-defined">4. How an O² table is defined</a>
+<ul>
+<li><a href="#persistent-columns" id="toc-persistent-columns">4.1
+Persistent columns</a></li>
+<li><a href="#rowglobal-index-versus-external-relation-index"
+id="toc-rowglobal-index-versus-external-relation-index">4.2 Row/global
+index versus external relation index</a></li>
+<li><a href="#dynamic-columns" id="toc-dynamic-columns">4.3 Dynamic
+columns</a></li>
+<li><a href="#expression-columns" id="toc-expression-columns">4.4
+Expression columns</a></li>
+<li><a href="#markermetadata-types" id="toc-markermetadata-types">4.5
+Marker/metadata types</a></li>
+<li><a href="#table-identity-and-versions"
+id="toc-table-identity-and-versions">4.6 Table identity and versions</a>
+<ul>
+<li><a
+href="#a-critical-counterexample-current-alias-does-not-mean-highest-numeric-version"
+id="toc-a-critical-counterexample-current-alias-does-not-mean-highest-numeric-version">A
+critical counterexample: current alias does not mean “highest numeric
+version”</a></li>
+</ul></li>
+<li><a href="#stored-extendedfull-views-and-aliases"
+id="toc-stored-extendedfull-views-and-aliases">4.7 Stored, extended/full
+views and aliases</a></li>
+</ul></li>
+<li><a href="#how-tables-are-connected"
+id="toc-how-tables-are-connected">5. How tables are connected</a>
+<ul>
+<li><a href="#external-scalar-index" id="toc-external-scalar-index">5.1
+External scalar index</a></li>
+<li><a href="#relation-target-comes-from-c-metadata"
+id="toc-relation-target-comes-from-c-metadata">5.2 Relation target comes
+from C++ metadata</a></li>
+<li><a
+href="#physical-index-label-families-external-and-self-are-different"
+id="toc-physical-index-label-families-external-and-self-are-different">5.3
+Physical index-label families — external and self are different</a></li>
+<li><a href="#slice-indices" id="toc-slice-indices">5.4 Slice
+indices</a></li>
+<li><a href="#array-indices" id="toc-array-indices">5.5 Array
+indices</a></li>
+<li><a href="#self-indices" id="toc-self-indices">5.6 Self
+indices</a></li>
+<li><a href="#c-type-index-equivalence"
+id="toc-c-type-index-equivalence">5.7 C++-type index
+equivalence</a></li>
+<li><a
+href="#descriptionversion--and-labelversion-keyed-index-equivalence"
+id="toc-descriptionversion--and-labelversion-keyed-index-equivalence">5.8
+Description/version- and label/version-keyed index equivalence</a></li>
+<li><a
+href="#declare_soa_index_table-a-distinct-matching-table-mechanism"
+id="toc-declare_soa_index_table-a-distinct-matching-table-mechanism">5.9
+<code>DECLARE_SOA_INDEX_TABLE*</code> — a distinct matching-table
+mechanism</a></li>
+</ul></li>
+<li><a href="#positional-joins-soajoin"
+id="toc-positional-joins-soajoin">6. Positional joins:
+<code>soa::Join</code></a>
+<ul>
+<li><a href="#semantic-meaning-versus-runtime-compatibility"
+id="toc-semantic-meaning-versus-runtime-compatibility">6.1 Semantic
+meaning versus runtime compatibility</a></li>
+<li><a href="#equal-rows-do-not-create-a-join"
+id="toc-equal-rows-do-not-create-a-join">6.2 Equal rows do not create a
+join</a></li>
+<li><a href="#source-proven-versus-unresolved-positional-candidates"
+id="toc-source-proven-versus-unresolved-positional-candidates">6.3
+Source-proven versus unresolved positional candidates</a>
+<ul>
+<li><a href="#conservative-unresolved-candidate-policy"
+id="toc-conservative-unresolved-candidate-policy">Conservative
+unresolved-candidate policy</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#soaconcat-filters-and-preslicing"
+id="toc-soaconcat-filters-and-preslicing">7. <code>soa::Concat</code>,
+filters and preslicing</a>
+<ul>
+<li><a href="#soaconcat" id="toc-soaconcat">7.1
+<code>soa::Concat</code></a></li>
+<li><a href="#filtered-views" id="toc-filtered-views">7.2 Filtered
+views</a></li>
+<li><a href="#preslicegrouping" id="toc-preslicegrouping">7.3
+Preslice/grouping</a></li>
+</ul></li>
+<li><a href="#how-tables-are-filled" id="toc-how-tables-are-filled">8.
+How tables are filled</a>
+<ul>
+<li><a href="#reconstruction-and-base-ao2d"
+id="toc-reconstruction-and-base-ao2d">8.1 Reconstruction and base
+AO2D</a></li>
+<li><a href="#analysis-tasks-produce-additional-tables"
+id="toc-analysis-tasks-produce-additional-tables">8.2 Analysis tasks
+produce additional tables</a></li>
+<li><a href="#base-helper-pwg-and-derived-data"
+id="toc-base-helper-pwg-and-derived-data">8.3 Base, helper, PWG and
+derived data</a></li>
+</ul></li>
+<li><a href="#physical-ao2d-storage" id="toc-physical-ao2d-storage">9.
+Physical AO2D storage</a>
+<ul>
+<li><a href="#root-paths-and-partitions"
+id="toc-root-paths-and-partitions">9.1 ROOT paths and
+partitions</a></li>
+<li><a href="#physical-naming-rules" id="toc-physical-naming-rules">9.2
+Physical naming rules</a></li>
+<li><a href="#df_-partition-identity"
+id="toc-df_-partition-identity">9.3 <code>DF_*</code> partition
+identity</a></li>
+<li><a href="#physical-names-are-not-complete-semantics"
+id="toc-physical-names-are-not-complete-semantics">9.4 Physical names
+are not complete semantics</a></li>
+<li><a href="#historical-file-reality"
+id="toc-historical-file-reality">9.5 Historical file reality</a></li>
+</ul></li>
+<li><a
+href="#standardbase-ao2d-data-model-the-primary-concrete-teaching-spine"
+id="toc-standardbase-ao2d-data-model-the-primary-concrete-teaching-spine">10.
+Standard/base AO2D data model — the primary concrete teaching spine</a>
+<ul>
+<li><a href="#compact-family-map" id="toc-compact-family-map">10.1
+Compact family map</a></li>
+<li><a href="#event-backbone-bunch-crossings-and-timestamps"
+id="toc-event-backbone-bunch-crossings-and-timestamps">10.2 Event
+backbone: bunch crossings and timestamps</a></li>
+<li><a href="#collision-backbone" id="toc-collision-backbone">10.3
+Collision backbone</a></li>
+<li><a href="#track-backbone" id="toc-track-backbone">10.4 Track
+backbone</a>
+<ul>
+<li><a href="#extractor-hazard-alias-name-does-not-prove-entity-kind"
+id="toc-extractor-hazard-alias-name-does-not-prove-entity-kind">Extractor
+hazard: alias name does not prove entity kind</a></li>
+</ul></li>
+<li><a href="#ambiguous-track-precedent"
+id="toc-ambiguous-track-precedent">10.5 Ambiguous-track
+precedent</a></li>
+<li><a href="#standard-detector-families"
+id="toc-standard-detector-families">10.6 Standard detector
+families</a></li>
+<li><a href="#monte-carlo-backbone" id="toc-monte-carlo-backbone">10.7
+Monte-Carlo backbone</a></li>
+<li><a href="#standard-matchingindex-tables"
+id="toc-standard-matchingindex-tables">10.8 Standard matching/index
+tables</a></li>
+<li><a href="#origins-dataframe-provenance"
+id="toc-origins-dataframe-provenance">10.9 Origins / dataframe
+provenance</a></li>
+<li><a href="#run-2-compatibility-and-source-spelling"
+id="toc-run-2-compatibility-and-source-spelling">10.10 Run-2
+compatibility and source spelling</a></li>
+<li><a
+href="#default-o2-strangeness-layer-v0-cascade-and-3-body-objects"
+id="toc-default-o2-strangeness-layer-v0-cascade-and-3-body-objects">10.11
+Default O2 strangeness layer — V0, cascade and 3-body objects</a>
+<ul>
+<li><a href="#extractor-cycle-guard"
+id="toc-extractor-cycle-guard">Extractor cycle guard</a></li>
+</ul></li>
+<li><a href="#default-o2-versus-o2physics-derivedextended-layer"
+id="toc-default-o2-versus-o2physics-derivedextended-layer">10.12 Default
+O2 versus O2Physics derived/extended layer</a></li>
+<li><a href="#standard-table-inventory-and-the-82-symbol-review-census"
+id="toc-standard-table-inventory-and-the-82-symbol-review-census">10.13
+Standard-table inventory and the 82-symbol review census</a></li>
+<li><a href="#what-v0.5.1-does-not-hand-maintain"
+id="toc-what-v0.5.1-does-not-hand-maintain">10.14 What v0.5.1 does not
+hand-maintain</a></li>
+</ul></li>
+<li><a href="#pwg-worked-example-v0-data-in-lfstrangenesstables.h"
+id="toc-pwg-worked-example-v0-data-in-lfstrangenesstables.h">11. PWG
+worked example: V0 data in <code>LFStrangenessTables.h</code></a>
+<ul>
+<li><a href="#v0-relations" id="toc-v0-relations">11.1 V0
+relations</a></li>
+<li><a href="#v0-positional-view" id="toc-v0-positional-view">11.2 V0
+positional view</a></li>
+<li><a href="#v0-dynamic-quantities" id="toc-v0-dynamic-quantities">11.3
+V0 dynamic quantities</a></li>
+</ul></li>
+<li><a href="#pwg-worked-example-cascade-data"
+id="toc-pwg-worked-example-cascade-data">12. PWG worked example: cascade
+data</a>
+<ul>
+<li><a href="#cascade-relations" id="toc-cascade-relations">12.1 Cascade
+relations</a></li>
+<li><a href="#cascade-positional-views"
+id="toc-cascade-positional-views">12.2 Cascade positional views</a></li>
+</ul></li>
+<li><a href="#source-hierarchy-what-is-authoritative-for-what"
+id="toc-source-hierarchy-what-is-authoritative-for-what">13. Source
+hierarchy — what is authoritative for what?</a>
+<ul>
+<li><a href="#no-heuristic-final-authority"
+id="toc-no-heuristic-final-authority">13.1 No-heuristic final
+authority</a></li>
+</ul></li>
+<li><a href="#source-files-the-registry-must-index"
+id="toc-source-files-the-registry-must-index">14. Source files the
+registry must index</a>
+<ul>
+<li><a href="#tier-a-generic-and-standardbase-semantics"
+id="toc-tier-a-generic-and-standardbase-semantics">14.1 Tier A — generic
+and standard/base semantics</a></li>
+<li><a href="#tier-b-lf-v0cascade" id="toc-tier-b-lf-v0cascade">14.2
+Tier B — LF V0/cascade</a></li>
+<li><a href="#tier-c-producers-and-consumers"
+id="toc-tier-c-producers-and-consumers">14.3 Tier C — producers and
+consumers</a></li>
+<li><a href="#tier-d-physical-files" id="toc-tier-d-physical-files">14.4
+Tier D — physical files</a></li>
+</ul></li>
+<li><a href="#generated-canonical-registry"
+id="toc-generated-canonical-registry">15. Generated canonical
+registry</a>
+<ul>
+<li><a href="#required-artifact-and-coverage"
+id="toc-required-artifact-and-coverage">15.1 Required artifact and
+coverage</a></li>
+<li><a href="#registry-header" id="toc-registry-header">15.2 Registry
+header</a></li>
+<li><a href="#symbolentity-record" id="toc-symbolentity-record">15.3
+Symbol/entity record</a></li>
+<li><a href="#table-record" id="toc-table-record">15.4 Table
+record</a></li>
+<li><a href="#relationindex-record" id="toc-relationindex-record">15.5
+Relation/index record</a></li>
+<li><a href="#index-table-record" id="toc-index-table-record">15.6
+Index-table record</a></li>
+<li><a href="#registry-markdown-consistency"
+id="toc-registry-markdown-consistency">15.7 Registry ↔︎ Markdown
+consistency</a></li>
+</ul></li>
+<li><a href="#c-python-metadata-bridge"
+id="toc-c-python-metadata-bridge">16. C++ → Python metadata bridge</a>
+<ul>
+<li><a href="#preferred-architecture"
+id="toc-preferred-architecture">16.1 Preferred architecture</a></li>
+<li><a href="#text-extractor-discovery-not-blind-authority"
+id="toc-text-extractor-discovery-not-blind-authority">16.2 Text
+extractor: discovery, not blind authority</a>
+<ul>
+<li><a href="#parser-hazards-that-must-be-explicit"
+id="toc-parser-hazards-that-must-be-explicit">Parser hazards that must
+be explicit</a></li>
+</ul></li>
+<li><a href="#compiler-assisted-resolution"
+id="toc-compiler-assisted-resolution">16.3 Compiler-assisted
+resolution</a></li>
+<li><a href="#macro-rules-are-versioned-source-rules"
+id="toc-macro-rules-are-versioned-source-rules">16.4 Macro rules are
+versioned source rules</a></li>
+<li><a href="#dynamicexpression-quantities"
+id="toc-dynamicexpression-quantities">16.5 Dynamic/expression
+quantities</a></li>
+</ul></li>
+<li><a href="#mapping-o²-semantics-to-aliasdataframe"
+id="toc-mapping-o²-semantics-to-aliasdataframe">17. Mapping O² semantics
+to AliasDataFrame</a>
+<ul>
+<li><a href="#adf-consumes-the-registry-not-this-markdown"
+id="toc-adf-consumes-the-registry-not-this-markdown">17.1 ADF consumes
+the registry, not this Markdown</a></li>
+<li><a href="#source-verified-public-subframe-api-shape"
+id="toc-source-verified-public-subframe-api-shape">17.2 Source-verified
+public subframe API shape</a></li>
+<li><a
+href="#native-asymmetric-keys-versus-optional-symmetric-normalized-keys"
+id="toc-native-asymmetric-keys-versus-optional-symmetric-normalized-keys">17.3
+Native asymmetric keys versus optional symmetric normalized
+keys</a></li>
+<li><a href="#required-ao2dai-adf-adapter-sequence"
+id="toc-required-ao2dai-adf-adapter-sequence">17.4 Required AO2DAI → ADF
+adapter sequence</a></li>
+<li><a href="#adf-capability-matrix-required-at-the-gate"
+id="toc-adf-capability-matrix-required-at-the-gate">17.5 ADF capability
+matrix required at the gate</a></li>
+</ul></li>
+<li><a href="#source-versus-file-reconciliation"
+id="toc-source-versus-file-reconciliation">18. Source-versus-file
+reconciliation</a>
+<ul>
+<li><a href="#status-vocabulary" id="toc-status-vocabulary">18.1 Status
+vocabulary</a></li>
+<li><a href="#file-inspection" id="toc-file-inspection">18.2 File
+inspection</a></li>
+<li><a href="#source-comparison" id="toc-source-comparison">18.3 Source
+comparison</a></li>
+<li><a href="#pilot-lf-file-versus-standard-fixture"
+id="toc-pilot-lf-file-versus-standard-fixture">18.4 Pilot LF file versus
+standard fixture</a></li>
+<li><a href="#negative-value-open-question"
+id="toc-negative-value-open-question">18.5 Negative-value open
+question</a></li>
+</ul></li>
+<li><a href="#relation-aware-slicing-and-small-file-development"
+id="toc-relation-aware-slicing-and-small-file-development">19.
+Relation-aware slicing and small-file development</a>
+<ul>
+<li><a href="#source-proven-positional-family"
+id="toc-source-proven-positional-family">19.1 Source-proven positional
+family</a></li>
+<li><a href="#unresolved-positional-candidate"
+id="toc-unresolved-positional-candidate">19.2 Unresolved positional
+candidate</a></li>
+<li><a href="#dependency-closure" id="toc-dependency-closure">19.3
+Dependency closure</a></li>
+<li><a href="#oldnew-remapping" id="toc-oldnew-remapping">19.4 Old→new
+remapping</a></li>
+<li><a href="#slice-contiguity" id="toc-slice-contiguity">19.5 Slice
+contiguity</a></li>
+<li><a href="#exact-slicing-manifest"
+id="toc-exact-slicing-manifest">19.6 Exact slicing manifest</a></li>
+<li><a href="#minimum-acceptance-fixtures"
+id="toc-minimum-acceptance-fixtures">19.7 Minimum acceptance
+fixtures</a></li>
+</ul></li>
+<li><a href="#v0.5.1-ratifiable-scope"
+id="toc-v0.5.1-ratifiable-scope">20. v0.5.1 ratifiable scope</a></li>
+<li><a href="#reader-paths" id="toc-reader-paths">21. Reader paths</a>
+<ul>
+<li><a href="#new-ao2dai-reviewer" id="toc-new-ao2dai-reviewer">New
+AO2DAI reviewer</a></li>
+<li><a href="#ao2dai-coder" id="toc-ao2dai-coder">AO2DAI coder</a></li>
+<li><a href="#ao2dai-source-reviewer"
+id="toc-ao2dai-source-reviewer">AO2DAI source reviewer</a></li>
+<li><a href="#adf-reviewer" id="toc-adf-reviewer">ADF reviewer</a></li>
+<li><a href="#miwikiai-reviewer" id="toc-miwikiai-reviewer">MIWikiAI
+reviewer</a></li>
+</ul></li>
+<li><a href="#authoritative-orientation-links"
+id="toc-authoritative-orientation-links">22. Authoritative orientation
+links</a></li>
+<li><a href="#glossary" id="toc-glossary">23. Glossary</a></li>
+<li><a href="#required-work-before-ratification"
+id="toc-required-work-before-ratification">24. Required work before
+ratification</a>
+<ul>
+<li><a href="#architectsource-identity"
+id="toc-architectsource-identity">24.1 Architect/source
+identity</a></li>
+<li><a href="#ao2dai-semanticsource-validation"
+id="toc-ao2dai-semanticsource-validation">24.2 AO2DAI semantic/source
+validation</a></li>
+<li><a href="#physical-file-validation"
+id="toc-physical-file-validation">24.3 Physical-file validation</a></li>
+<li><a href="#adf-validation" id="toc-adf-validation">24.4 ADF
+validation</a></li>
+<li><a href="#miwikiai-formalpublication-validation"
+id="toc-miwikiai-formalpublication-validation">24.5 MIWikiAI
+formal/publication validation</a></li>
+</ul></li>
+<li><a href="#v0.5.1-revision-summary"
+id="toc-v0.5.1-revision-summary">25. v0.5.1 revision summary</a></li>
+<li><a href="#end-of-dataformats_ao2d-v0.5.1-draft"
+id="toc-end-of-dataformats_ao2d-v0.5.1-draft">End of
+<code>DataFormats_AO2D</code> v0.5.1 DRAFT</a></li>
+</ul>
+</nav>
+<h1
+id="dataformats_ao2d-alice-o²-asoa-and-ao2d-authoritative-semantic-reference">DataFormats_AO2D
+— ALICE O² ASoA and AO2D authoritative semantic reference</h1>
+<blockquote>
+<p><strong>DRAFT VALIDATION SPLIT — v0.5.1</strong></p>
+<ul>
+<li><strong>AO2DAI</strong> owns substantive AliceO2/O2Physics
+semantics, standard/base AO2D coverage, producer/task closure, physical
+AO2D reconciliation, slicing/remapping, and the generated semantic
+registry.</li>
+<li><strong>ADF</strong> validates only the ADF-facing public API and
+adapter behavior.</li>
+<li><strong>MIWikiAI</strong> validates document class,
+provenance/status grammar, source-pinning discipline, canonical
+Markdown, generated HTML, navigation and readability.</li>
+<li>Nothing marked <strong>AO2DAI VALIDATION REQUIRED</strong> or
+<strong>ADF VALIDATION REQUIRED</strong> is frozen fact.</li>
+</ul>
+</blockquote>
+<h2 id="what-this-document-is-for">What this document is for</h2>
+<p>A new reviewer or coder should be able to read this page without
+prior ALICE software knowledge and understand:</p>
+<ol type="1">
+<li>what ALICE and O² are and why AO2D exists;</li>
+<li>what Structure of Arrays / ASoA means;</li>
+<li>how the standard AO2D backbone is organized: <strong>BCs →
+Collisions → Tracks → detector/MC/index families</strong>;</li>
+<li>how persistent, expression and dynamic columns differ;</li>
+<li>how scalar, slice, array and self indices work;</li>
+<li>how index equivalence and index tables differ from ordinary index
+columns and positional joins;</li>
+<li>how <code>soa::Join</code> and <code>soa::Concat</code> differ;</li>
+<li>why current aliases do not necessarily mean “highest version”;</li>
+<li>how logical source declarations map to ROOT trees/branches and why
+actual-file evidence remains independent;</li>
+<li>how V0 and cascade tables extend the standard model in
+O2Physics;</li>
+<li>how a relation-aware slicer preserves and remaps identities after
+compaction;</li>
+<li>how one generated evidence model should drive this Markdown, the
+Python loader, slicer, verifier and ADF adapter.</li>
+</ol>
+<p>This page is intended to become the <strong>single human-facing
+authoritative AO2DAI semantic reference for AO2D code writing</strong>.
+The generated machine-readable registry is not a competing authority: it
+is the executable representation of the same evidence model.</p>
+<h2 id="ao2dai-non-negotiable-invariants">AO2DAI non-negotiable
+invariants</h2>
+<ol type="1">
+<li><strong>C++ declarations define semantic relation targets and
+declared views.</strong></li>
+<li><strong>The AO2D file defines what is physically
+present.</strong></li>
+<li><strong>A pinned reference source does not retroactively define a
+historical file version.</strong> Source, producer provenance and file
+must be reconciled.</li>
+<li><strong>Equal row counts never create a semantic join.</strong> They
+can discover a candidate only.</li>
+<li><strong>Branch spelling never establishes the final relation target
+when declaration metadata exists.</strong></li>
+<li><strong>Exact dtypes are contracts.</strong> Never infer them from
+observed values alone.</li>
+<li><strong>Raw invalid index values are physical provenance; logical
+applicability is derived separately.</strong></li>
+<li><strong>Partition identity is part of globalized Python relation
+identity unless a single partition is processed in strict
+isolation.</strong></li>
+<li><strong>Slicing/compaction requires deterministic old→new
+remapping.</strong> Retaining a target row is not enough.</li>
+<li><strong>Unresolved semantics fail closed.</strong> A verifier may
+not report complete preservation while a required relation is
+unresolved.</li>
+<li><strong>One canonical evidence model feeds documentation, loader,
+slicer and verifier.</strong></li>
+<li><strong>Python ports of dynamic/expression quantities require
+explicit equivalence validation.</strong></li>
+<li><strong>A current alias is a source-selected alias, not a promise
+that the numerically highest version is selected.</strong></li>
+<li><strong>Relation/table mechanism is source-declared.</strong>
+<code>DECLARE_SOA_INDEX_TABLE*</code> must not be misclassified as an
+ordinary scalar/slice/array/self index column.</li>
+</ol>
+<h2
+id="semantic-status-descriptors-and-miwikiai-provenance-labels">Semantic
+status descriptors and MIWikiAI provenance labels</h2>
+<p><strong>O2 SOURCE FACT</strong> — source-derived semantics, with
+evidence state stated nearby.</p>
+<p><strong>AO2DAI BINDING RULE</strong> — AO2DAI implementation/safety
+policy. Architect ratification may still be required at freeze.</p>
+<p><strong>PROPOSED DESIGN</strong> — project implementation shape, not
+an O² semantic fact.</p>
+<p><strong>AO2DAI VALIDATION REQUIRED</strong> —
+O2/O2Physics/physical-file item to be validated before freeze.</p>
+<p><strong>ADF VALIDATION REQUIRED</strong> — ADF API/integration item
+to be validated by ADF.</p>
+<p>Source-like text uses MIWikiAI labels:</p>
+<ul>
+<li><code>[VERBATIM &lt;path&gt;:Lx-Ly]</code> — character-exact against
+the named snapshot bytes; line ranges are
+<strong>snapshot-relative</strong> until an architect-selected commit is
+pinned;</li>
+<li><code>[FABRICATED — illustrative only]</code> — invented schematic
+code/text;</li>
+<li>architect-originated labels when applicable.</li>
+</ul>
+<p>Unmarked prose is orientation/explanation. Normative claims carry a
+semantic descriptor.</p>
+<hr />
+<h1 id="alice-o²-and-ao2d">1. ALICE, O² and AO2D</h1>
+<h2 id="alice">1.1 ALICE</h2>
+<p>ALICE (A Large Ion Collider Experiment) is CERN’s LHC experiment
+optimized for heavy-ion physics. Runs 3 and 4 use a high-rate
+continuous-readout computing model and the O² (“Online-Offline”)
+software/computing system.</p>
+<p>Orientation:</p>
+<ul>
+<li>https://alice-o2-project.web.cern.ch/</li>
+<li>https://github.com/AliceO2Group/AliceO2</li>
+</ul>
+<h2 id="o²-and-o2physics">1.2 O² and O2Physics</h2>
+<p>A useful mental split is:</p>
+<pre class="text"><code>AliceO2
+  ├─ Framework / DPL / ASoA infrastructure
+  ├─ standard analysis data model
+  ├─ detector/reconstruction formats and algorithms
+  └─ simulation / calibration / common services
+
+O2Physics
+  ├─ analysis tasks and workflows
+  ├─ helper-table producers
+  ├─ PWG-specific data models
+  └─ derived-data workflows</code></pre>
+<p>O2Physics can declare tables, indices, joins and dynamic columns
+using the same ASoA machinery from AliceO2.</p>
+<h2 id="why-ao2d-exists">1.3 Why AO2D exists</h2>
+<p>O² analysis uses a <strong>relational collection of flat columnar
+tables</strong> rather than a single nested event object. Bunch
+crossings, reconstructed collisions, tracks, detector signals, MC truth,
+helper data and reconstructed candidates live in distinct tables and are
+related by explicit indices or declared positional views.</p>
+<p>The persistent analysis product is conventionally
+<code>AO2D.root</code>. The official O² analysis documentation
+identifies the standard tables extracted from AO2D with declarations in
+<code>Framework/Core/include/Framework/AnalysisDataModel.h</code>.</p>
+<p>Orientation:</p>
+<ul>
+<li>https://aliceo2group.github.io/analysis-framework/docs/basics-tasks/Introduction.html</li>
+<li>https://aliceo2group.github.io/analysis-framework/docs/datamodel/ao2dTables.html</li>
+</ul>
+<h2 id="one-sentence-definition">1.4 One-sentence definition</h2>
+<blockquote>
+<p><strong>AO2D is the persistent ROOT representation of O²
+analysis-table data: versioned columnar tables and persistent/index
+columns are stored physically, while higher-level source-declared
+semantics such as extended views, positional joins and dynamic columns
+must be reconstructed from authoritative source/producer
+evidence.</strong></p>
+</blockquote>
+<p>Keep three layers separate:</p>
+<pre class="text"><code>physics/reconstruction objects
+          ↓
+logical O² ASoA model (Arrow-oriented tables, indices, views)
+          ↓
+physical AO2D ROOT representation (DF_* / O2* trees / branches)</code></pre>
+<p>AO2DAI reconstructs the logical layer from the physical file using
+the source model and producer provenance.</p>
+<hr />
+<h1 id="structure-of-arrays-and-asoa">2. Structure of Arrays and
+ASoA</h1>
+<h2 id="aos-versus-soa">2.1 AoS versus SoA</h2>
+<p>Array-of-Structures:</p>
+<pre class="text"><code>track[0] = {x0, y0, z0, pt0}
+track[1] = {x1, y1, z1, pt1}</code></pre>
+<p>Structure-of-Arrays:</p>
+<pre class="text"><code>x  = [x0,  x1,  ...]
+y  = [y0,  y1,  ...]
+z  = [z0,  z1,  ...]
+pt = [pt0, pt1, ...]</code></pre>
+<p>Columnar analysis reads a small set of columns across many rows
+efficiently.</p>
+<h2 id="what-asoa-adds">2.2 What ASoA adds</h2>
+<p><code>Framework/Core/include/Framework/ASoA.h</code> provides a typed
+C++ interface over Arrow-oriented columnar data:</p>
+<pre class="text"><code>Arrow columns
+    ↓
+ASoA typed Table&lt;T...&gt;
+    ↓
+row iterator / getters such as track.pt(), collision.posZ(), track.collision()</code></pre>
+<p>The framework type system carries table identity, column type, index
+targets and view composition.</p>
+<h2 id="a-table-is-not-a-row-wise-serialized-c-object">2.3 A table is
+not a row-wise serialized C++ object</h2>
+<p>An O² analysis table is a collection of rows and columns. Filtering,
+joins, slicing/preslicing and index dereferencing operate on columnar
+tables/views. Python should therefore reconstruct <strong>related
+DataFrames/tables</strong>, not nested objects guessed from ROOT
+names.</p>
+<hr />
+<h1 id="three-representations-of-the-same-information">3. Three
+representations of the same information</h1>
+<h2 id="c-declaration-layer">3.1 C++ declaration layer</h2>
+<p><strong>PROPOSED DESIGN.</strong></p>
+<p>[FABRICATED — illustrative only]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>DECLARE_SOA_COLUMN<span class="op">(...)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>DECLARE_SOA_INDEX_COLUMN<span class="op">(...)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>DECLARE_SOA_DYNAMIC_COLUMN<span class="op">(...)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>DECLARE_SOA_TABLE<span class="op">(...)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> SomeView <span class="op">=</span> soa<span class="op">::</span>Join<span class="op">&lt;</span>TableA<span class="op">,</span> TableB<span class="op">&gt;;</span></span></code></pre></div>
+<p>This layer carries semantic declarations.</p>
+<h2 id="in-memory-analysis-layer">3.2 In-memory analysis layer</h2>
+<p>ASoA observes/combines Arrow tables and exposes typed iterators,
+getters, filters, slices and joins.</p>
+<h2 id="physical-ao2d-layer">3.3 Physical AO2D layer</h2>
+<p>AO2D persists compatible table/column content to ROOT objects. The
+mapping from descriptions/versions and column labels to ROOT tree/branch
+identifiers belongs to the physical-I/O implementation plus the file
+actually written.</p>
+<h2 id="why-all-three-are-required">3.4 Why all three are required</h2>
+<pre class="text"><code>pinned source declarations
+       +
+actual AO2D schema/values
+       +
+producer/source provenance
+       ↓
+reconciled AO2D registry
+       ↓
+Python / AliasDataFrame graph</code></pre>
+<p>Current source alone cannot prove what an older file contains; file
+names alone cannot prove semantic relation targets.</p>
+<hr />
+<h1 id="how-an-o²-table-is-defined">4. How an O² table is defined</h1>
+<h2 id="persistent-columns">4.1 Persistent columns</h2>
+<p><code>DECLARE_SOA_COLUMN(Name, getter, Type)</code> declares a stored
+column with a source type. Persistent column type is part of the
+contract and maps through Arrow/I/O machinery.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> preserve exact source/file
+dtype. Never route integral identity through <code>float64</code> or
+infer dtype from small observed values.</p>
+<h2 id="rowglobal-index-versus-external-relation-index">4.2 Row/global
+index versus external relation index</h2>
+<p><code>o2::soa::Index&lt;&gt;</code> provides row/view identity
+semantics. It is not the same as an external <code>fIndex...</code>
+relation column.</p>
+<pre class="text"><code>globalIndex()          = identity/position of this row in its table/view
+external index column  = relation from this row to another row/table family</code></pre>
+<h2 id="dynamic-columns">4.3 Dynamic columns</h2>
+<p><strong>O2 SOURCE FACT.</strong> A dynamic column is computed from
+other columns/parameters and does not create a persistent AO2D branch by
+itself.</p>
+<p>For Python:</p>
+<pre class="text"><code>C++ dynamic column
+  → dependencies
+  → return type
+  → observable formula
+  → Python/NumPy implementation
+  → C++↔Python equivalence test</code></pre>
+<h2 id="expression-columns">4.4 Expression columns</h2>
+<p>O² distinguishes expression columns from dynamic callback columns.
+Expression columns are declarative computed columns that participate in
+the framework’s table construction/materialization semantics.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> Python need not reproduce the
+C++ implementation mechanism, but must reproduce observable values,
+dtype and provenance.</p>
+<h2 id="markermetadata-types">4.5 Marker/metadata types</h2>
+<p>Compile-time markers and table metadata are not automatically physics
+columns. The registry records them as metadata where they affect
+identity or interpretation.</p>
+<h2 id="table-identity-and-versions">4.6 Table identity and
+versions</h2>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> Current <code>AnalysisDataModel.h</code> declares
+<code>BCs_000</code>, versioned <code>BCs_001</code>, then selects
+<code>using BCs = BCs_001</code>; similarly it declares collision
+versions and selects <code>Collisions_001</code>.</p>
+<p>This demonstrates three different concepts:</p>
+<ol type="1">
+<li>versioned source types;</li>
+<li>a source-selected current alias;</li>
+<li>the version physically present in a particular file.</li>
+</ol>
+<p>They must not be conflated.</p>
+<h3
+id="a-critical-counterexample-current-alias-does-not-mean-highest-numeric-version">A
+critical counterexample: current alias does not mean “highest numeric
+version”</h3>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> <code>AnalysisDataModel.h</code> declares both
+<code>McCaloLabels_000</code> and <code>McCaloLabels_001</code>, but
+currently defines:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> McCaloLabels <span class="op">=</span> McCaloLabels_000<span class="op">;</span></span></code></pre></div>
+<p>Therefore the correct rule is:</p>
+<blockquote>
+<p><strong>A current alias is whatever the source explicitly selects.
+Never infer it by choosing the numerically highest declared
+version.</strong></p>
+</blockquote>
+<p>This is load-bearing for a parser/generator.</p>
+<h2 id="stored-extendedfull-views-and-aliases">4.7 Stored, extended/full
+views and aliases</h2>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> The track family illustrates physical/logical
+distinctions:</p>
+<ul>
+<li>stored <code>StoredTracksExtra_*</code> versions;</li>
+<li>extended <code>TracksExtra_*</code> versions;</li>
+<li><code>using StoredTracksExtra = StoredTracksExtra_002</code>;</li>
+<li><code>using TracksExtra = TracksExtra_002</code>;</li>
+<li>convenience positional view
+<code>FullTracks = soa::Join&lt;Tracks, TracksExtra&gt;</code>.</li>
+</ul>
+<p>The source also contains declarations such as a full/versioned
+TracksExtra table whose physical identity is encoded by
+description/origin/version arguments. A registry must retain these
+identities separately rather than assuming one C++ alias equals one ROOT
+tree.</p>
+<p>Required fields include:</p>
+<pre class="text"><code>cpp_symbol
+entity_kind
+stored_type
+extended_or_view_type
+current_alias_target
+origin
+description
+version
+physical_tree_if_any
+source_identity
+validation_status</code></pre>
+<hr />
+<h1 id="how-tables-are-connected">5. How tables are connected</h1>
+<p>AO2DAI must preserve distinct relation mechanisms rather than
+collapse all of them into “join”.</p>
+<h2 id="external-scalar-index">5.1 External scalar index</h2>
+<p><strong>O2 SOURCE FACT — snapshot-exact; commit reconciliation
+pending.</strong></p>
+<p>[VERBATIM Framework/Core/include/Framework/ASoA.h:L2896-L2899]</p>
+<p>Snapshot SHA-256:
+<code>a400462e4c635808b0fa15abd4d1dafbda3d51c856c9f838869c69f09d49e922</code></p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> <span class="va">has_</span><span class="er">##_Getter_() const                                                                                                 \</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="er">    {                                                                                                                           \</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="er">      return *mColumnIterator &gt;= 0;                                                                                             \</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="er">    }                                                                                                                           \</span></span></code></pre></div>
+<p>For normal scalar external indices:</p>
+<pre class="text"><code>logical applicability: stored value &gt;= 0
+physical provenance:   preserve the stored raw value</code></pre>
+<p>A negative value is not a live normal scalar reference. Different
+negative values remain physical provenance.</p>
+<h2 id="relation-target-comes-from-c-metadata">5.2 Relation target comes
+from C++ metadata</h2>
+<p>The generated scalar-index type carries target metadata such as
+<code>binding_t</code> / <code>index_targets</code>.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> branch spelling can locate a
+candidate declaration but cannot be final semantic authority when source
+metadata exists.</p>
+<h2
+id="physical-index-label-families-external-and-self-are-different">5.3
+Physical index-label families — external and self are different</h2>
+<p><strong>O2 SOURCE FACT — snapshot/current-upstream source verified;
+commit pin pending.</strong></p>
+<p>External and self-index macros do <strong>not</strong> share one
+universal naming rule.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relation kind</th>
+<th>Source-level physical label rule</th>
+<th>Important distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>external scalar</td>
+<td><code>fIndex&lt;Label&gt;&lt;Suffix&gt;</code></td>
+<td>suffix slot exists</td>
+</tr>
+<tr class="even">
+<td>external slice</td>
+<td><code>fIndexSlice&lt;Label&gt;&lt;Suffix&gt;</code></td>
+<td>suffix slot exists</td>
+</tr>
+<tr class="odd">
+<td>external array</td>
+<td><code>fIndexArray&lt;Label&gt;&lt;Suffix&gt;</code></td>
+<td>suffix slot exists</td>
+</tr>
+<tr class="even">
+<td>self scalar</td>
+<td><code>fIndex&lt;Label&gt;</code></td>
+<td>no external suffix slot</td>
+</tr>
+<tr class="odd">
+<td>short self scalar</td>
+<td>label derives from <code>#Name</code></td>
+<td>no token-pasted plural <code>s</code></td>
+</tr>
+<tr class="even">
+<td>self slice</td>
+<td><code>fIndexSlice&lt;Label&gt;</code>; short form uses an
+underscore-prefixed source name</td>
+<td>self-specific macro rule</td>
+</tr>
+<tr class="odd">
+<td>self array</td>
+<td><code>fIndexArray&lt;Label&gt;</code>; short form uses an
+underscore-prefixed source name</td>
+<td>self-specific macro rule</td>
+</tr>
+</tbody>
+</table>
+<p><strong>AO2DAI BINDING RULE:</strong> a generator must classify the
+source macro family first, then derive physical labels from that family.
+Applying external-index rules to self indices is incorrect.</p>
+<h2 id="slice-indices">5.4 Slice indices</h2>
+<p>A slice relation references a contiguous target range.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> after filtering/compaction,
+reconstruct a slice only if retained targets remain a valid contiguous
+output range. Otherwise fail or use an explicitly approved alternative
+representation.</p>
+<h2 id="array-indices">5.5 Array indices</h2>
+<p>An array index references multiple target rows.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> dependency closure and
+remapping are element-wise. “Non-flat branch → skip” is not correctness
+preserving.</p>
+<h2 id="self-indices">5.6 Self indices</h2>
+<p>A self relation targets the same logical table family. Scalar, array
+and slice self relations share the same-family target semantics but have
+different storage/remapping behavior.</p>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> <code>AnalysisDataModel.h</code> provides a standard
+MC example:</p>
+<ul>
+<li>scalar self indices: <code>Mother0</code>, <code>Mother1</code>,
+<code>Daughter0</code>, <code>Daughter1</code>;</li>
+<li>self array: <code>Mothers</code>;</li>
+<li>self slice: <code>Daughters</code>.</li>
+</ul>
+<p><strong>AO2DAI BINDING RULE:</strong></p>
+<ul>
+<li>scalar self → remap one value through the table’s old→new map;</li>
+<li>self array → remap every element;</li>
+<li>self slice → enforce the same contiguity rule as any slice.</li>
+</ul>
+<h2 id="c-type-index-equivalence">5.7 C++-type index equivalence</h2>
+<p><code>DECLARE_EQUIVALENT_FOR_INDEX</code> declares index-binding
+compatibility between C++ table types. It is neither a foreign key nor a
+positional join.</p>
+<p>For the reviewed LF V0/cascade snapshot, the eight validated
+equivalence pairs remain:</p>
+<pre class="text"><code>V0Indices      ↔ V0Cores
+V0TrackXs      ↔ V0Cores
+V0TrackXs      ↔ V0Indices
+CascIndices    ↔ CascCores
+CascIndices    ↔ CascBBs
+CascCores      ↔ CascBBs
+KFCascIndices  ↔ KFCascCores
+TraCascIndices ↔ TraCascCores</code></pre>
+<p>These do not create new positional families beyond the
+source-declared join families.</p>
+<h2
+id="descriptionversion--and-labelversion-keyed-index-equivalence">5.8
+Description/version- and label/version-keyed index equivalence</h2>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> Current <code>AnalysisDataModel.h</code> contains 14
+<code>DECLARE_EQUIVALENT_FOR_INDEX_NG</code> declarations. They include
+both version compatibility and shape/family compatibility, for
+example:</p>
+<pre class="text"><code>COLLISION/0   ↔ COLLISION/1
+TRACK/0       ↔ TRACK_IU/0
+TRACKEXTRA/0  ↔ TRACKEXTRA/1
+TRACKEXTRA/1  ↔ TRACKEXTRA/2
+HMPID/0       ↔ HMPID/1
+MFTTracks/0   ↔ MFTTracks/1</code></pre>
+<p>Two details are load-bearing for a generator:</p>
+<ol type="1">
+<li><code>TRACK/0 ↔︎ TRACK_IU/0</code> is <strong>not</strong> merely
+cross-version compatibility; it relates differently described table
+shapes.</li>
+<li><code>MFTTracks/0 ↔︎ MFTTracks/1</code> demonstrates that the
+<code>_NG</code> literal key can be based on a source
+<strong>label</strong> (<code>MFTTracks</code>) rather than the physical
+description string (<code>MFTTRACK</code>). A resolver that assumes
+every <code>_NG</code> string is <code>description/version</code>
+resolves only a subset of the declared edges.</li>
+</ol>
+<p><strong>AO2DAI BINDING RULE:</strong> preserve the declaration syntax
+separately from the resolved equivalence key. Do not reconstruct the key
+from normalized names, and do not case-fold source strings.</p>
+<p>Registry representation:</p>
+<pre class="text"><code>relation_kind: index_equivalence
+declaration_form: classic_cpp_type | ng_string_key
+key_form: cpp_type | description_version | label_version
+left_declared
+right_declared
+left_resolved_key
+right_resolved_key
+key_case_policy: byte_exact
+source_macro
+source_identity
+validation_status</code></pre>
+<p>For <code>_NG</code>, the literal source key is preserved
+byte-for-byte. Case-sensitive examples such as <code>MFTTracks</code>
+and physical-description spellings such as <code>Run2OTFV0</code> are
+not normalized by the registry.</p>
+<h2 id="declare_soa_index_table-a-distinct-matching-table-mechanism">5.9
+<code>DECLARE_SOA_INDEX_TABLE*</code> — a distinct matching-table
+mechanism</h2>
+<p><strong>O2 SOURCE FACT — source/snapshot reviewed; final commit pin
+pending.</strong> <code>DECLARE_SOA_INDEX_TABLE_NG</code> carries an
+explicit boolean <code>exclusive</code> property. The ordinary
+index-table macro expands with <code>exclusive = false</code>; the
+<code>_EXCLUSIVE</code> form expands with
+<code>exclusive = true</code>.</p>
+<p>Current <code>AnalysisDataModel.h</code> declares eleven standard
+matching/index-table symbols for Run-2/Run-3 BC/collision/detector
+matching, including multi-collision variants.</p>
+<p>Examples include:</p>
+<pre class="text"><code>Run2MatchedExclusive
+Run2MatchedSparse
+Run3MatchedExclusive
+Run3MatchedSparse
+MatchedBCCollisionsExclusive
+MatchedBCCollisionsSparse
+MatchedBCCollisionsExclusiveMulti
+MatchedBCCollisionsSparseMulti
+Run3MatchedToBCExclusive
+Run3MatchedToBCSparse
+Run2MatchedToBCSparse</code></pre>
+<p>“Sparse” is part of several concrete table names/usages; it is
+<strong>not</strong> the generic framework property paired with
+<code>exclusive</code>. The registry therefore stores the source boolean
+instead of inventing <code>mode = exclusive | sparse</code>.</p>
+<p>An index table is also not itself an ordinary relation-column kind.
+It is a generated <strong>table/entity</strong> built from a key table
+plus index columns. If the graph needs edges from it, those edges are
+represented separately.</p>
+<p>Required record:</p>
+<pre class="text"><code>entity_kind: index_table
+exclusive: true | false
+source_declared_name
+source_macro
+key_table
+index_columns
+array_index_columns_if_any
+edge_kinds_if_generated
+source_identity
+validation_status</code></pre>
+<p><strong>Extractor hazard — macro indirection.</strong> Current
+standard declarations use helper lists such as
+<code>INDEX_LIST_RUN2</code> / <code>INDEX_LIST_RUN3</code>. A text
+scanner must preserve the original macro form and mark unresolved list
+expansion as <code>compiler_resolution_required</code>; it must not
+silently treat an unresolved macro identifier as one index column.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> do not force an index table
+into the ordinary scalar/slice/array/self relation-column
+enumeration.</p>
+<hr />
+<h1 id="positional-joins-soajoin">6. Positional joins:
+<code>soa::Join</code></h1>
+<h2 id="semantic-meaning-versus-runtime-compatibility">6.1 Semantic
+meaning versus runtime compatibility</h2>
+<p><code>soa::Join&lt;T1,T2,...&gt;</code> is a source-declared
+positional side-by-side view.</p>
+<p>Two implementation evidence bases have been reviewed:</p>
+<ul>
+<li>the SHA-256-pinned v0.2 <code>ASoA.cxx</code> snapshot demonstrates
+a <code>std::shared_ptr&lt;arrow::Table&gt;</code> path that rejects
+unequal row counts through <code>canNotJoin()</code>;</li>
+<li>current AliceO2 <code>dev</code> contains <code>ArrowTableRef</code>
+paths that reject incompatible <code>ArrowRange</code> offset/size
+values.</li>
+</ul>
+<p><strong>AO2DAI VALIDATION REQUIRED:</strong> enumerate exactly which
+paths exist at the architect-selected commit before freeze.</p>
+<p>The semantic rule is independent of those runtime checks:</p>
+<pre class="text"><code>source declares positional relation
+        ↓
+member tables have shared row identity in that view
+        ↓
+runtime/file compatibility checks validate realization</code></pre>
+<p>Never reverse this logic.</p>
+<h2 id="equal-rows-do-not-create-a-join">6.2 Equal rows do not create a
+join</h2>
+<p>Incorrect:</p>
+<pre class="text"><code>A, B and C have equal row counts → therefore semantic join</code></pre>
+<p>Correct:</p>
+<pre class="text"><code>source/producer proves lockstep relation → file row/range/order checks validate it</code></pre>
+<h2 id="source-proven-versus-unresolved-positional-candidates">6.3
+Source-proven versus unresolved positional candidates</h2>
+<p><code>SOURCE_PROVEN_POSITIONAL</code> — established by an explicit
+<code>soa::Join</code>, reviewed producer/task lockstep evidence, or
+another accepted source mechanism.</p>
+<p><code>POSITIONAL_CANDIDATE_UNRESOLVED</code> — file evidence suggests
+lockstep (for example equal counts) but source closure is
+incomplete.</p>
+<p>This is the documentation/registry state corresponding to the phase
+proposal’s <code>EMPIRICALLY_COMPATIBLE_ONLY</code> proof class until
+closure.</p>
+<h3 id="conservative-unresolved-candidate-policy">Conservative
+unresolved-candidate policy</h3>
+<p><strong>AO2DAI BINDING RULE — selected by AO2DAI; architect
+ratification pending at freeze.</strong></p>
+<p>For unresolved candidates:</p>
+<ol type="1">
+<li>calculate each member’s ordinary retention mask;</li>
+<li>form the <strong>union</strong> of member masks;</li>
+<li>apply the same union mask/order to every candidate member;</li>
+<li>retain <code>POSITIONAL_CANDIDATE_UNRESOLVED</code> in the
+registry/manifest;</li>
+<li>do not create an ADF semantic join merely because shared retention
+was used.</li>
+</ol>
+<p>This is deliberately over-retentive and prevents silent
+under-grouping.</p>
+<hr />
+<h1 id="soaconcat-filters-and-preslicing">7. <code>soa::Concat</code>,
+filters and preslicing</h1>
+<h2 id="soaconcat">7.1 <code>soa::Concat</code></h2>
+<p><strong>O2 SOURCE FACT — source-verified, commit pin
+pending.</strong> The reviewed implementation derives a concatenated
+schema from the field-set intersection/common fields across inputs.</p>
+<p>Therefore <code>Concat</code> is not a union-of-all-columns
+operation. A column missing from one member can disappear from the
+result schema.</p>
+<h2 id="filtered-views">7.2 Filtered views</h2>
+<p>Filtered tables carry a selection into an underlying table.
+Filtered-row position and underlying/global index must not be
+interchanged without the framework mapping.</p>
+<h2 id="preslicegrouping">7.3 Preslice/grouping</h2>
+<p>Preslice mechanisms group rows by index values. For AO2DAI,
+preserving the underlying relation and index/remapping semantics is the
+prerequisite; high-level grouping can be layered on afterward.</p>
+<hr />
+<h1 id="how-tables-are-filled">8. How tables are filled</h1>
+<h2 id="reconstruction-and-base-ao2d">8.1 Reconstruction and base
+AO2D</h2>
+<p>Reconstruction/calibration produces the base analysis information
+persisted into AOD/AO2D.</p>
+<h2 id="analysis-tasks-produce-additional-tables">8.2 Analysis tasks
+produce additional tables</h2>
+<p>O² tasks can declare output tables through
+<code>Produces&lt;TableType&gt;</code> and append rows in
+<code>process()</code>.</p>
+<p>[FABRICATED — illustrative only]</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Produces<span class="op">&lt;</span>o2<span class="op">::</span>aod<span class="op">::</span>SomeTable<span class="op">&gt;</span> output<span class="op">;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> process<span class="op">(...)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  output<span class="op">(</span>value1<span class="op">,</span> value2<span class="op">,</span> <span class="op">...);</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Orientation source:
+https://github.com/AliceO2Group/AliceO2/blob/dev/Framework/Core/ANALYSIS.md</p>
+<h2 id="base-helper-pwg-and-derived-data">8.3 Base, helper, PWG and
+derived data</h2>
+<p>Useful categories:</p>
+<ol type="1">
+<li>standard/base tables in <code>AnalysisDataModel.h</code>;</li>
+<li>standard helper-produced tables;</li>
+<li>O2Physics/PWG-specific tables;</li>
+<li>derived-data tables intentionally written by workflows.</li>
+</ol>
+<p>A declaration existing in current source does not guarantee that
+table is present in every AO2D.</p>
+<hr />
+<h1 id="physical-ao2d-storage">9. Physical AO2D storage</h1>
+<h2 id="root-paths-and-partitions">9.1 ROOT paths and partitions</h2>
+<p>AO2D paths commonly look schematically like:</p>
+<pre class="text"><code>DF_&lt;id&gt;/O2&lt;table&gt;</code></pre>
+<p>The semantic model and physical I/O mapping are separate evidence
+layers.</p>
+<h2 id="physical-naming-rules">9.2 Physical naming rules</h2>
+<p>Snapshot/current source establishes physical label families such
+as:</p>
+<pre class="text"><code>persistent column → f&lt;Name&gt;
+external scalar  → fIndex&lt;Label&gt;&lt;Suffix&gt;
+external slice   → fIndexSlice&lt;Label&gt;&lt;Suffix&gt;
+external array   → fIndexArray&lt;Label&gt;&lt;Suffix&gt;
+self scalar      → fIndex&lt;Label&gt; with self-specific macro rules
+self slice       → fIndexSlice&lt;Label&gt; with self-specific macro rules
+self array       → fIndexArray&lt;Label&gt; with self-specific macro rules</code></pre>
+<p>Tree description/version naming belongs to the writer/output
+implementation and must be commit-pinned.</p>
+<h2 id="df_-partition-identity">9.3 <code>DF_*</code> partition
+identity</h2>
+<p>Identical local row numbers can occur in different <code>DF_*</code>
+partitions.</p>
+<p><strong>AO2DAI BINDING RULE:</strong> globalized Python relation keys
+include partition identity unless one partition is processed in strict
+isolation.</p>
+<p><code>globalIndex()</code> is not automatically a
+cross-file/cross-partition stable physics-object identifier.</p>
+<h2 id="physical-names-are-not-complete-semantics">9.4 Physical names
+are not complete semantics</h2>
+<p>An <code>fIndex...</code> branch is strong evidence of an index-like
+field, but exact target/equivalence/view semantics still come from
+source metadata and producer evidence.</p>
+<h2 id="historical-file-reality">9.5 Historical file reality</h2>
+<p>If current source selects version N while a file contains version M,
+the file is not automatically wrong. Record:</p>
+<pre class="text"><code>reference source identity/version
+actual persisted tree/version
+producer/source provenance if known
+reconciliation status</code></pre>
+<hr />
+<h1
+id="standardbase-ao2d-data-model-the-primary-concrete-teaching-spine">10.
+Standard/base AO2D data model — the primary concrete teaching spine</h1>
+<p>The standard/default AO2D layer in AliceO2 is the foundation.
+O2Physics tables are extensions built on top of standard objects and
+relations.</p>
+<p>The official O² table documentation groups the standard AO2D model
+into broad families such as General, Tracks, Detectors, Strangeness,
+Indices, MonteCarlo, Run2 and Others. v0.5.1 uses that family view for
+human orientation while reserving exhaustive symbol-level truth for the
+generated <code>standard_aod</code> registry.</p>
+<h2 id="compact-family-map">10.1 Compact family map</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Standard family</th>
+<th>Representative source identities / shapes</th>
+<th>Human meaning / topology</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Event / BC</td>
+<td><code>BCs_*</code>, <code>Timestamps</code>,
+<code>BCFlags</code></td>
+<td>bunch-crossing identity, timing, trigger/event-root information</td>
+</tr>
+<tr class="even">
+<td>Collisions</td>
+<td><code>Collisions_*</code></td>
+<td>reconstructed collision/vertex; collision → BC</td>
+</tr>
+<tr class="odd">
+<td>Tracks</td>
+<td><code>Tracks</code>, <code>TracksIU</code>, <code>TracksCov*</code>,
+<code>StoredTracksExtra_*</code>, <code>TracksExtra_*</code>,
+<code>FullTracks</code>, QA variants</td>
+<td>track parameters, covariance/extras, track → collision, positional
+convenience views</td>
+</tr>
+<tr class="even">
+<td>Ambiguity</td>
+<td><code>AmbiguousTracks</code>, MFT/Fwd variants</td>
+<td>tracks not uniquely assigned to one collision; BC slice/range
+precedent</td>
+</tr>
+<tr class="odd">
+<td>Detectors / forward</td>
+<td>HMPID, calorimeter/CPV, ZDC, FV0, FT0, FDD, MFT/Fwd families</td>
+<td>detector payloads and detector↔︎BC/track relations</td>
+</tr>
+<tr class="even">
+<td>Standard strangeness</td>
+<td><code>V0s_*</code>, <code>Cascades_*</code>,
+<code>Decay3Bodys</code>, <code>TrackedV0s</code>,
+<code>TrackedCascades</code>, <code>Tracked3Bodys</code></td>
+<td><strong>default O2 V0/cascade/3-body identities</strong> used as
+targets by extensions</td>
+</tr>
+<tr class="odd">
+<td>Monte Carlo</td>
+<td><code>McCollisions*</code>, <code>McParticles*</code>,
+reconstruction-label tables, HepMC tables</td>
+<td>MC event/particle graph, self-relations, reconstructed↔︎MC
+labels</td>
+</tr>
+<tr class="even">
+<td>Matching / indices</td>
+<td><code>Run2Matched*</code>, <code>Run3Matched*</code>,
+<code>MatchedBCCollisions*</code></td>
+<td>explicit generated index-table entities for BC/collision/detector
+matching</td>
+</tr>
+<tr class="odd">
+<td>Provenance / compatibility</td>
+<td><code>Origins</code>, Run-2 compatibility tables such as
+<code>Run2OTFV0s</code></td>
+<td>dataframe provenance and historical compatibility</td>
+</tr>
+</tbody>
+</table>
+<p>This matrix is intentionally compact. The code-driving inventory is
+generated.</p>
+<h2 id="event-backbone-bunch-crossings-and-timestamps">10.2 Event
+backbone: bunch crossings and timestamps</h2>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> Current source declares:</p>
+<ul>
+<li><code>BCs_000</code>;</li>
+<li>versioned <code>BCs_001</code>;</li>
+<li><code>using BCs = BCs_001</code>;</li>
+<li><code>Timestamps</code>;</li>
+<li><code>BCsWithTimestamps = soa::Join&lt;aod::BCs, aod::Timestamps&gt;</code>.</li>
+</ul>
+<p>The source describes <code>BCs</code> as the root for tables pointing
+to a bunch crossing.</p>
+<pre class="text"><code>BC identity/time structure ≠ reconstructed collision identity</code></pre>
+<h2 id="collision-backbone">10.3 Collision backbone</h2>
+<p>Current source defines versioned <code>Collisions_*</code> tables
+containing vertex/time information and <code>collision::BCId</code>.</p>
+<pre class="text"><code>BCs
+ ↑
+ │ collision::BCId
+Collisions</code></pre>
+<p>The collision→BC relation is source-declared; ambiguity logic may
+still expose additional compatible BCs.</p>
+<h2 id="track-backbone">10.4 Track backbone</h2>
+<p>Core relation:</p>
+<pre class="text"><code>Collisions
+    ↑
+    │ track::CollisionId
+Tracks</code></pre>
+<p>The standard source contains persistent track parameters plus
+expression/dynamic quantities such as <code>Phi</code>,
+<code>Eta</code>, <code>Pt</code> and momentum components.</p>
+<p>At overview level distinguish:</p>
+<ul>
+<li><code>Tracks</code> and <code>TracksIU</code>;</li>
+<li>covariance families;</li>
+<li><code>StoredTracksExtra_*</code> versus extended
+<code>TracksExtra_*</code>;</li>
+<li><code>FullTracks = soa::Join&lt;Tracks, TracksExtra&gt;</code>;</li>
+<li>optional QA and related track payloads.</li>
+</ul>
+<h3
+id="extractor-hazard-alias-name-does-not-prove-entity-kind">Extractor
+hazard: alias name does not prove entity kind</h3>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong></p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> TracksQAVersion <span class="op">=</span> TracksQA_003<span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> TracksQA <span class="op">=</span> TracksQAVersion<span class="op">::</span>iterator<span class="op">;</span></span></code></pre></div>
+<p>A plural-looking alias can resolve to an iterator. The registry
+therefore records the resolved C++ entity kind.</p>
+<h2 id="ambiguous-track-precedent">10.5 Ambiguous-track precedent</h2>
+<p><code>AmbiguousTracks</code> provides a standard slice/range relation
+for tracks not uniquely assigned to one collision.</p>
+<p>This is important because:</p>
+<ol type="1">
+<li>slice relations are part of the standard model, not an LF-only
+special case;</li>
+<li>unexplained negative indices must not be assigned invented semantics
+without checking the surrounding source-defined ambiguity model.</li>
+</ol>
+<h2 id="standard-detector-families">10.6 Standard detector families</h2>
+<p>Representative standard families include HMPID, calorimeter/CPV, ZDC,
+FV0, FT0, FDD, MFT and forward-track content.</p>
+<p>The human rule is simple: detector names do not define relation
+semantics. The registry obtains relations from index declarations, index
+tables, joins and producer evidence.</p>
+<h2 id="monte-carlo-backbone">10.7 Monte-Carlo backbone</h2>
+<pre class="text"><code>McCollisions
+     ↑
+     │ mcparticle::McCollisionId
+McParticles
+   ↖ ↑ ↗
+ self mother/daughter relations
+
+reconstructed tables
+     ↓ labels
+MC label tables</code></pre>
+<p>The standard MC model demonstrates scalar external relations plus
+scalar self, self-array and self-slice relations.</p>
+<p>The <code>McCaloLabels</code> counterexample in §4.6 remains
+load-bearing: source-selected “current” alias is not guaranteed to be
+the highest declared version.</p>
+<h2 id="standard-matchingindex-tables">10.8 Standard matching/index
+tables</h2>
+<p>The <code>indices</code> area uses
+<code>DECLARE_SOA_INDEX_TABLE*</code> for BC/collision/detector
+matching. Treat those as explicit generated entities with an
+<code>exclusive</code> boolean and source-resolved key/index-column
+list, not as ordinary relation columns.</p>
+<h2 id="origins-dataframe-provenance">10.9 Origins / dataframe
+provenance</h2>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> <code>Origins</code> contains
+<code>DataframeID</code>, documented as the dataframe ID commonly
+reflected in AO2D directory names such as <code>DF_XXX</code>.</p>
+<p>This is provenance information; it does not remove the need for
+explicit partition identity in globalized Python keys.</p>
+<h2 id="run-2-compatibility-and-source-spelling">10.10 Run-2
+compatibility and source spelling</h2>
+<p>Run-2 compatibility tables can coexist with Run-3/4 data. Preserve
+exact source strings and case.</p>
+<p>A concrete current-source example is <code>Run2OTFV0s</code> with
+physical description <code>Run2OTFV0</code>. The registry must preserve
+the source spelling byte-for-byte and must not uppercase/lowercase keys
+as a semantic normalization step.</p>
+<h2
+id="default-o2-strangeness-layer-v0-cascade-and-3-body-objects">10.11
+Default O2 strangeness layer — V0, cascade and 3-body objects</h2>
+<p><strong>O2 SOURCE FACT — current-upstream, commit pin
+pending.</strong> The standard <code>AnalysisDataModel.h</code> contains
+the default strangeness identities on which O2Physics extensions
+build:</p>
+<ul>
+<li><code>V0s_000</code>, <code>V0s_001</code>, <code>V0s_002</code>,
+with current <code>V0s = V0s_002</code>;</li>
+<li><code>Cascades_000</code>, <code>Cascades_001</code>, with current
+<code>Cascades = Cascades_001</code>;</li>
+<li><code>Decay3Bodys</code>;</li>
+<li><code>TrackedV0s</code>, <code>TrackedCascades</code>,
+<code>Tracked3Bodys</code>.</li>
+</ul>
+<p>The default topology is already relational:</p>
+<pre class="text"><code>Collisions
+   ↑             ↑
+   │             │
+  V0s ← daughter Tracks
+   ↑
+   │ cascade::V0Id
+Cascades ← bachelor Track</code></pre>
+<p><code>Decay3Bodys</code> points to one collision and three tracks.
+The strangeness-tracking tables point back to standard V0/cascade/3-body
+objects.</p>
+<h3 id="extractor-cycle-guard">Extractor cycle guard</h3>
+<p>Current source contains a self-alias form equivalent to:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Decay3Bodys <span class="op">=</span> Decay3Bodys<span class="op">;</span></span></code></pre></div>
+<p>A resolver must not recurse forever. Record an explicit outcome such
+as:</p>
+<pre class="text"><code>alias_resolution: self_alias
+cycle_guard_triggered: true
+resolved_entity_kind: table</code></pre>
+<p>and preserve the underlying declaration as the authoritative table
+identity.</p>
+<h2 id="default-o2-versus-o2physics-derivedextended-layer">10.12 Default
+O2 versus O2Physics derived/extended layer</h2>
+<p><strong>ARCHITECT DIRECTION — 2026-08-10:</strong> describe both
+layers: default data in O2, derived data in O2Physics as extensions.</p>
+<p>This distinction is central:</p>
+<pre class="text"><code>AliceO2 / AnalysisDataModel.h
+    aod::V0s, aod::Cascades, ...
+          ↑ targets / base objects
+O2Physics / LFStrangenessTables.h
+    V0Indices + V0TrackXs + V0Cores -&gt; V0Datas
+    CascIndices + CascBBs + CascCores -&gt; CascDatas</code></pre>
+<p><code>aod::V0s</code> and <code>V0Datas</code> are <strong>not
+synonyms</strong>. The former is a standard/default AO2D table family;
+the latter is an O2Physics positional joined view over LF-derived
+tables.</p>
+<p>Likewise, standard <code>aod::Cascades</code> and LF
+<code>CascDatas</code> are different layers.</p>
+<h2 id="standard-table-inventory-and-the-82-symbol-review-census">10.13
+Standard-table inventory and the 82-symbol review census</h2>
+<p>The v0.5 review independently cross-validated a generated census of
+<strong>82 standard <code>AnalysisDataModel.h</code> symbols</strong>
+and measured that the v0.5 prose named only 36 of them.</p>
+<p>v0.5.1 adopts the correct division of labor:</p>
+<ul>
+<li>the narrative contains the family map and load-bearing examples
+above;</li>
+<li>the generated <code>standard_aod</code> namespace is
+<strong>exhaustive for the pinned <code>AnalysisDataModel.h</code>
+source identity</strong>;</li>
+<li>the generated inventory is attached/published alongside the registry
+and may be rendered as a generated appendix/table;</li>
+<li>the inventory is generated, never manually transcribed as
+code-driving truth.</li>
+</ul>
+<p><strong>Evidence availability note:</strong> the consolidated review
+reports that the cross-validated 82-row appendix was delivered by
+reviewers, but that exact appendix is not present in this drafting
+workspace. Therefore this revision records the reviewed count and hard
+requirement; it does not fabricate an unavailable 82-row list. Before
+ratification, the generated inventory must be attached and its
+row/symbol count mechanically reconciled to the selected pinned
+source.</p>
+<h2 id="what-v0.5.1-does-not-hand-maintain">10.14 What v0.5.1 does not
+hand-maintain</h2>
+<p>The human narrative does not manually duplicate every column,
+expression or table declaration. Exhaustive standard symbol/table/column
+metadata belong in the generated canonical registry and generated
+appendix.</p>
+<hr />
+<h1 id="pwg-worked-example-v0-data-in-lfstrangenesstables.h">11. PWG
+worked example: V0 data in <code>LFStrangenessTables.h</code></h1>
+<p>LF now appears <strong>after</strong> the standard/base model because
+V0/cascade data reference standard objects such as tracks and
+collisions.</p>
+<h2 id="v0-relations">11.1 V0 relations</h2>
+<p><strong>Layer distinction.</strong> The LF/O2Physics V0 data model
+extends the standard O2 layer described in §10.11. In particular, LF
+declarations can carry a <code>V0Id</code> whose target is the standard
+<code>aod::V0s</code> family.</p>
+<p><code>aod::V0s</code> is therefore a base/default standard table
+identity; <code>V0Datas</code> is an LF joined/derived view. Code and
+documentation must not collapse those names.</p>
+<p>The <code>v0data</code> declarations include positive/negative
+daughter tracks, collision/V0 relations and several optional derived/MC
+references.</p>
+<p>Relation targets come from the C++ declarations, not substring
+matching on physical branch names.</p>
+<h2 id="v0-positional-view">11.2 V0 positional view</h2>
+<p><strong>O2 SOURCE FACT — snapshot-exact; commit reconciliation
+pending.</strong></p>
+<p>[VERBATIM PWGLF/DataModel/LFStrangenessTables.h:L1078]</p>
+<p>Snapshot SHA-256:
+<code>2a9b56e7bca657e3efb1064b7e6e38643af123784f9d9a7b353db2036e8bc852</code></p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> V0Datas <span class="op">=</span> soa<span class="op">::</span>Join<span class="op">&lt;</span>V0Indices<span class="op">,</span> V0TrackXs<span class="op">,</span> V0Cores<span class="op">&gt;;</span></span></code></pre></div>
+<p>Conceptually:</p>
+<pre class="text"><code>V0Indices ┐
+V0TrackXs ├─ positional V0Data view
+V0Cores   ┘</code></pre>
+<h2 id="v0-dynamic-quantities">11.3 V0 dynamic quantities</h2>
+<p>V0 core views expose many derived kinematic quantities. Python ports
+should be generated/implemented selectively and validated against C++
+semantics, not treated as persisted branches.</p>
+<hr />
+<h1 id="pwg-worked-example-cascade-data">12. PWG worked example: cascade
+data</h1>
+<h2 id="cascade-relations">12.1 Cascade relations</h2>
+<p>Cascade source declarations relate cascade rows to V0s,
+daughter/bachelor tracks, collisions and alternative cascade
+representations.</p>
+<h2 id="cascade-positional-views">12.2 Cascade positional views</h2>
+<p><strong>O2 SOURCE FACT — snapshot-exact; commit reconciliation
+pending.</strong></p>
+<p>[VERBATIM PWGLF/DataModel/LFStrangenessTables.h:L1745-L1747]</p>
+<p>Snapshot SHA-256:
+<code>2a9b56e7bca657e3efb1064b7e6e38643af123784f9d9a7b353db2036e8bc852</code></p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> CascDatas <span class="op">=</span> soa<span class="op">::</span>Join<span class="op">&lt;</span>CascIndices<span class="op">,</span> CascBBs<span class="op">,</span> CascCores<span class="op">&gt;;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> KFCascDatas <span class="op">=</span> soa<span class="op">::</span>Join<span class="op">&lt;</span>KFCascIndices<span class="op">,</span> KFCascCores<span class="op">&gt;;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> TraCascDatas <span class="op">=</span> soa<span class="op">::</span>Join<span class="op">&lt;</span>TraCascIndices<span class="op">,</span> TraCascCores<span class="op">&gt;;</span></span></code></pre></div>
+<p>These declarations prove the positional families. Equal file row
+counts merely validate/candidate-check realization.</p>
+<hr />
+<h1 id="source-hierarchy-what-is-authoritative-for-what">13. Source
+hierarchy — what is authoritative for what?</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Primary authority</th>
+<th>Secondary evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What does an ASoA index/join/concat/dynamic column mean?</td>
+<td>pinned <code>ASoA.h</code> / <code>ASoA.cxx</code></td>
+<td>official O² docs</td>
+</tr>
+<tr class="even">
+<td>What standard tables/columns/indices exist?</td>
+<td>pinned <code>AnalysisDataModel.h</code></td>
+<td>generated docs / compiler metadata</td>
+</tr>
+<tr class="odd">
+<td>What PWG V0/cascade declarations exist?</td>
+<td>pinned <code>LFStrangenessTables.h</code> + dependencies</td>
+<td>generated registry</td>
+</tr>
+<tr class="even">
+<td>What does an index target?</td>
+<td><code>binding_t</code> / <code>index_targets</code> /
+compiler-resolved type</td>
+<td>branch spelling as diagnostic only</td>
+</tr>
+<tr class="odd">
+<td>Which index types are equivalent?</td>
+<td><code>DECLARE_EQUIVALENT_FOR_INDEX*</code></td>
+<td>registry</td>
+</tr>
+<tr class="even">
+<td>What is a positional family?</td>
+<td>explicit <code>soa::Join</code> or reviewed producer/task lockstep
+evidence</td>
+<td>file compatibility checks</td>
+</tr>
+<tr class="odd">
+<td>How does source map to ROOT tree/branch names?</td>
+<td>pinned writer/reader/tree/index-builder implementation</td>
+<td>actual AO2D schema</td>
+</tr>
+<tr class="even">
+<td>What is actually in this file?</td>
+<td>fingerprinted AO2D itself</td>
+<td>source reference</td>
+</tr>
+<tr class="odd">
+<td>What produced it?</td>
+<td>workflow/producer source + provenance</td>
+<td>docs/dependency finder</td>
+</tr>
+<tr class="even">
+<td>What should Python expose?</td>
+<td>reconciled registry + AO2DAI policy; ADF adapter contract for ADF
+surface</td>
+<td>convenience aliases</td>
+</tr>
+</tbody>
+</table>
+<h2 id="no-heuristic-final-authority">13.1 No-heuristic final
+authority</h2>
+<p>Forbidden final-authority inferences include:</p>
+<ul>
+<li>equal row count → semantic join;</li>
+<li>branch contains <code>Track</code> → target is
+<code>Tracks</code>;</li>
+<li>plural alias → table;</li>
+<li>highest version number → current alias;</li>
+<li>all negative indices → normalize to <code>-1</code>;</li>
+<li>value happens to fit in float → <code>float64</code> safe;</li>
+<li>same local row number in another partition → same object.</li>
+</ul>
+<p>Heuristics may discover candidates; unresolved candidates remain
+fail-closed.</p>
+<hr />
+<h1 id="source-files-the-registry-must-index">14. Source files the
+registry must index</h1>
+<h2 id="tier-a-generic-and-standardbase-semantics">14.1 Tier A — generic
+and standard/base semantics</h2>
+<p>Mandatory source families include:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Framework/Core/include/Framework/ASoA.h</code></td>
+<td>table/column/index/self/index-table/join/concat machinery</td>
+</tr>
+<tr class="even">
+<td><code>Framework/Core/src/ASoA.cxx</code></td>
+<td>runtime join/concat/slicing helpers</td>
+</tr>
+<tr class="odd">
+<td><code>Framework/Core/include/Framework/AnalysisDataModel.h</code></td>
+<td><strong>mandatory standard/base AO2D model</strong></td>
+</tr>
+<tr class="even">
+<td><code>Framework/Core/include/Framework/ArrowTypes.h</code></td>
+<td>C++ ↔︎ Arrow type mapping</td>
+</tr>
+<tr class="odd">
+<td><code>Framework/Core/include/Framework/DataTypes.h</code></td>
+<td>framework data types</td>
+</tr>
+<tr class="even">
+<td><code>Framework/Core/include/Framework/DataOutputDirector.h</code> +
+<code>Framework/Core/src/DataOutputDirector.cxx</code></td>
+<td>output/table naming/routing</td>
+</tr>
+<tr class="odd">
+<td><code>Framework/AnalysisSupport/include/Framework/TableTreeHelpers.h</code>
++ corresponding source</td>
+<td>Arrow/table ↔︎ ROOT helpers</td>
+</tr>
+<tr class="even">
+<td><code>Framework/AnalysisSupport/src/AODWriterHelpers.h</code> +
+<code>.cxx</code></td>
+<td>AO2D writing</td>
+</tr>
+<tr class="odd">
+<td><code>Framework/AnalysisSupport/src/AODReaderHelpers.h</code> +
+<code>.cxx</code></td>
+<td>AO2D reading</td>
+</tr>
+<tr class="even">
+<td><code>Framework/Core/include/Framework/IndexBuilderHelpers.h</code>
++ source</td>
+<td>index building</td>
+</tr>
+</tbody>
+</table>
+<p><strong>AO2DAI VALIDATION REQUIRED:</strong> exact helper paths and
+commits must be frozen from the selected source checkout. The table
+above is the intended source inventory, not a substitute for
+commit-pinned path verification.</p>
+<h2 id="tier-b-lf-v0cascade">14.2 Tier B — LF V0/cascade</h2>
+<p><code>PWGLF/DataModel/LFStrangenessTables.h</code> plus transitive
+data-model dependencies.</p>
+<h2 id="tier-c-producers-and-consumers">14.3 Tier C — producers and
+consumers</h2>
+<p>Data-model headers do not necessarily close all lockstep/derived
+physical families. Recursively index producer/task source when it
+establishes row identity, fills a physical table, or resolves
+provenance/version semantics.</p>
+<h2 id="tier-d-physical-files">14.4 Tier D — physical files</h2>
+<p>The final registry reconciles source against:</p>
+<ol type="1">
+<li>a <strong>standard/base AO2D fixture</strong> covering
+representative BC/collision/track/TrackExtra/MC/index families,
+preferably with multiple <code>DF_*</code> partitions;</li>
+<li>the LF V0/cascade pilot file used by AO2DAI;</li>
+<li>the full target AO2D where required for final
+acceptance/performance.</li>
+</ol>
+<hr />
+<h1 id="generated-canonical-registry">15. Generated canonical
+registry</h1>
+<p>The human page remains readable; exact code-driving records belong in
+generated evidence.</p>
+<h2 id="required-artifact-and-coverage">15.1 Required artifact and
+coverage</h2>
+<p><strong>PROPOSED DESIGN.</strong></p>
+<p><code>DataFormats_AO2D.json</code></p>
+<p>For v0.5.1 ratification it must be a <strong>real generated
+artifact</strong>, not a schema sketch.</p>
+<p>Coverage policy:</p>
+<ul>
+<li><code>standard_aod</code> — <strong>exhaustive</strong> for the
+complete pinned
+<code>Framework/Core/include/Framework/AnalysisDataModel.h</code> source
+identity;</li>
+<li><code>o2physics_extensions</code> — bounded initially to the
+reviewed LF V0/cascade closure plus required
+dependencies/producers;</li>
+<li><code>physical_files</code> — reconciliation records for the
+standard fixture and LF pilot when supplied.</li>
+</ul>
+<p>The standard namespace is not “worked examples only”. Every declared
+standard table/entity required by the registry schema is emitted even if
+the human narrative does not mention it.</p>
+<h2 id="registry-header">15.2 Registry header</h2>
+<pre class="text"><code>registry_schema_version
+generator_name
+generator_commit_or_fingerprint
+generation_timestamp
+AliceO2 source identity/fingerprint
+O2Physics source identity/fingerprint
+input AO2D/schema fingerprints
+namespace_coverage</code></pre>
+<h2 id="symbolentity-record">15.3 Symbol/entity record</h2>
+<pre class="text"><code>cpp_symbol
+declared_target_text
+resolved_target
+entity_kind: table | stored_table | extended_table | iterator | alias | join_view | concat_view | index_table | other
+alias_resolution: normal | self_alias | cycle | unresolved
+resolution_method: parsed | compiler_resolved
+origin
+label
+description
+version
+source_identity
+source_location
+validation_status</code></pre>
+<p>Resolvers must have cycle guards. A source self-alias is recorded
+explicitly rather than recursively followed forever.</p>
+<h2 id="table-record">15.4 Table record</h2>
+<pre class="text"><code>logical_type
+stored_type_if_any
+extended_or_view_type
+current_alias
+current_alias_target
+current_alias_is_highest_declared_version: true | false | not_applicable
+origin
+label
+description
+version
+persistent columns + exact source/Arrow/file dtypes
+expression/dynamic columns
+ordinary index columns
+self indices
+index-equivalence memberships
+source-proven positional memberships
+index-table memberships
+physical AO2D tree candidate(s)
+actual file tree/version
+producer evidence
+reconciliation status</code></pre>
+<p>Source/file physical dtype is recorded independently from any
+optional user conversion in Python/ADF.</p>
+<h2 id="relationindex-record">15.5 Relation/index record</h2>
+<p>Ordinary relation-column <code>relation_kind</code> values
+include:</p>
+<pre class="text"><code>external_scalar
+external_slice
+external_array
+self_scalar
+self_slice
+self_array
+index_equivalence
+positional_join
+positional_candidate</code></pre>
+<p><code>index_table</code> is <strong>not</strong> one of these
+relation-column kinds; index tables have their own entity record
+(§15.6).</p>
+<p>For index columns record:</p>
+<pre class="text"><code>source table
+getter / Id type
+source macro family
+physical label rule
+storage type/shape
+binding_t / index_targets
+validity/empty rule
+raw physical-value policy
+partition scope
+slicing/remapping policy
+actual branch/dtype
+validation status</code></pre>
+<p>For index equivalence record:</p>
+<pre class="text"><code>declaration_form: classic_cpp_type | ng_string_key
+key_form: cpp_type | description_version | label_version
+left_declared
+right_declared
+left_resolved_key
+right_resolved_key
+key_case_policy: byte_exact
+source identity/location
+validation status</code></pre>
+<h2 id="index-table-record">15.6 Index-table record</h2>
+<pre class="text"><code>entity_kind: index_table
+exclusive: true | false
+source_declared_name
+source_macro
+key_table
+index_columns
+array_index_columns
+edge_kinds_if_generated
+source_macro_expansion_status
+source identity/location
+physical table identity
+validation status</code></pre>
+<p>Concrete names containing <code>Sparse</code> are preserved as source
+names but do not define the generic framework boolean.</p>
+<h2 id="registry-markdown-consistency">15.7 Registry ↔︎ Markdown
+consistency</h2>
+<p>Every normative worked example in this Markdown must resolve to a
+registry record. The Markdown may be less exhaustive, never
+contradictory.</p>
+<p>The generated standard inventory is also checked against the
+<code>standard_aod</code> registry namespace. Review-reported counts are
+evidence to reproduce, not hard-coded generator constants.</p>
+<hr />
+<h1 id="c-python-metadata-bridge">16. C++ → Python metadata bridge</h1>
+<h2 id="preferred-architecture">16.1 Preferred architecture</h2>
+<p><strong>PROPOSED DESIGN.</strong></p>
+<pre class="text"><code>pinned AliceO2 + O2Physics
+       │
+       ├─ independent declaration scanner A
+       ├─ independent declaration scanner B / generated-doc census
+       ├─ physical-I/O mapping extractor
+       ├─ compiled metadata resolver
+       │
+       ▼
+canonical DataFormats_AO2D.json
+       │
+   ┌───┴──────────────┐
+   ▼                  ▼
+DataFormats_AO2D.md   AO2DAI Python loader
+                         │
+                         ▼
+                    AliasDataFrame</code></pre>
+<p>Two independent extraction routes are intentional: the v0.5 review
+found the same <code>_FULL</code> macro argument-order bug independently
+in two parsers.</p>
+<h2 id="text-extractor-discovery-not-blind-authority">16.2 Text
+extractor: discovery, not blind authority</h2>
+<p>Extract:</p>
+<ul>
+<li>table/version macros;</li>
+<li>stored/extended/current aliases;</li>
+<li>persistent/expression/dynamic columns;</li>
+<li>external and self index macro families;</li>
+<li><code>DECLARE_SOA_INDEX_TABLE*</code>;</li>
+<li><code>DECLARE_EQUIVALENT_FOR_INDEX*</code>;</li>
+<li><code>soa::Join</code> / <code>soa::Concat</code> aliases;</li>
+<li>producer/task evidence required for lockstep closure.</li>
+</ul>
+<p>Fail closed on unresolved template/preprocessor constructs.</p>
+<h3 id="parser-hazards-that-must-be-explicit">Parser hazards that must
+be explicit</h3>
+<ol type="1">
+<li><strong><code>DECLARE_SOA_TABLE_FULL</code> /
+<code>_FULL_VERSIONED</code> argument order is not the same as the
+simpler table macros.</strong> Do not reuse one regex positional
+interpretation across all table macros.</li>
+<li><strong><code>INDEX_LIST_*</code> indirection</strong> can hide
+several index columns behind one macro identifier. Preserve the source
+macro and require expansion/compiler resolution when the scanner cannot
+prove the list.</li>
+<li><strong>Self aliases/cycles</strong> such as the current
+<code>Decay3Bodys</code> self-alias require a cycle guard and explicit
+<code>self_alias</code> status.</li>
+<li><strong>Alias entity kind</strong> must be resolved;
+<code>TracksQA</code> is a demonstrated iterator-alias hazard.</li>
+<li><strong>Case is semantic source evidence.</strong> Preserve strings
+such as <code>Run2OTFV0</code> and <code>MFTTracks</code>
+byte-for-byte.</li>
+<li><strong>Equivalence declaration form and resolved key are separate
+fields.</strong></li>
+</ol>
+<p>Before registry freeze, two independent generator/census routes must
+agree on the pinned <code>standard_aod</code> symbol set, or the
+discrepancy is fail-closed.</p>
+<h2 id="compiler-assisted-resolution">16.3 Compiler-assisted
+resolution</h2>
+<p>A small C++ extractor built against the pinned O² source can emit
+resolved metadata such as:</p>
+<pre class="text"><code>originals
+columns_t
+external_index_columns_t
+binding_t
+index_targets
+table refs
+entity kind
+index equivalence
+index-table exclusive flag</code></pre>
+<p>Compiler-assisted resolution is authoritative for constructs a text
+extractor cannot prove.</p>
+<h2 id="macro-rules-are-versioned-source-rules">16.4 Macro rules are
+versioned source rules</h2>
+<p>Do not implement English-like assumptions such as “append
+<code>s</code> to pluralize”. Encode the exact macro expansion for the
+pinned source or defer to compiler resolution.</p>
+<p>External and self-index naming rules are separate.</p>
+<h2 id="dynamicexpression-quantities">16.5 Dynamic/expression
+quantities</h2>
+<p>Only high-value quantities should be ported initially. Each port
+records source dependencies/type and must pass C++↔︎Python equivalence
+tests.</p>
+<hr />
+<h1 id="mapping-o²-semantics-to-aliasdataframe">17. Mapping O² semantics
+to AliasDataFrame</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>O² concept</th>
+<th>AO2DAI / ADF representation</th>
+<th>Contract</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>persistent table</td>
+<td>logical ADF frame</td>
+<td>preserve source/physical provenance</td>
+</tr>
+<tr class="even">
+<td>persistent column</td>
+<td>pandas/Arrow-backed column</td>
+<td>source/file dtype is authoritative; user conversion is separate</td>
+</tr>
+<tr class="odd">
+<td><code>o2::soa::Index&lt;&gt;</code></td>
+<td>row identity metadata</td>
+<td>not a foreign relation</td>
+</tr>
+<tr class="even">
+<td>external scalar index</td>
+<td>ADF subframe relation</td>
+<td>source target + applicability + remap</td>
+</tr>
+<tr class="odd">
+<td>slice index</td>
+<td>range relation</td>
+<td>contiguity-aware</td>
+</tr>
+<tr class="even">
+<td>array index</td>
+<td>one-to-many relation</td>
+<td>element-wise closure/remap</td>
+</tr>
+<tr class="odd">
+<td>self index</td>
+<td>same-frame relation</td>
+<td>same-table remap</td>
+</tr>
+<tr class="even">
+<td>index equivalence</td>
+<td>compatibility metadata</td>
+<td>never flatten to join</td>
+</tr>
+<tr class="odd">
+<td><code>soa::Join</code></td>
+<td><strong>one logical row-aligned frame/view</strong></td>
+<td>assemble row-aligned members; do not model the join itself as a
+subframe</td>
+</tr>
+<tr class="even">
+<td>unresolved positional candidate</td>
+<td>no semantic ADF join</td>
+<td>union-mask safety only</td>
+</tr>
+<tr class="odd">
+<td>index table</td>
+<td>explicit matching/index table entity</td>
+<td>key/index columns preserved</td>
+</tr>
+<tr class="even">
+<td><code>soa::Concat</code></td>
+<td>vertical combination</td>
+<td>common-schema behavior</td>
+</tr>
+<tr class="odd">
+<td>dynamic column</td>
+<td>ADF alias/function</td>
+<td>equivalence-tested, not physical branch</td>
+</tr>
+<tr class="even">
+<td>expression column</td>
+<td>derived/materialized expression</td>
+<td>observable semantics preserved</td>
+</tr>
+<tr class="odd">
+<td>current alias</td>
+<td>registry source alias</td>
+<td>not “highest version” heuristic</td>
+</tr>
+<tr class="even">
+<td><code>DF_*</code> partition</td>
+<td>partition/provenance key</td>
+<td>prevents cross-partition collision</td>
+</tr>
+</tbody>
+</table>
+<h2 id="adf-consumes-the-registry-not-this-markdown">17.1 ADF consumes
+the registry, not this Markdown</h2>
+<p>AO2DAI resolves O² semantics into the canonical registry first. ADF
+receives those resolved records. It must not infer O² relation targets
+from branch/table names or from prose in this document.</p>
+<h2 id="source-verified-public-subframe-api-shape">17.2 Source-verified
+public subframe API shape</h2>
+<p><strong>ADF SOURCE FACT — candidate bundle verified; final ADF pin
+pending.</strong> Candidate bundle SHA-256:</p>
+<p><code>27c190153090115e9b3e8cc26a616382702c7611f9ca84c9a67547f3885c4147</code></p>
+<p>contains the public method:</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>parent.register_subframe(</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Child&quot;</span>,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    child,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    index_columns<span class="op">=</span>[<span class="st">&quot;parent_key_1&quot;</span>, <span class="st">&quot;parent_key_2&quot;</span>],</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    right_index_columns<span class="op">=</span>[<span class="st">&quot;child_key_1&quot;</span>, <span class="st">&quot;child_key_2&quot;</span>],</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>The method/parameter names and support for
+<code>right_index_columns</code> are source-verified. The concrete key
+names above are illustrative AO2DAI adapter names.</p>
+<p><code>right_index_columns</code> means that <strong>asymmetric
+parent/child key names are natively supported by the reviewed ADF
+API</strong>. Symmetric normalized names are therefore not an ADF
+requirement.</p>
+<p><strong>ADF VALIDATION REQUIRED:</strong> execute the exact selected
+ADF pin and independently verify the AO2DAI relation shapes before
+ratification.</p>
+<h2
+id="native-asymmetric-keys-versus-optional-symmetric-normalized-keys">17.3
+Native asymmetric keys versus optional symmetric normalized keys</h2>
+<p>AO2DAI may still choose a symmetric normalized key for persistence,
+manifest uniformity or an independently justified integration reason.
+That is an <strong>AO2DAI adapter choice</strong>, not a statement about
+what ADF requires.</p>
+<p>Whichever path is selected must preserve:</p>
+<ul>
+<li>original physical parent/child key names and values;</li>
+<li>exact source/file dtypes;</li>
+<li>target identity;</li>
+<li>partition scope;</li>
+<li>applicability;</li>
+<li>old→new remap provenance;</li>
+<li>the selected adapter form in the manifest.</li>
+</ul>
+<p>No lossy key conversion is permitted.</p>
+<h2 id="required-ao2dai-adf-adapter-sequence">17.4 Required AO2DAI → ADF
+adapter sequence</h2>
+<ol type="1">
+<li>Resolve the O² relation completely from
+<code>DataFormats_AO2D.json</code>.</li>
+<li>Build/preserve physical keys and partition provenance.</li>
+<li>Select native asymmetric keys or an explicitly justified symmetric
+normalized adapter.</li>
+<li>Call <code>parent.register_subframe(...)</code> with parent
+<code>index_columns</code> and child
+<code>right_index_columns</code>.</li>
+<li>Validate all relevant expression surfaces against independent
+pandas/NumPy/direct-read oracles.</li>
+<li>Record the active ADF capability/adapter choice and source pin in
+the manifest.</li>
+</ol>
+<p>For a source-declared <code>soa::Join</code>, step 4 is
+<strong>not</strong> the representation of the join itself: the joined
+members first become one row-aligned logical frame.</p>
+<h2 id="adf-capability-matrix-required-at-the-gate">17.5 ADF capability
+matrix required at the gate</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability</th>
+<th>Candidate-source evidence</th>
+<th>Required ratification evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>register_subframe</code> public API</td>
+<td>source-verified</td>
+<td>execute at final ADF pin</td>
+</tr>
+<tr class="even">
+<td>asymmetric <code>right_index_columns</code></td>
+<td>source-verified</td>
+<td>oracle with different parent/child key names</td>
+</tr>
+<tr class="odd">
+<td>composite key list</td>
+<td>source/API shape supports lists</td>
+<td>multi-partition composite-key oracle</td>
+</tr>
+<tr class="even">
+<td><code>eval</code> across subframe</td>
+<td>capability to be executed</td>
+<td>independent value oracle</td>
+</tr>
+<tr class="odd">
+<td><code>draw</code> expression</td>
+<td>capability to be executed</td>
+<td>returned-stat/value oracle</td>
+</tr>
+<tr class="even">
+<td><code>selection=</code> using subframe data</td>
+<td>capability to be executed</td>
+<td>independent selected-row oracle</td>
+</tr>
+<tr class="odd">
+<td><code>group_by=</code> using subframe data</td>
+<td>capability to be executed</td>
+<td>independent grouped oracle</td>
+</tr>
+<tr class="even">
+<td><code>facet_by=</code> using subframe data</td>
+<td>capability to be executed</td>
+<td>independent facet membership/statistics oracle</td>
+</tr>
+<tr class="odd">
+<td>persistence/reload if used by AO2DAI</td>
+<td>separately gated</td>
+<td>roundtrip relation + dtype + provenance oracle</td>
+</tr>
+</tbody>
+</table>
+<p>The permanent contract is the selected public behavior at the final
+ADF pin, not historical bug behavior.</p>
+<hr />
+<h1 id="source-versus-file-reconciliation">18. Source-versus-file
+reconciliation</h1>
+<h2 id="status-vocabulary">18.1 Status vocabulary</h2>
+<p>Minimum statuses:</p>
+<pre class="text"><code>SOURCE_MATCHED
+SOURCE_VERSION_MISMATCH
+SOURCE_UNRESOLVED
+FILE_ONLY
+SOURCE_ONLY
+TYPE_MISMATCH
+RELATION_UNVERIFIED
+SOURCE_PROVEN_POSITIONAL
+POSITIONAL_CANDIDATE_UNRESOLVED
+INDEX_EQUIVALENCE_UNVERIFIED
+INDEX_TABLE_UNVERIFIED</code></pre>
+<h2 id="file-inspection">18.2 File inspection</h2>
+<p>For every <code>DF_*</code> and persisted object:</p>
+<ul>
+<li>partition identity;</li>
+<li>ROOT object class;</li>
+<li>tree name/version;</li>
+<li>row count;</li>
+<li>branch names and typenames;</li>
+<li>index shape;</li>
+<li>raw value range/invalid pattern;</li>
+<li>candidate equal-row groups as diagnostic only;</li>
+<li>source/file fingerprint.</li>
+</ul>
+<h2 id="source-comparison">18.3 Source comparison</h2>
+<p>Compare:</p>
+<ul>
+<li>description/origin/version;</li>
+<li>current alias target;</li>
+<li>stored/extended/view identity;</li>
+<li>exact dtype;</li>
+<li>ordinary/self index target;</li>
+<li>index equivalence;</li>
+<li>index-table identity;</li>
+<li>positional relation evidence;</li>
+<li>producer/task provenance;</li>
+<li>physical naming rule.</li>
+</ul>
+<h2 id="pilot-lf-file-versus-standard-fixture">18.4 Pilot LF file versus
+standard fixture</h2>
+<p>The existing pilot measurements are valuable for
+O2Physics/derived-data behavior, but they do not substitute for a
+standard/base AO2D fixture.</p>
+<p><strong>AO2DAI VALIDATION REQUIRED:</strong> provide a representative
+standard fixture containing
+BC/collision/track/TracksExtra/MC/index-table content across more than
+one partition where practical.</p>
+<h2 id="negative-value-open-question">18.5 Negative-value open
+question</h2>
+<p>Multiple negative values were measured in pilot scalar-index
+branches. Their existence is evidence; their magnitude must not be
+assigned semantics without source/producer evidence.</p>
+<p>The standard <code>AmbiguousTracks</code> mechanism is a reminder to
+search for explicit auxiliary ambiguity relations before inventing an
+encoding model.</p>
+<hr />
+<h1 id="relation-aware-slicing-and-small-file-development">19.
+Relation-aware slicing and small-file development</h1>
+<p>A reduced AO2D is valuable for fast coding, but slicing is a semantic
+transformation.</p>
+<h2 id="source-proven-positional-family">19.1 Source-proven positional
+family</h2>
+<p>Apply one mask/order to every persisted member of a source-proven
+positional family.</p>
+<h2 id="unresolved-positional-candidate">19.2 Unresolved positional
+candidate</h2>
+<p>Apply the conservative union-mask policy from §6.3 and preserve
+unresolved status.</p>
+<h2 id="dependency-closure">19.3 Dependency closure</h2>
+<p>If a retained row has a live reference, retain the target according
+to relation kind; iterate transitively to a fixed point.</p>
+<p>Closure alone is insufficient after compaction.</p>
+<h2 id="oldnew-remapping">19.4 Old→new remapping</h2>
+<p>After final retention is known:</p>
+<pre class="text"><code>old target row
+    ↓ deterministic map per partition/table
+new target row
+    ↓
+rewrite retained relation</code></pre>
+<ul>
+<li>scalar external/self → one value;</li>
+<li>array external/self → every element;</li>
+<li>slice external/self → only if valid contiguous output range.</li>
+</ul>
+<p>A live source reference absent from the final target map is an error,
+not an excuse to synthesize a negative sentinel.</p>
+<h2 id="slice-contiguity">19.5 Slice contiguity</h2>
+<p>If arbitrary retention breaks a slice’s contiguity, fail or use an
+explicitly approved alternative representation. Never fabricate a
+plausible contiguous pair.</p>
+<h2 id="exact-slicing-manifest">19.6 Exact slicing manifest</h2>
+<p>Per partition/table record:</p>
+<pre class="text"><code>source row count
+retained source row IDs
+old→new row map
+rewritten scalar/self indices
+rewritten array indices
+reconstructed/refused slices
+source-proven positional masks
+unresolved-candidate union masks
+validation status</code></pre>
+<h2 id="minimum-acceptance-fixtures">19.7 Minimum acceptance
+fixtures</h2>
+<p>Before the slicer is trusted:</p>
+<ol type="1">
+<li>scalar external remap after deleting earlier parent rows;</li>
+<li>scalar self-index remap;</li>
+<li>array-index element remap;</li>
+<li>self-array remap;</li>
+<li>transitive closure + remap;</li>
+<li>contiguous slice retained and reconstructed;</li>
+<li>broken slice rejected/approved fallback;</li>
+<li><strong>source-proven positional family</strong> proving one shared
+mask/order across all members;</li>
+<li>unresolved equal-row candidate proving union-mask safety without
+semantic promotion;</li>
+<li>multi-partition fixture proving no cross-partition relation
+collision;</li>
+<li>index-table fixture covering at least one
+<code>exclusive=true</code> and one <code>exclusive=false</code> table,
+including a concrete multi-index/array-index case.</li>
+</ol>
+<p>Fixture 8 is intentionally explicit: prior review execution found
+that absence of a positional-family test can allow real slicer
+corruption. All eleven fixtures are specified but remain
+<strong>execution-pending</strong> until §24.3 evidence is attached.</p>
+<hr />
+<h1 id="v0.5.1-ratifiable-scope">20. v0.5.1 ratifiable scope</h1>
+<p>v0.5.1 retains the v0.5 standard/base teaching spine and closes the
+review-identified schema/API gaps. Its ratifiable generated scope is now
+stricter than the human prose scope.</p>
+<p>Ratifiable scope requires:</p>
+<ol type="1">
+<li>ALICE/O²/AO2D orientation;</li>
+<li>generic ASoA semantics needed by AO2DAI;</li>
+<li>standard/base backbone worked examples from
+<code>AnalysisDataModel.h</code>:
+<ul>
+<li>BC/timestamp;</li>
+<li>collisions;</li>
+<li>tracks/extra/cov/full;</li>
+<li>ambiguity;</li>
+<li>representative detector families;</li>
+<li>MC and labels;</li>
+<li>origins/provenance;</li>
+<li>index tables;</li>
+</ul></li>
+<li>all relation classes in §5 and positional/concat semantics;</li>
+<li>LF V0/cascade worked examples;</li>
+<li>source/file reconciliation;</li>
+<li>slicing/remapping safety contract;</li>
+<li>C++→registry→Python architecture;</li>
+<li>generated <code>DataFormats_AO2D.json</code> complete for every
+normative worked example/safety rule above;</li>
+<li>ADF integration contract validated by ADF.</li>
+</ol>
+<p>Not required for v0.5.1:</p>
+<ul>
+<li>prose description of every standard column;</li>
+<li>all O2Physics PWGs;</li>
+<li>automatic Python translation of every dynamic column;</li>
+<li>all-PWG generated registry;</li>
+<li>full Python clone of ASoA.</li>
+</ul>
+<hr />
+<h1 id="reader-paths">21. Reader paths</h1>
+<h2 id="new-ao2dai-reviewer">New AO2DAI reviewer</h2>
+<p>Read §§1–10, then §§13 and 19. You should be able to reject common
+unsafe inferences before reading LF-specific details.</p>
+<h2 id="ao2dai-coder">AO2DAI coder</h2>
+<p>Read §§1–20. Treat §§5–7, 10, 13–19 as implementation contracts,
+subject to declared validation gates.</p>
+<h2 id="ao2dai-source-reviewer">AO2DAI source reviewer</h2>
+<p>Must directly read the pinned <code>AnalysisDataModel.h</code>,
+<code>ASoA.h/cxx</code>, relevant physical-I/O helpers, LF source and
+producer/task closure required for each claim being certified.</p>
+<h2 id="adf-reviewer">ADF reviewer</h2>
+<p>Review only §§17.1–17.3 plus ADF-related gate items: public API,
+normalized keys, provenance/dtype preservation and executable oracle
+tests.</p>
+<h2 id="miwikiai-reviewer">MIWikiAI reviewer</h2>
+<p>Review front matter, provenance labels, source identities,
+canonical-byte fingerprint, Markdown/HTML consistency, navigation and
+readability. MIWikiAI source-read confirms documentation grounding but
+does not replace AO2DAI semantic/physical sign-off.</p>
+<hr />
+<h1 id="authoritative-orientation-links">22. Authoritative orientation
+links</h1>
+<p>These mutable links are orientation only until commit-anchored pins
+are selected.</p>
+<ul>
+<li>ALICE O² Project: https://alice-o2-project.web.cern.ch/</li>
+<li>AliceO2: https://github.com/AliceO2Group/AliceO2</li>
+<li>O2Physics: https://github.com/AliceO2Group/O2Physics</li>
+<li>Analysis Framework:
+https://aliceo2group.github.io/analysis-framework/</li>
+<li>Standard AO2D tables:
+https://aliceo2group.github.io/analysis-framework/docs/datamodel/ao2dTables.html</li>
+<li>Table I/O:
+https://aliceo2group.github.io/analysis-framework/docs/tutorials/tablesIO.html</li>
+<li>Current-orientation <code>AnalysisDataModel.h</code>:
+https://github.com/AliceO2Group/AliceO2/blob/dev/Framework/Core/include/Framework/AnalysisDataModel.h</li>
+<li>Current-orientation <code>ASoA.h</code>:
+https://github.com/AliceO2Group/AliceO2/blob/dev/Framework/Core/include/Framework/ASoA.h</li>
+<li>Current-orientation <code>ASoA.cxx</code>:
+https://github.com/AliceO2Group/AliceO2/blob/dev/Framework/Core/src/ASoA.cxx</li>
+<li>Current-orientation <code>LFStrangenessTables.h</code>:
+https://github.com/AliceO2Group/O2Physics/blob/master/PWGLF/DataModel/LFStrangenessTables.h</li>
+</ul>
+<hr />
+<h1 id="glossary">23. Glossary</h1>
+<p><strong>ALICE</strong> — A Large Ion Collider Experiment at CERN’s
+LHC.</p>
+<p><strong>O² / O2</strong> — ALICE Online-Offline software/computing
+system.</p>
+<p><strong>AOD / AO2D</strong> — analysis object data / conventional
+ROOT file carrying O² analysis tables.</p>
+<p><strong>ASoA</strong> — AliceO2 typed Structure-of-Arrays analysis
+abstraction.</p>
+<p><strong>Persistent column</strong> — stored table data.</p>
+<p><strong>Dynamic column</strong> — computed callable view; not its own
+persisted branch.</p>
+<p><strong>Expression column</strong> — declarative computed column with
+framework expression/materialization semantics.</p>
+<p><strong>External index</strong> — relation to another target table
+family.</p>
+<p><strong>Self index</strong> — relation to the same logical table
+family.</p>
+<p><strong>Index equivalence</strong> — source-declared compatibility
+for index binding; not a join.</p>
+<p><strong>Index table</strong> — generated matching table built from a
+key table and index columns, e.g. exclusive/sparse matching.</p>
+<p><strong><code>SOURCE_PROVEN_POSITIONAL</code></strong> — positional
+relation established by source/producer evidence.</p>
+<p><strong><code>POSITIONAL_CANDIDATE_UNRESOLVED</code></strong> —
+file-discovered lockstep candidate awaiting source closure.</p>
+<p><strong><code>soa::Join</code></strong> — positional side-by-side
+source-declared view.</p>
+<p><strong><code>soa::Concat</code></strong> — vertical combination with
+pinned common-schema behavior.</p>
+<p><strong>Old→new remap</strong> — deterministic source-row to
+compacted-output-row mapping.</p>
+<hr />
+<h1 id="required-work-before-ratification">24. Required work before
+ratification</h1>
+<h2 id="architectsource-identity">24.1 Architect/source identity</h2>
+<ol type="1">
+<li>Name the 40-character AliceO2 and O2Physics reference commits.</li>
+<li>Decide whether those commits are provenance of old snapshots or
+intentionally new baselines.</li>
+<li>Supply canonical source bytes/fingerprints for ratification.</li>
+</ol>
+<h2 id="ao2dai-semanticsource-validation">24.2 AO2DAI semantic/source
+validation</h2>
+<ol type="1">
+<li>Read pinned <code>AnalysisDataModel.h</code>,
+<code>ASoA.h/cxx</code>, physical-I/O helpers and LF/producer
+sources.</li>
+<li>Reconcile all current-upstream statements to the chosen
+commits.</li>
+<li>Census ordinary/self indices, both equivalence mechanisms and all
+standard index tables in the bounded scope.</li>
+<li>Validate physical naming/version rules.</li>
+<li>Generate canonical <code>DataFormats_AO2D.json</code> with
+exhaustive <code>standard_aod</code> coverage and bounded LF extension
+coverage.</li>
+<li>Attach/reproduce the review-reported standard inventory census using
+two independent extraction routes; discrepancies fail closed.</li>
+<li>Verify Markdown ↔︎ registry equality for every normative
+example.</li>
+</ol>
+<h2 id="physical-file-validation">24.3 Physical-file validation</h2>
+<ol type="1">
+<li>Fingerprint and reconcile the standard/base fixture.</li>
+<li>Fingerprint and reconcile the LF pilot file.</li>
+<li>Validate producer/task positional closure.</li>
+<li>Execute all §19.7 slicing fixtures.</li>
+</ol>
+<h2 id="adf-validation">24.4 ADF validation</h2>
+<ol type="1">
+<li>Pin ADF source/version.</li>
+<li>Validate public relation/subframe API and normalized-key
+behavior.</li>
+<li>Replace/retain schematic §17.2 according to tested public API.</li>
+<li>Verify exact dtype, partition and provenance preservation.</li>
+<li>Run independent oracles for <code>eval</code>, draw expressions,
+<code>selection=</code>, <code>group_by=</code> and
+<code>facet_by=</code> across representative AO2D subframe
+relations.</li>
+<li>Record native-asymmetric versus normalized-key adapter choice and
+capability matrix at the selected pin.</li>
+</ol>
+<h2 id="miwikiai-formalpublication-validation">24.5 MIWikiAI
+formal/publication validation</h2>
+<ol type="1">
+<li>Validate front matter and document class.</li>
+<li>Validate source labels and canonical-byte fingerprint.</li>
+<li>Verify exact <code>[VERBATIM]</code> blocks against supplied
+snapshot/source bytes.</li>
+<li>Generate and visually inspect HTML (UTF-8 title, TOC, anchors, code
+blocks, tables).</li>
+<li>Confirm Markdown is canonical and HTML is generated from it.</li>
+</ol>
+<hr />
+<h1 id="v0.5.1-revision-summary">25. v0.5.1 revision summary</h1>
+<p>v0.5.1 is the bounded AO2DAI closure revision requested by the
+consolidated v0.5 review. It does not redesign the approved
+architecture.</p>
+<p>Review-finding closure:</p>
+<ul>
+<li><strong>F-1:</strong> adds the standard/default O2 V0/cascade/3-body
+layer (<code>V0s</code>, <code>Cascades</code>,
+<code>Decay3Bodys</code>, tracked variants) and explicitly distinguishes
+it from O2Physics LF <code>V0Datas</code> / <code>CascDatas</code>;</li>
+<li><strong>F-2:</strong> adds a compact standard family map, records
+the independently cross-validated 82-symbol review census, and makes the
+generated <code>standard_aod</code> namespace exhaustive; the exact
+82-row reviewer appendix must still be attached/reproduced rather than
+transcribed from memory;</li>
+<li><strong>F-3:</strong> separates equivalence declaration form from
+resolved key, adds <code>label_version</code>, preserves
+byte-exact/case-sensitive keys, changes index-table taxonomy to
+<code>entity_kind=index_table</code> + <code>exclusive: bool</code>,
+removes <code>index_table</code> from ordinary relation kinds, and
+requires exhaustive standard coverage;</li>
+<li><strong>F-4:</strong> replaces invented ADF relation pseudocode with
+the source-verified
+<code>register_subframe(..., index_columns, right_index_columns)</code>
+public API shape, records native asymmetric-key support, maps
+<code>soa::Join</code> to one row-aligned logical frame, and requires
+full <code>eval</code>/draw/selection/group/facet oracles;</li>
+<li><strong>F-5:</strong> adds self-alias cycle guarding, exact
+source-case preservation (<code>Run2OTFV0</code>),
+<code>INDEX_LIST_*</code> compiler-resolution handling,
+snapshot-relative VERBATIM clarification,
+physical-dtype-versus-user-conversion separation, <code>_FULL</code>
+argument-order hazards, and two-generator cross-validation.</li>
+</ul>
+<p><strong>Ownership:</strong> AO2DAI remains substantive owner; ADF
+validates its own integration surface; MIWikiAI performs the final
+formal/publication check.</p>
+<p><strong>Ratification status:</strong> DRAFT until §24 is
+discharged.</p>
+<h1 id="end-of-dataformats_ao2d-v0.5.1-draft">End of
+<code>DataFormats_AO2D</code> v0.5.1 DRAFT</h1>
+<footer><p>Generated from <code>DataFormats_AO2D_v0_5_1.md</code>. Canonical Markdown SHA-256: <code>cde55f12047363328611adc6ac2c7c90fb65698c037e153e396d001bfa99cd7e</code>.</p></footer>
+</body>
+</html>
