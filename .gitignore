@@ -23,3 +23,15 @@ scripts/unresolved*.txt
 scripts/reachable.txt
 scripts/reachable.iter.log
 scripts/miwikiai_counter_out/
+
+# Binary bundles — reviewer/source packets, not versioned artifacts
+*.zip
+
+# Transient tool output
+*.log
+scripts/.log
+scripts/diff.txt
+gitls.txt
+
+# Backups
+*.v0_*_backup
