@@ -1,0 +1,11 @@
+# MIWikiAI prefilter (scripts/prepare_review.py) runtime dependencies.
+#
+# Install into the SAME interpreter that runs pytest:
+#     python3 -m pip install -r scripts/requirements.txt
+#
+# History: the AliceO2 Python module moved 1.0-27 -> 1.0-30 and mistletoe
+# did not come with it, breaking `prepare_review.sh --test` with a bare
+# ModuleNotFoundError. The dependency was real since prefilter v1.0 (the
+# regex -> AST migration) but was never declared.
+
+mistletoe>=1.2,<2

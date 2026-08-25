@@ -1,0 +1,3 @@
+symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct,header_basename_collision,name_uniqueness,match_confidence
+Foo,c,test::ns,/fake/Foo.h,,100,10,true,0,2,false,unique,high
+Bar,c,test::ns,/fake/Bar.h,,50,5,true,0,1,false,unique,high

@@ -1,0 +1,780 @@
+symbol,kind,parent_class,header,signature,line,prod_usage_count,prod_reachable,churn_12m,workflows_direct,header_basename_collision,name_uniqueness,match_confidence
+ANSHeader,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,,27,16,true,0,0,true,unique,high
+Assign,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,579,10,true,0,1,false,unique,high
+AssignSym,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,650,0,true,0,0,false,unique,high
+BareFormat,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,21,0,true,0,0,false,unique,high
+BinCenterView,f,o2::utils::BinCenterView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(AxisIterator iter),64,0,true,0,0,false,unique,high
+BinLowerView,f,o2::utils::BinLowerView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(AxisIterator iter),126,0,true,0,0,false,unique,high
+BinUpperView,f,o2::utils::BinUpperView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(AxisIterator iter),94,0,true,0,0,false,unique,high
+Block,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,,152,3,true,0,2,false,unique,high
+Bracket,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(),41,13,true,0,0,true,unique,high
+BuildTree,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),128,0,true,0,0,false,unique,high
+CTFDictHeader,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFDictHeader.h,,29,57,true,0,0,true,unique,high
+CTFHeader,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFHeader.h,,27,85,true,0,0,true,unique,high
+CTFIOSize,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,,22,141,true,0,0,true,unique,high
+ChargeSumMode,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,27,0,true,0,0,false,unique,high
+Check,f,o2::math_utils::detail::Check,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(void *),40,129,true,0,7,false,unique,high
+CheckIn,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,"(Char_t type,const void * pointer)",127,0,true,0,0,false,unique,high
+CircleXY,p,o2::math_utils::detail::CircleXY,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/CircleXY.h,"(T r=T (),T x=T (),T y=T ())",37,15,true,0,0,true,unique,high
+Close,f,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),126,-1,true,0,-1,false,ambiguous,ambiguous
+Close,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(),46,-1,true,0,-1,false,ambiguous,ambiguous
+ConfigurableParam,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(),277,296,true,0,233,true,unique,high
+ConfigurableParamHelper,c,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,,77,93,true,0,0,true,unique,high
+ConfigurableParamPromoter,c,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,,207,1,true,0,0,false,unique,high
+DebugStreamer,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(),84,16,true,0,0,true,unique,high
+DetID,f,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,(),123,740,true,0,253,true,unique,high
+DetIDToHitTypes,s,o2::detectors,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/SimTraits.h,,181,0,true,0,0,false,unique,high
+DetMatrixCache,p,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),80,41,true,0,0,true,unique,high
+DetMatrixCacheIndirect,p,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),136,1,true,0,0,false,unique,high
+DetectorNameConf,c,o2::base,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetectorNameConf.h,,26,2,true,0,2,true,unique,high
+DigiParams,s,o2::conf,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/DigiParams.h,,28,50,true,0,12,true,unique,high
+DummyLogger,s,o2::gpu::detail,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonLogger.h,,23,0,true,0,0,false,unique,high
+EncodedBlocks,c,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,,334,61,true,0,0,true,unique,high
+Endl,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),131,0,true,0,0,false,unique,high
+EnumFlags,p,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(EnumFlags &&),385,2,true,0,0,true,unique,high
+EnumLegalValues,s,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,,90,0,true,0,0,false,unique,high
+EnumRegistry,c,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,,117,1,true,0,0,false,unique,high
+Expr,f,o2::math_utils::detail::Expr,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(const ExprType & rhs),416,0,true,0,0,false,unique,high
+ExternalEntropyCoder,p,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,(const encoder_type & encoder),39,3,true,0,0,true,unique,high
+FEEID,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,107,14,true,0,0,false,unique,high
+FIFO,c,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,,28,9,true,0,2,true,unique,high
+FileFetcher,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,"(const std::string & input,const std::string & selRegex="""",const std::string & remRegex="""",const std::string & copyCmd="""",const std::string & copyDir=""/tmp"")",53,3,true,0,3,true,unique,high
+FileMetaData,s,o2::dataformats,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/FileMetaData.h,,30,10,true,0,0,true,unique,high
+FileRef,s,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,,34,0,true,0,0,false,unique,high
+Fill,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),129,70,true,0,11,false,unique,high
+FixLeafNameBug,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(TTree * tree),53,0,true,0,0,false,unique,high
+FlagsHelper,s,o2::utils::details::enum_flags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,,59,0,true,0,0,false,unique,high
+GPUCOMMON_INTERNAL_CAT,p,o2::gpu::internal,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonHelpers.h,"(GPUReconstruction,GPUCA_GPUTYPE,ChkErr)",45,0,true,0,0,false,unique,high
+GPUCommonAlgorithm,c,o2::gpu,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonAlgorithm.h,,29,8,true,0,0,true,unique,high
+GPUCommonMath,c,o2::gpu,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonMath.h,,48,85,true,0,0,true,unique,high
+GPUPoint2D,p,o2::math_utils::detail::GPUPoint2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/CartesianGPU.h,(),27,3,true,0,0,false,unique,high
+GPUPoint3D,p,o2::math_utils::detail::GPUPoint3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/CartesianGPU.h,(),40,3,true,0,0,false,unique,high
+GPUReconstructionCPUChkErr,f,o2::gpu::internal,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonHelpers.h,"(const int64_t error,const char * file,int32_t line)",46,0,true,0,0,false,unique,high
+GPUReconstructionChkErr,f,o2::gpu::internal,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonHelpers.h,"(const int64_t error,const char * file,int32_t line,bool failOnError)",53,0,true,0,0,false,unique,high
+GPUdDefault,p,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,(),121,55,true,0,0,false,unique,high
+GetDirectory,f,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(),48,0,true,0,0,false,unique,high
+GetFile,f,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(),47,0,true,0,0,false,unique,high
+GetFromMacro,f,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurationMacroHelper.h,"(const std::string & file,const std::string & funcname,const std::string & type,const std::string & unique)",30,2,true,0,0,false,unique,high
+IRFrameSelector,c,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,,24,8,true,0,3,true,unique,high
+InplaceEntropyCoder,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,(),55,4,true,0,0,true,unique,high
+Instance,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,(),111,-1,true,0,-1,false,ambiguous,ambiguous
+Instance,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(),212,-1,true,0,-1,false,ambiguous,ambiguous
+Instance,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),61,-1,true,0,-1,false,ambiguous,ambiguous
+InteractionDiamondParam,s,o2::eventgen,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/InteractionDiamondParam.h,,36,4,true,0,4,true,unique,high
+IntervalXY,p,o2::math_utils::detail::IntervalXY,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/IntervalXY.h,"(T x=T (),T y=T (),T dx=T (),T dy=T ())",44,7,true,0,0,true,unique,high
+Inverter,c,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,759,0,true,0,0,false,unique,high
+IsTrivialRootType,s,o2::utils::details,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,,47,0,true,0,0,false,unique,high
+JITAndEvalFunction,f,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurationMacroHelper.h,"(const std::string & functiondecl,const std::string & funcname,const std::string & type,const std::string & unique)",78,0,true,0,0,false,unique,high
+LHCBunch2P2BC,f,o2::constants::lhc,/Users/miranov25/alicesw/O2/Common/Constants/include/CommonConstants/LHCConstants.h,"(int bunch,BeamDirection dir)",44,0,true,0,0,false,unique,high
+LTMUnbinned,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(const std::vector<T> & data,std::vector<size_t> & index,std::array<float,7> & params,float fracKeep)",570,0,true,0,0,false,unique,high
+LTMUnbinnedSig,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(const std::vector<T> & data,std::vector<size_t> & index,std::array<float,7> & params,float fracKeepMin,float sigTgt,bool sorted=false)",649,0,true,0,0,false,unique,high
+LocalToMaster,f,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(const Point3D<T> & loc,Point3D<T> & mst) const",225,2,true,0,0,false,unique,high
+LocalToMasterVect,f,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(const Point3D<T> & loc,Point3D<T> & mst) const",237,2,true,0,0,false,unique,high
+MAD2Sigma,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(int np,T * y)",774,0,true,0,0,false,unique,high
+MUST_NOT_USE_Rtypes_h,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonRtypes.h,,23,0,true,0,0,false,unique,high
+MasterToLocal,f,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(const Point3D<T> & mst,Point3D<T> & loc) const",231,1,true,0,0,false,unique,high
+MasterToLocalVect,f,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(const Point3D<T> & mst,Point3D<T> & loc) const",243,1,true,0,0,false,unique,high
+MatRepStdGPU,p,o2::math_utils::detail::MatRepStdGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(),362,3,true,0,0,false,unique,high
+MatRepSymGPU,p,o2::math_utils::detail::MatRepSymGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(),305,2,true,0,0,false,unique,high
+MatrixCache,p,o2::detectors::MatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),38,0,true,0,0,false,unique,high
+MatrixMulOpGPU,f,o2::math_utils::detail::MatrixMulOpGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,"(const MatrixA & lhs,const MatrixB & rhs)",726,0,true,0,0,false,unique,high
+MemFileHelper,s,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/MemFileHelper.h,,33,17,true,0,0,true,unique,high
+Metadata,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,,26,70,true,0,2,true,unique,high
+MultPolicyGPU,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,714,0,true,0,0,false,unique,high
+NameConf,c,o2::base,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,,27,68,true,0,38,true,unique,high
+P2BC2LHCBunch,f,o2::constants::lhc,/Users/miranov25/alicesw/O2/Common/Constants/include/CommonConstants/LHCConstants.h,"(int bc,BeamDirection dir)",50,0,true,0,0,false,unique,high
+Packer,p,o2::ctf::internal::Packer,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/Packer.h,(),33,9,true,0,0,true,unique,high
+ParamDataMember,s,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,,32,0,true,0,0,false,unique,high
+ParameterDebugStreamer,s,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,,66,0,true,0,0,false,unique,high
+ProjectBoostHistoX,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(const boost::histogram::histogram<axes...> & hist2d,const int binLow,const int binHigh)",567,0,true,0,0,false,unique,high
+ProjectBoostHistoXFast,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(const boost::histogram::histogram<axes...> & hist2d,const int binLow,const int binHigh)",593,3,true,0,0,false,unique,high
+RandomRing,p,o2::math_utils::RandomRing,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/RandomRing.h,(TF1 & function),61,20,true,0,0,true,unique,high
+ReduceBoostHistoFastSlice,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(const boost::histogram::histogram<axes...> & hist2d,int binXLow,int binXHigh,int binYLow,int binYHigh,bool includeOverflowUnderflow)",621,0,true,0,0,false,unique,high
+ReduceBoostHistoFastSlice1D,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(boost::histogram::histogram<axes...> & hist1d,int binXLow,int binXHigh,bool includeOverflowUnderflow)",665,1,true,0,0,false,unique,high
+ReduceBoostHistoFastSliceByValue,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(boost::histogram::histogram<axes...> & hist2d,double xLow,double xHigh,double yLow,double yHigh,bool includeOverflowUnderflow)",706,0,true,0,0,false,unique,high
+Registry,s,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,,122,0,true,0,0,false,unique,high
+Reorder,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(std::vector<T> & data,const std::vector<size_t> & index)",626,0,true,0,0,false,unique,high
+RngHelper,c,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RngHelper.h,,31,2,true,0,2,true,unique,high
+RollingStats,p,o2::math_utils::RollingStats,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,(),817,0,true,0,0,false,unique,high
+RootSerializableKeyValueStore,p,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(),101,5,true,0,0,true,unique,high
+Rotation2D,p,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(),69,2,true,0,0,false,unique,high
+SMatrixGPU,p,o2::math_utils::detail::SMatrixGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(SMatrixIdentity),450,3,true,0,0,true,unique,high
+SMatrixIdentity,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,405,0,true,0,0,false,unique,high
+SMatrixNoInit,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,407,0,true,0,0,false,unique,high
+SMatrixRowGPU,f,o2::math_utils::detail::SMatrixGPU::SMatrixRowGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,"(SMatrixGPU<T,D1,D2,R> & rhs,unsigned int i)",480,0,true,0,0,false,unique,high
+SMatrixRowGPUconst,f,o2::math_utils::detail::SMatrixGPU::SMatrixRowGPUconst,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,"(const SMatrixGPU<T,D1,D2,R> & rhs,unsigned int i)",493,0,true,0,0,false,unique,high
+SVectorGPU,p,o2::math_utils::detail::SVectorGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(),66,2,true,0,0,false,unique,high
+SampaCluster,p,o2::mch::raw::SampaCluster,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,"(uint10_t sampaTime,uint20_t bunchCrossing,const std::vector<uint10_t> & samples)",57,4,true,0,1,true,unique,high
+SampleMode,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,31,0,true,0,0,false,unique,high
+SerializedInfo,p,o2::utils::RootSerializableKeyValueStore::SerializedInfo,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(),42,0,true,0,0,false,unique,high
+SetDirectory,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(TDirectory * sfile),51,1,true,0,0,false,unique,high
+SetFile,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(TFile * sfile),52,0,true,0,0,false,unique,high
+ShmAllocator,p,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(),48,40,true,0,0,true,unique,high
+ShmManager,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),109,21,true,0,7,true,unique,high
+ShmMetaInfo,s,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,,45,0,true,0,0,false,unique,high
+SimConfig,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,(),103,31,true,0,29,true,unique,high
+SimConfigData,s,o2::conf,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,,51,0,true,0,0,false,unique,high
+SimReconfigData,s,o2::conf,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,,203,1,true,0,1,false,unique,high
+SimTraits,c,o2::detectors,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/SimTraits.h,,31,2,true,0,2,true,unique,high
+Similarity,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(const SMatrix<T,D1,D2,R> & lhs,const SMatrix<T,D2,D2,MatRepSym<T,D2>> & rhs)",263,2,true,0,0,false,unique,high
+SortData,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(std::vector<T> const & values,std::vector<size_t> & index)",540,0,true,0,0,false,unique,high
+Stack,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonAlgorithm.h,,161,75,true,0,4,false,unique,high
+StatAccumulator,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/StatAccumulator.h,,30,6,true,0,0,true,unique,high
+StatisticsData,s,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,,457,0,true,0,0,false,unique,high
+TH1FFromBoost,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(BoostHist hist,const char * name=""hist"")",524,0,true,0,0,false,unique,high
+TH2FFromBoost,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(BoostHist hist,const char * name=""hist"")",541,0,true,0,0,false,unique,high
+ThrustVolatileAllocator,p,o2::gpu::ThrustVolatileAllocator,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonHelpers.h,(GPUReconstruction * r),77,2,true,0,0,false,unique,high
+Transform3D,p,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(),171,-1,true,0,-1,false,ambiguous,ambiguous
+Transform3D,p,o2::gpu::Transform3D,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonTransform3D.h,(),25,-1,true,0,-1,false,ambiguous,ambiguous
+TransformType,s,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,,53,16,true,0,7,false,unique,high
+TranspPolicyGPU,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,1443,0,true,0,0,false,unique,high
+TransposeOpGPU,f,o2::math_utils::detail::TransposeOpGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(const Matrix & rhs),1460,0,true,0,0,false,unique,high
+TreeDataElement,s,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,,115,0,true,0,0,false,unique,high
+TreeStream,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),124,5,true,0,0,true,unique,high
+TreeStreamRedirector,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(const TreeStreamRedirector & tsr),56,25,true,0,2,true,unique,high
+Tsallis,s,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Tsallis.h,,21,2,true,0,2,true,unique,high
+ULHeaderWord,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,77,0,true,0,0,false,unique,high
+UserLogicFormat,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,24,0,true,0,0,false,unique,high
+VerbosityConfig,s,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/VerbosityConfig.h,,26,3,true,0,0,true,unique,high
+_ParamHelper,c,o2::conf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,,44,0,true,0,0,false,unique,high
+addInputFile,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(const std::string & fname),86,6,true,0,1,false,unique,high
+adjustFromCollContext,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::string const & collcontextfile,std::string const & prefix)",193,0,true,0,0,false,unique,high
+adress,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(const_reference r) const,59,2,true,0,0,false,unique,medium
+alignSize,f,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(size_t sizeBytes),89,7,true,0,0,false,unique,high
+all_of,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(Ts...flags) const,635,1,true,0,1,false,unique,high
+allocate,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(size_type n),62,-1,true,0,-1,false,ambiguous,ambiguous
+allocate,p,o2::gpu::ThrustVolatileAllocator,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonHelpers.h,(std::ptrdiff_t n),73,-1,true,0,-1,false,ambiguous,ambiguous
+angle2Alpha,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float phi),203,1,true,0,0,false,unique,high
+angle2Alphad,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double phi),208,0,true,0,0,false,unique,high
+angle2Sector,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float phi),183,4,true,0,2,false,unique,high
+angle2Sectord,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double phi),188,0,true,0,0,false,unique,high
+ansVersionFromString,f,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const std::string & ansVersionString),57,1,true,0,0,false,unique,high
+appendToTree,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(TTree & tree,const std::string & name) const",489,14,true,0,0,false,unique,high
+applyMargins,p,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,"(size_t bwd,size_t fwd,long shift,bool removeOverlaps=true)",43,0,true,0,0,false,unique,high
+asService,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,173,3,true,0,3,false,unique,high
+asString,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,80,-1,true,0,-1,false,ambiguous,ambiguous
+asString,p,o2::ctf::CTFDictHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFDictHeader.h,() const,44,-1,true,0,-1,false,ambiguous,ambiguous
+asString,p,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,() const,48,-1,true,0,-1,false,ambiguous,ambiguous
+asString,p,o2::dataformats::FileMetaData,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/FileMetaData.h,() const,50,-1,true,0,-1,false,ambiguous,ambiguous
+asString,p,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,(const SampaCluster & sc),106,-1,true,0,-1,false,ambiguous,ambiguous
+assertNotMixingClusters,f,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,(const std::vector<SampaCluster> & data),85,0,true,0,0,false,unique,high
+assignmentImpl,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::string const & mainkey,TClass * cl,void * to,void * from,std::map<std::string,ConfigurableParam::EParamProvenance> * provmap,size_t offset)",56,0,true,0,0,false,unique,high
+attachToGlobalSegment,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),76,0,true,0,0,false,unique,high
+beginsWith,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,"(const std::string & s,const std::string & start)",131,0,true,0,0,false,unique,high
+bit2Mask,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/bitOps.h,"(T first,Args...args)",46,63,true,0,3,false,unique,high
+boostHistoFromRoot_2D,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(TH2D * inHist2D),430,0,true,0,0,false,unique,high
+boosthistoFromRoot_1D,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(TH1D * inHist1D),405,0,true,0,0,false,unique,high
+bringTo02PiGen,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float & phi),80,-1,true,0,-1,false,ambiguous,ambiguous
+bringTo02PiGen,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/trigonometric.h,(T & phi),69,-1,true,0,-1,false,ambiguous,ambiguous
+bringTo02PiGend,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double & phi),85,0,true,0,0,false,unique,high
+bringToPMPi,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float & phi),100,5,true,0,0,false,unique,high
+bringToPMPiGen,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float & phi),60,-1,true,0,-1,false,ambiguous,ambiguous
+bringToPMPiGen,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/trigonometric.h,(T & phi),108,-1,true,0,-1,false,ambiguous,ambiguous
+bringToPMPiGend,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double & phi),65,0,true,0,0,false,unique,high
+bringToPMPid,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double & phi),105,0,true,0,0,false,unique,high
+buildFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix,const std::string_view delimiter,const std::string_view defPrefix,const std::string_view defName,const std::string_view extension,const std::string_view optDir="""")",108,0,true,0,0,false,unique,high
+calculateNDestTElements,f,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(size_t nElems),103,0,true,0,0,false,unique,high
+calculatePaddedSize,f,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(size_t nElems),110,0,true,0,0,false,unique,high
+check,f,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,"(const o2::InteractionRecord & ir,size_t bwd=0,size_t fwd=0)",28,418,true,0,46,false,unique,low
+checkANSVersion,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(ANSHeader ansVersion) const,567,0,true,0,0,false,unique,high
+checkStream,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(const StreamFlags streamFlag,const size_t samplingID=-1,const float weight=1)",156,5,true,0,0,false,unique,high
+cleanup,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(),69,14,true,0,3,false,unique,medium
+clear,f,o2::math_utils::detail::StatAccumulator,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/StatAccumulator.h,(),80,-1,true,0,-1,false,ambiguous,ambiguous
+clear,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,(),37,-1,true,0,-1,false,ambiguous,ambiguous
+clear,p,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,(),41,-1,true,0,-1,false,ambiguous,ambiguous
+clear,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(),150,-1,true,0,-1,false,ambiguous,ambiguous
+clear,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(),31,-1,true,0,-1,false,ambiguous,ambiguous
+clear,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),463,-1,true,0,-1,false,ambiguous,ambiguous
+clear,f,o2::ctf::Metadata,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,(),66,-1,true,0,-1,false,ambiguous,ambiguous
+cloneHeader,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,350,0,true,0,0,false,unique,high
+compactify,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),466,1,true,0,0,false,unique,medium
+computePackedIncompressibleSize,p,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,() const,56,1,true,0,0,false,unique,high
+computePayloadSizeEstimate,p,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,"(size_t nElements,double_t safetyFactor=1)",44,1,true,0,0,false,unique,high
+concat_string,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(Ts const &...ts),141,15,true,0,0,false,unique,high
+configFileExists,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(std::string const & filepath),183,0,true,0,0,false,unique,high
+construct,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,"(pointer p,const value_type & value)",80,21,true,0,4,false,unique,medium
+contains,f,o2::conf::EnumRegistry,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & key) const,122,-1,true,0,-1,false,ambiguous,ambiguous
+contains,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & other) const,682,-1,true,0,-1,false,ambiguous,ambiguous
+copyFile,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(size_t id),88,0,true,0,0,false,unique,high
+copyFrom,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(RootSerializableKeyValueStore const & other),159,4,true,0,0,false,unique,high
+copyToFlat,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(V & vec),483,0,true,0,0,false,unique,high
+count,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),161,231,true,0,64,false,unique,low
+create,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(VD & v),451,302,true,0,38,false,unique,medium
+createCopyName,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(const std::string & fname) const,87,0,true,0,0,false,unique,high
+createDictionaryBlocks,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const std::vector<rans::DenseHistogram<int32_t>> & vfreq,const std::vector<Metadata> & prbits)",519,0,true,0,0,false,unique,high
+createDirectoriesIfAbsent,p,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileSystemUtils.h,(std::string const & path),33,1,true,0,1,false,unique,high
+createErrorMessageFitGaus,p,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(o2::utils::FitGausError_t errorcode),237,1,true,0,0,false,unique,high
+createFileImage,f,o2::utils::MemFileHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/MemFileHelper.h,"(const T & obj,const std::string & fileName,const std::string & optName="""")",68,1,true,0,0,false,unique,high
+createGlobalSegment,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(int nsubsegments=1),69,1,true,0,1,false,unique,high
+createSimVector,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(),109,1,true,0,0,false,unique,high
+createTMemFile,f,o2::utils::MemFileHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/MemFileHelper.h,"(const T & obj,const std::string & fName,const std::string & optName="""")",47,0,true,0,0,false,unique,high
+create_unique_path,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,"(const std::string_view prefix="""",int length=16)",168,0,true,0,0,false,unique,high
+deallocate,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,"(pointer p,size_type s)",70,-1,true,0,-1,false,ambiguous,ambiguous
+deallocate,p,o2::gpu::ThrustVolatileAllocator,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonHelpers.h,"(char * ptr,size_t)",74,-1,true,0,-1,false,ambiguous,ambiguous
+decode,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(D_IT dest,int slot,const std::any & decoderExt={}) const",515,129,true,0,2,false,unique,medium
+decodeCompatImpl,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(dst_IT dest,int slot,const std::any & decoderExt) const",638,0,true,0,0,false,unique,high
+decodeCopyImpl,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(dst_IT dest,int slot) const",647,0,true,0,0,false,unique,high
+decodeRansV1Impl,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(dst_IT dest,int slot,const std::any & decoderExt) const",641,0,true,0,0,false,unique,high
+decodeUnpackImpl,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(dst_IT dest,int slot) const",644,0,true,0,0,false,unique,high
+delta,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,66,139,true,0,0,false,unique,low
+describe,p,o2::ctf::CTFHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFHeader.h,() const,35,42,true,0,2,false,unique,medium
+deserialize,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const std::string & data),654,19,true,0,0,false,unique,medium
+destroy,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(pointer p),91,18,true,0,2,false,unique,medium
+detach,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,() const,218,4,true,0,4,false,unique,medium
+determineActiveModules,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::vector<std::string> const & input,std::vector<std::string> const & skipped,std::vector<std::string> & active,bool isUpgrade=false)",144,0,true,0,0,false,unique,high
+determineActiveModulesList,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(const std::string & version,std::vector<std::string> const & input,std::vector<std::string> const & skipped,std::vector<std::string> & active)",145,1,true,0,1,false,unique,high
+determineReadoutDetectors,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::vector<std::string> const & active,std::vector<std::string> const & enabledRO,std::vector<std::string> const & skippedRO,std::vector<std::string> & finalRO)",146,1,true,0,1,false,unique,high
+dim3,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,75,0,true,0,0,false,unique,low
+disable,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),99,447,true,0,414,false,unique,medium
+disableStream,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const StreamFlags streamFlag),151,0,true,0,0,false,unique,high
+discardFile,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(const std::string & fname),79,0,true,0,0,false,unique,high
+do_make,f,o2::math_utils::detail::row_offsets_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,"(F f,indices<I...>)",286,0,true,0,0,false,unique,high
+downsampleTsallisCharged,p,o2::math_utils::Tsallis,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Tsallis.h,"(float pt,float factorPt,float sqrts,float & weight,float rnd,float mass=0.13957)",42,1,true,0,1,false,unique,high
+dump,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const std::string & prefix="""",int ncol=20) const",524,74,true,0,8,false,unique,low
+empty,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,() const,43,-1,true,0,-1,false,ambiguous,ambiguous
+empty,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,457,-1,true,0,-1,false,ambiguous,ambiguous
+enableStream,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const StreamFlags streamFlag),148,0,true,0,0,false,unique,high
+encode,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const VE & src,int slot,uint8_t symbolTablePrecision,Metadata::OptStore opt,buffer_T * buffer=nullptr,const std::any & encoderExt={},float memfc=1.f)",500,-1,true,0,-1,false,ambiguous,ambiguous
+encode,p,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,"(src_IT srcBegin,src_IT srcEnd,dst_IT dstBegin,dst_IT dstEnd)",47,-1,true,0,-1,false,ambiguous,ambiguous
+encode,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,"(src_IT srcBegin,src_IT srcEnd,dst_IT dstBegin,dst_IT dstEnd)",80,-1,true,0,-1,false,ambiguous,ambiguous
+encodeRANSV1External,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const input_IT srcBegin,const input_IT srcEnd,int slot,const std::any & encoderExt,buffer_T * buffer=nullptr,double_t sizeEstimateSafetyFactor=1)",601,0,true,0,0,false,unique,high
+encodeRANSV1Inplace,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const input_IT srcBegin,const input_IT srcEnd,int slot,Metadata::OptStore opt,buffer_T * buffer=nullptr,double_t sizeEstimateSafetyFactor=1)",604,0,true,0,0,false,unique,high
+endsWith,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,"(const std::string & s,const std::string & ending)",126,0,true,0,0,false,unique,high
+entropyCodeRANSCompat,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const input_IT srcBegin,const input_IT srcEnd,int slot,uint8_t symbolTablePrecision,buffer_T * buffer=nullptr,const std::any & encoderExt={},float memfc=1.f)",595,0,true,0,0,false,unique,high
+entropyCodeRANSV1,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const input_IT srcBegin,const input_IT srcEnd,int slot,Metadata::OptStore opt,buffer_T * buffer=nullptr,const std::any & encoderExt={},float memfc=1.f)",598,0,true,0,0,false,unique,high
+estimateBlockSize,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(int n),454,0,true,0,0,false,unique,high
+estimateSize,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,548,2,true,0,0,false,unique,high
+estimateSizeFromMetadata,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,551,0,true,0,0,false,unique,high
+eval,p,o2::math_utils::detail::IntervalXY,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/IntervalXY.h,(T t) const,66,0,true,0,0,false,unique,low
+expand,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(buffer_T & buffer,size_t newsizeBytes)",479,9,true,0,0,false,unique,medium
+expandShellVarsInFileName,p,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileSystemUtils.h,(std::string const & input),40,0,true,0,0,false,unique,high
+expandStorage,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(size_t slot,size_t nElemets,T * buffer=nullptr)",565,0,true,0,0,false,unique,high
+extraFeeIdChargeSumMask,p,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,(),120,0,true,0,0,false,unique,high
+extraFeeIdVersionMask,p,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,(),123,0,true,0,0,false,unique,high
+fetcher,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(),90,15,true,0,14,false,unique,medium
+fillFileData,p,o2::dataformats::FileMetaData,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/FileMetaData.h,"(const std::string & fname,bool fillmd5=false,const std::string & tmpEnding="""")",48,1,true,0,0,false,unique,high
+fillFlatCopy,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(EncodedBlocks & dest) const,554,0,true,0,0,false,unique,high
+fillKeyValuesImpl,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::string const & mainkey,TClass * cl,void *,boost::property_tree::ptree *,std::map<std::string,std::pair<std::type_info const &,void * >> *,EnumRegistry *,size_t offset)",50,0,true,0,0,false,unique,high
+fillMatrixCache,p,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int mask),107,19,true,0,3,false,unique,high
+fillTreeBranch,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(TTree & tree,const std::string & brname,D & dt,int compLevel,int splitLevel=99)",558,0,true,0,0,false,unique,high
+filterSkippedElements,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::vector<std::string> & elements,std::vector<std::string> const & skipped)",190,0,true,0,0,false,unique,high
+findClosestIndices,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(const std::vector<DataTimeType> & timestamps,DataTime timestamp)",796,0,true,0,0,false,unique,high
+findScope,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(std::string_view s),213,0,true,0,0,false,unique,high
+fitBoostHistoWithGaus,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(boost::histogram::histogram<axes...> & hist),398,1,true,0,0,false,unique,high
+fitGaus,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(const size_t nBins,const T * arr,const T xMin,const T xMax,std::vector<T> & param)",232,-1,true,0,-1,false,ambiguous,ambiguous
+fitGaus,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(Iterator first,Iterator last,BinCenterView axisfirst,const bool ignoreUnderOverflowBin=true)",250,-1,true,0,-1,false,ambiguous,ambiguous
+fitResult,p,o2::utils::fitResult,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(),185,0,true,0,0,false,unique,high
+flat,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,460,106,true,0,8,false,unique,low
+float2,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,64,3,true,0,0,false,unique,medium
+float3,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,63,1,true,0,0,false,unique,medium
+float4,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,62,0,true,0,0,false,unique,medium
+flush,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(),107,44,true,0,12,false,unique,low
+forwardKine,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,178,1,true,0,1,false,unique,high
+freeSimVector,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(std::vector<T> * ptr),122,1,true,0,0,false,unique,high
+freememblock,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,"(void *,std::size_t=1)",81,3,true,0,0,false,unique,medium
+fromCCDB,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(std::string filename),257,0,true,0,0,false,unique,high
+fromString,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(std::string_view str),260,3,true,0,1,false,unique,high
+front,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,(),73,58,true,0,9,false,unique,low
+frontPtr,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,(),91,0,true,0,0,false,unique,high
+getANSHeader,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),433,0,true,0,0,false,unique,high
+getActiveModules,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,139,0,true,0,0,false,unique,high
+getAlignedGeomFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix="""")",74,1,true,0,1,false,unique,high
+getAlignmentPath,f,o2::base::DetectorNameConf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetectorNameConf.h,(DId d),50,0,true,0,0,false,unique,high
+getAlpideClusterDictionaryFileName,p,o2::base::DetectorNameConf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetectorNameConf.h,"(DId det,const std::string_view prefix="""",const std::string_view ext=""bin"")",44,0,true,0,0,false,unique,high
+getBMax,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,161,0,true,0,0,false,unique,high
+getBlock,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(int i) const,362,0,true,0,0,false,unique,high
+getCCDBServer,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(),104,9,true,0,4,false,unique,high
+getCPUID,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(),133,0,true,0,0,false,unique,high
+getCTFDictFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(),101,0,true,0,0,false,unique,high
+getCTFFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(uint32_t run,uint32_t orb,uint32_t id,const std::string & host,const std::string_view prefix=""o2_ctf"")",98,0,true,0,0,false,unique,high
+getCacheHelper,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID),168,0,true,0,0,false,unique,high
+getCacheL2G,f,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),115,0,true,0,0,false,unique,high
+getCacheT2G,f,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),114,0,true,0,0,false,unique,high
+getCacheT2GRot,f,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),116,0,true,0,0,false,unique,high
+getCacheT2L,f,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),113,0,true,0,0,false,unique,high
+getChi2,f,o2::utils::fitResult,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,() const,214,14,true,0,5,false,unique,high
+getClassName,f,o2::utils::MemFileHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/MemFileHelper.h,(const T & obj),39,3,true,0,0,false,unique,high
+getCollContextFilenameAndEventPrefix,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,184,0,true,0,0,false,unique,high
+getCollisionContextFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix="""")",31,0,true,0,0,false,unique,high
+getComponents,f,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(value_t & cs,value_t & sn) const",90,0,true,0,0,false,unique,high
+getCompressedSize,f,o2::ctf::Metadata,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,() const,65,11,true,0,0,false,unique,high
+getConfigData,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,133,2,true,0,2,false,unique,high
+getConfigFile,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,167,0,true,0,0,false,unique,high
+getCos,f,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,() const,96,0,true,0,0,false,unique,high
+getCreateData,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),177,0,true,0,0,false,unique,high
+getCreateDict,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),176,0,true,0,0,false,unique,high
+getCreateLiterals,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),178,0,true,0,0,false,unique,high
+getCreatePayload,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),175,0,true,0,0,false,unique,high
+getCutProcFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix="""")",80,0,true,0,0,false,unique,high
+getData,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,162,42,true,0,0,false,unique,high
+getDataMembers,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,() const,267,0,true,0,0,false,unique,high
+getDataMembersImpl,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::string const & mainkey,TClass * cl,void *,std::map<std::string,ConfigurableParam::EParamProvenance> const * provmap,size_t virtualoffset)",47,0,true,0,0,false,unique,high
+getDataOrigin,f,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,(ID id),148,50,true,0,37,false,unique,high
+getDataPointer,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,163,0,true,0,0,false,unique,high
+getDetID,f,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,() const,88,17,true,0,0,false,unique,high
+getDict,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,161,0,true,0,0,false,unique,high
+getDictionary,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(int i,ANSHeader ansVersion=ANSVersionUnspecified) const",370,2,true,0,0,false,unique,high
+getDigitsFileName,f,o2::base::DetectorNameConf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetectorNameConf.h,"(DId d,const std::string_view prefix=STANDARDSIMPREFIX)",38,0,true,0,0,false,unique,high
+getEmbedIntoFileName,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,159,0,true,0,0,false,unique,high
+getEncoder,f,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,() const,41,3,true,0,0,false,unique,high
+getEndOfBlock,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),179,0,true,0,0,false,unique,high
+getExtKinematicsFileName,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,158,0,true,0,0,false,unique,high
+getFailThreshold,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,62,0,true,0,0,false,unique,high
+getFileRef,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(size_t i) const,60,0,true,0,0,false,unique,high
+getFreeBlockEnd,f,o2::ctf::Registry,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,141,0,true,0,0,false,unique,high
+getFreeBlockStart,f,o2::ctf::Registry,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,129,0,true,0,0,false,unique,high
+getFreeSize,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,475,0,true,0,0,false,unique,high
+getFullPath,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string_view p),161,0,true,0,0,false,unique,high
+getGRPECSFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),37,2,true,0,2,false,unique,high
+getGRPFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),34,2,true,0,2,false,unique,high
+getGRPLHCIFFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),40,2,true,0,2,false,unique,high
+getGRPMagFieldFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),43,1,true,0,1,false,unique,high
+getGenerator,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,154,0,true,0,0,false,unique,high
+getGeomFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix="""")",73,0,true,0,0,false,unique,high
+getHash,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,() const,169,-1,true,0,-1,false,ambiguous,ambiguous
+getHash,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,() const,250,-1,true,0,-1,false,ambiguous,ambiguous
+getHashImpl,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::string const & mainkey,std::vector<ParamDataMember> const * members)",64,0,true,0,0,false,unique,high
+getHeader,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),349,71,true,0,4,false,unique,high
+getHitsFileName,f,o2::base::DetectorNameConf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetectorNameConf.h,"(DId d,const std::string_view prefix=STANDARDSIMPREFIX)",32,0,true,0,0,false,unique,high
+getID,f,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,() const,136,17,true,0,0,false,unique,high
+getIRFrames,f,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,() const,46,0,true,0,0,false,unique,high
+getImage,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(const void * newHead),444,0,true,0,0,false,unique,high
+getIncompressibleSymbolOffset,f,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,() const,51,1,true,0,0,false,unique,high
+getIncompressibleSymbolPackingBits,f,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,() const,53,1,true,0,0,false,unique,high
+getIndex,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const StreamFlags streamFlag),165,97,true,0,28,false,unique,high
+getIndirectSize,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,() const,150,0,true,0,0,false,unique,high
+getIntValue,p,o2::conf::EnumLegalValues,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & value) const,114,0,true,0,0,false,unique,high
+getIntegralBoostHist,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(boost::histogram::histogram<axes...> & hist,double min,double max)",723,3,true,0,0,false,unique,high
+getInternalChunkSize,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,169,0,true,0,0,false,unique,high
+getIsMT,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,162,0,true,0,0,false,unique,high
+getKeyValueString,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,166,0,true,0,0,false,unique,high
+getLiterals,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,164,0,true,0,0,false,unique,high
+getLocalName,f,o2::utils::FileFetcher::FileRef,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,40,0,true,0,0,false,unique,high
+getLogSeverity,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,165,1,true,0,1,false,unique,high
+getLogVerbosity,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,164,1,true,0,1,false,unique,high
+getLongestName,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),243,0,true,0,0,false,unique,high
+getMCConfigFileName,f,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),58,0,true,0,0,false,unique,high
+getMCEngine,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,137,0,true,0,0,false,unique,high
+getMCHeadersFileName,f,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),52,0,true,0,0,false,unique,high
+getMCKinematicsFileName,f,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,(const std::string_view prefix=STANDARDSIMPREFIX),46,2,true,0,2,false,unique,high
+getMask,p,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,(const std::string_view detList),151,89,true,0,12,false,unique,high
+getMatLUTFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix="""")",77,0,true,0,0,false,unique,high
+getMatchingFrames,p,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,(const o2::dataformats::IRFrame & fr),29,1,true,0,1,false,unique,high
+getMatrix,f,o2::detectors::MatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID) const,63,8,true,0,0,false,unique,high
+getMatrixL2G,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID) const,145,7,true,0,0,false,unique,high
+getMatrixT2G,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID) const,144,6,true,0,0,false,unique,high
+getMatrixT2GRot,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID) const,146,7,true,0,0,false,unique,high
+getMatrixT2L,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID) const,143,9,true,0,0,false,unique,high
+getMax,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,63,27,true,0,0,false,unique,high
+getMaxFilesInQueue,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,73,0,true,0,0,false,unique,high
+getMean,f,o2::math_utils::detail::StatAccumulator,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/StatAccumulator.h,() const,45,4,true,0,0,false,unique,high
+getMeanBoost1D,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(boost::histogram::histogram<axes...> & inHist1D,const double rangeLow=0,const double rangeHigh=0)",468,1,true,0,0,false,unique,high
+getMeanRMS2,f,o2::math_utils::detail::StatAccumulator,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/StatAccumulator.h,() const,49,0,true,0,0,false,unique,high
+getMemberProvenance,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & key) const,172,-1,true,0,-1,false,ambiguous,ambiguous
+getMemberProvenance,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(const std::string & key) const,232,-1,true,0,-1,false,ambiguous,ambiguous
+getMetadata,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(int i) const,356,0,true,0,0,false,unique,high
+getMetrics,f,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,() const,67,3,true,0,0,false,unique,high
+getMin,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,64,30,true,0,0,false,unique,high
+getMinAlignedSize,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),437,0,true,0,0,false,unique,high
+getNBlocks,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),435,45,true,0,0,false,unique,high
+getNData,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,204,0,true,0,0,false,unique,high
+getNDict,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,203,0,true,0,0,false,unique,high
+getNEvents,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,156,8,true,0,5,false,unique,high
+getNFiles,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,75,1,true,0,0,false,unique,high
+getNFilesProc,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,71,0,true,0,0,false,unique,high
+getNFilesProcOK,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,72,0,true,0,0,false,unique,high
+getNIncompressibleSamples,f,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,() const,49,-1,true,0,-1,false,ambiguous,ambiguous
+getNIncompressibleSamples,f,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,() const,69,-1,true,0,-1,false,ambiguous,ambiguous
+getNLiterals,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,205,0,true,0,0,false,unique,high
+getNLoops,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,70,2,true,0,2,false,unique,high
+getNRemoteFiles,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,74,0,true,0,0,false,unique,high
+getNSimWorkers,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,171,1,true,0,1,false,unique,high
+getNStored,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,206,0,true,0,0,false,unique,high
+getNStreams,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,() const,71,5,true,0,0,false,unique,high
+getNTrees,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const size_t id=getCPUID ()) const,137,0,true,0,0,false,unique,high
+getName,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,() const,162,-1,true,0,-1,false,ambiguous,ambiguous
+getName,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,() const,225,-1,true,0,-1,false,ambiguous,ambiguous
+getName,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),179,-1,true,0,-1,false,ambiguous,ambiguous
+getName,f,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,() const,134,-1,true,0,-1,false,ambiguous,ambiguous
+getName,f,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,() const,133,-1,true,0,-1,false,ambiguous,ambiguous
+getName,f,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,() const,89,-1,true,0,-1,false,ambiguous,ambiguous
+getNames,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(std::index_sequence<I...>),230,-1,true,0,-1,false,ambiguous,ambiguous
+getNames,p,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,"(mask_t mask,char delimiter=',')",153,-1,true,0,-1,false,ambiguous,ambiguous
+getNextFileInQueue,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,78,1,true,0,1,false,unique,high
+getNextValue,f,o2::math_utils::RandomRing,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/RandomRing.h,(),79,1,true,0,0,false,unique,high
+getNextValueVc,f,o2::math_utils::RandomRing,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/RandomRing.h,(),95,0,true,0,0,false,unique,high
+getNoiseFileName,p,o2::base::DetectorNameConf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetectorNameConf.h,"(DId det,const std::string_view prefix="""",const std::string_view ext="""")",47,0,true,0,0,false,unique,high
+getOffsData,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),182,0,true,0,0,false,unique,high
+getOffsDict,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),181,0,true,0,0,false,unique,high
+getOffsLiterals,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),183,0,true,0,0,false,unique,high
+getOffset,f,o2::ctf::internal::Packer,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/Packer.h,() const,42,68,true,0,0,false,unique,high
+getOrigName,f,o2::utils::FileFetcher::FileRef,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,41,0,true,0,0,false,unique,high
+getOutPrefix,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,163,4,true,0,4,false,unique,high
+getOutputDir,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(),179,0,true,0,0,false,unique,high
+getOverlap,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(const Bracket<T> & other) const,68,1,true,0,0,false,unique,high
+getPackedIncompressibleSize,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,() const,76,0,true,0,0,false,unique,high
+getPackingBufferSize,p,o2::ctf::internal::Packer,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/Packer.h,(size_t messageLength) const,47,3,true,0,0,false,unique,high
+getPackingWidth,f,o2::ctf::internal::Packer,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/Packer.h,() const,44,2,true,0,0,false,unique,high
+getParameter,f,o2::utils::fitResult,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,() const,195,1,true,0,0,false,unique,high
+getPointerOffset,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(void * ptr) const,119,0,true,0,0,false,unique,high
+getPrimChunkSize,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,168,0,true,0,0,false,unique,high
+getProvenance,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & key),174,2,true,0,0,false,unique,high
+getQueue,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,() const,100,0,true,0,0,false,unique,high
+getQueueSize,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,77,0,true,0,0,false,unique,high
+getRandom,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(float min=0,float max=1)",168,0,true,0,0,false,unique,high
+getRandomString,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(int length),152,0,true,0,0,false,unique,high
+getReadoutDetectors,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,140,0,true,0,0,false,unique,high
+getRef,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,"(std::string const & key,GetState & state) const",131,9,true,0,1,false,unique,high
+getRegistry,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,352,0,true,0,0,false,unique,high
+getRingPosition,f,o2::math_utils::RandomRing,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/RandomRing.h,() const,111,0,true,0,0,false,unique,high
+getRollingStatistics,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(const DataTimeType & timeData,const DataType & data,const DataTime & times,const double deltaMax,const int mNthreads,const size_t minPoints=4,const size_t nClosestPoints=4)",846,0,true,0,0,false,unique,high
+getRootTypeCode,f,o2::utils::details,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),78,0,true,0,0,false,unique,high
+getRunNumber,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,175,13,true,0,3,false,unique,high
+getSamplingFrequency,f,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const StreamFlags streamFlag),130,1,true,0,0,false,unique,high
+getSamplingTypeFrequency,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const StreamFlags streamFlag),127,0,true,0,0,false,unique,high
+getShmID,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,() const,84,0,true,0,0,false,unique,high
+getSin,f,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,() const,97,0,true,0,0,false,unique,high
+getSize,f,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),130,-1,true,0,-1,false,ambiguous,ambiguous
+getSize,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,() const,149,-1,true,0,-1,false,ambiguous,ambiguous
+getSpec,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),102,13,true,0,2,false,unique,high
+getStartEvent,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,160,0,true,0,0,false,unique,high
+getStartSeed,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,170,0,true,0,0,false,unique,high
+getStateString,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(GetState state),96,1,true,0,0,false,unique,high
+getStatisticsData,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(const T * arr,const size_t nBins,const double xMin,const double xMax)",471,0,true,0,0,false,unique,high
+getStreamFlags,f,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(),124,0,true,0,0,false,unique,high
+getStreamer,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(const char * outFile,const char * option,const size_t id=getCPUID ())",117,7,true,0,0,false,unique,high
+getStreamerPtr,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const size_t id=getCPUID ()) const,121,0,true,0,0,false,unique,high
+getSymbolTablePrecision,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,() const,73,3,true,0,0,false,unique,high
+getTFIDInfoFileName,p,o2::base::NameConf,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/NameConf.h,"(const std::string_view prefix=""o2"")",64,0,true,0,0,false,unique,high
+getTimestamp,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,174,4,true,0,1,false,unique,high
+getTree,f,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),133,0,true,0,0,false,unique,high
+getTrigger,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,155,19,true,0,4,false,unique,high
+getUncompressedSize,f,o2::ctf::Metadata,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,() const,56,11,true,0,0,false,unique,high
+getUniqueTreeName,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(const char * tree,const size_t id=getCPUID ()) const",142,5,true,0,0,false,unique,high
+getValueAs,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(std::string key),192,0,true,0,0,false,unique,high
+getValues,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(std::index_sequence<I...>),146,2,true,0,0,false,unique,high
+getVarianceBoost1D,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(boost::histogram::histogram<axes...> & inHist1D,double mean=-999999,const double rangeLow=0,const double rangeHigh=0,const double weight=1)",495,1,true,0,0,false,unique,high
+getVertexMode,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,180,0,true,0,0,false,unique,high
+get_impl,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,"(std::string const & key,GetState & state,...) const",209,0,true,0,0,false,unique,high
+getmemblock,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(size_t size),79,3,true,0,0,false,unique,medium
+hasAll,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),309,0,true,0,0,false,unique,high
+hasNone,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),297,0,true,0,0,false,unique,high
+hasSegment,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,() const,85,4,true,0,0,false,unique,high
+indices,s,o2::math_utils::detail::row_offsets_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,264,215,true,0,4,false,unique,medium
+init,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(size_t sz),538,-1,true,0,-1,false,ambiguous,ambiguous
+init,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,"(source_IT srcBegin,source_IT srcEnd)",96,-1,true,0,-1,false,ambiguous,ambiguous
+initFrom,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(TFile *),292,-1,true,0,-1,false,ambiguous,ambiguous
+initFrom,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(TFile * file),303,-1,true,0,-1,false,ambiguous,ambiguous
+initOptions,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(boost::program_options::options_description &,bool isUpgrade=false)",123,0,true,0,0,false,unique,high
+initPropertyTree,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(),281,0,true,0,0,false,unique,high
+initialize,p,o2::math_utils::RandomRing,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/RandomRing.h,(TF1 & function),69,-1,true,0,-1,false,ambiguous,ambiguous
+initialize,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(),252,-1,true,0,-1,false,ambiguous,ambiguous
+instance,f,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(),86,315,true,0,30,false,unique,medium
+int2,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,68,4,true,0,0,false,unique,low
+int3,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,69,0,true,0,0,false,unique,low
+int4,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,70,18,true,0,0,false,unique,low
+intersection_with,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o) const,676,0,true,0,0,false,unique,high
+isBuilt,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,() const,148,0,true,0,0,false,unique,high
+isChargeSumMode,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,52,0,true,0,0,false,unique,high
+isClusterSum,p,o2::mch::raw::SampaCluster,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,() const,65,0,true,0,0,false,unique,high
+isContinuous,p,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),329,31,true,0,14,false,unique,high
+isFailed,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,66,0,true,0,0,false,unique,high
+isFilled,f,o2::detectors::MatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,() const,64,0,true,0,0,false,unique,high
+isFilterOutNoHitEvents,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,172,1,true,0,1,false,unique,high
+isIEqual,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,"(const unsigned char a,const unsigned char b)",277,0,true,0,0,false,unique,high
+isInitialized,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,() const,308,4,true,0,0,false,unique,high
+isInvalid,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,73,0,true,0,0,false,unique,high
+isLegal,f,o2::conf::EnumLegalValues,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & value) const,93,0,true,0,0,false,unique,high
+isMatrixAvailable,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int sensID) const,151,0,true,0,0,false,unique,high
+isNoGeant,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,176,0,true,0,0,false,unique,high
+isOperational,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,() const,97,5,true,0,1,false,unique,high
+isOutside,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T t) const,77,0,true,0,0,false,unique,high
+isPointerOk,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(void * ptr) const,89,1,true,0,0,false,unique,high
+isRemote,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(const std::string & fname) const,89,0,true,0,0,false,unique,high
+isRunning,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,65,1,true,0,1,false,unique,high
+isScoped,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),64,0,true,0,0,false,unique,high
+isSet,f,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,() const,47,26,true,0,4,false,unique,high
+isStreamerSet,f,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const size_t id=getCPUID ()) const,100,0,true,0,0,false,unique,high
+isUserLogicFormat,s,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,,44,0,true,0,0,false,unique,high
+isValid,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,72,-1,true,0,-1,false,ambiguous,ambiguous
+isValid,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),115,-1,true,0,-1,false,ambiguous,ambiguous
+isValidDictTimeStamp,f,o2::ctf::CTFDictHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFDictHeader.h,() const,35,3,true,0,0,false,unique,high
+isZeroLength,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,71,0,true,0,0,false,unique,high
+is_iterator,s,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,,54,18,true,0,0,false,unique,high
+linkRemapping,p,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,(uint8_t linkID),126,0,true,0,0,false,unique,high
+listFiles,p,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileSystemUtils.h,"(std::string const & dir,std::string const & searchpattern)",27,2,true,0,2,false,unique,high
+loadIRFrames,p,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,(const std::string & fname),42,0,true,0,0,false,unique,high
+ltrim,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(std::string & s),38,0,true,0,0,false,unique,low
+ltrim_copy,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string & s),81,0,true,0,0,false,unique,high
+make,f,o2::math_utils::detail::row_offsets_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(F f),293,-1,true,0,-1,false,ambiguous,ambiguous
+make,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,(),118,-1,true,0,-1,false,ambiguous,ambiguous
+makeEncoder,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,(),63,13,true,0,0,false,unique,high
+makeMaxRep,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,"(size_t min,size_t max)",168,0,true,0,0,false,unique,high
+makeMetadataPack,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,"(size_t messageLength,size_t packingWidth,source_T packingOffset,size_t dataWords)",161,3,true,0,0,false,unique,high
+makeMetadataRansCompat,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,"(size_t nStreams,size_t messageLength,size_t nLiterals,size_t symbolTablePrecision,source_T min,source_T max,size_t dictWords,size_t dataWords,size_t literalWords)",90,1,true,0,0,false,unique,high
+makeMetadataRansDict,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,"(size_t symbolTablePrecision,source_T min,source_T max,size_t dictWords,ctf::Metadata::OptStore optStore)",114,0,true,0,0,false,unique,high
+makeMetadataRansV1,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,"(size_t nStreams,size_t streamingLowerBound,size_t messageLength,size_t nLiterals,size_t symbolTablePrecision,source_T dictMin,source_T dictMax,source_T literalsOffset,size_t literalsPackingWidth,size_t dictWords,size_t dataWords,size_t literalWords)",136,2,true,0,0,false,unique,high
+makeMetadataStore,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/Metadata.h,"(size_t messageLength,Metadata::OptStore opStore,size_t dataWords)",183,1,true,0,0,false,unique,high
+make_indices,s,o2::math_utils::detail::row_offsets_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,282,0,true,0,0,false,unique,high
+make_indices_impl,s,o2::math_utils::detail::row_offsets_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,271,0,true,0,0,false,unique,high
+max_size,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,() const,93,4,true,0,0,false,unique,high
+mayEEncode,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(Metadata::OptStore opt),67,0,true,0,0,false,unique,high
+mayPack,f,o2::ctf::detail,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(Metadata::OptStore opt),72,0,true,0,0,false,unique,high
+mean,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,() const,65,161,true,0,9,false,unique,low
+median,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,(std::vector<T> v),520,8,true,0,0,false,unique,medium
+medmadGaus,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(size_t nBins,const T * arr,const T xMin,const T xMax,std::array<double,3> & param)",133,0,true,0,0,false,unique,high
+mergeTrees,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(const char * inpFile,const char * outFile,const char * option=""fast"")",162,0,true,0,0,false,unique,high
+meta_dot,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,174,0,true,0,0,false,unique,high
+meta_matrix_dot,s,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,,216,0,true,0,0,false,unique,high
+nameToID,f,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,"(char const * name,int id=First)",155,2,true,0,0,false,unique,high
+nextInQueue,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,() const,82,0,true,0,0,false,unique,high
+nof10BitWords,p,o2::mch::raw::SampaCluster,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,() const,69,0,true,0,0,false,unique,high
+nofSamples,p,o2::mch::raw::SampaCluster,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,() const,62,1,true,0,0,false,unique,high
+none_of,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(Ts...flags) const,642,2,true,0,0,false,unique,high
+numberOfBitsSet,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/bitOps.h,(uint32_t x),30,1,true,0,0,false,unique,high
+occupySegment,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),73,0,true,0,0,false,unique,high
+oclAtomic,s,o2::gpu,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,109,0,true,0,0,false,unique,high
+off0,f,o2::math_utils::detail::MatRepSymGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(int i),337,0,true,0,0,false,unique,low
+off1,f,o2::math_utils::detail::MatRepSymGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(int i),339,0,true,0,0,false,unique,low
+off2,f,o2::math_utils::detail::MatRepSymGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,"(int i,int j)",338,0,true,0,0,false,unique,low
+operator !=,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(const Bracket<T> & other) const,54,-1,true,0,-1,false,ambiguous,ambiguous
+operator !=,f,o2::utils::BinCenterView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(const BinCenterView & rhs) const,77,-1,true,0,-1,false,ambiguous,ambiguous
+operator !=,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o) const,561,-1,true,0,-1,false,ambiguous,ambiguous
+operator !=,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(const ShmAllocator<T> & other) const,100,-1,true,0,-1,false,ambiguous,ambiguous
+operator !=,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const ANSHeader & other) const,45,-1,true,0,-1,false,ambiguous,ambiguous
+operator !=,f,o2::ctf::CTFDictHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFDictHeader.h,(const CTFDictHeader & o) const,40,-1,true,0,-1,false,ambiguous,ambiguous
+operator !=,f,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,(const CTFIOSize & other) const,28,-1,true,0,-1,false,ambiguous,ambiguous
+operator &,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(StreamFlags a,StreamFlags b)",62,-1,true,0,-1,false,ambiguous,ambiguous
+operator &,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(T t) const,590,-1,true,0,-1,false,ambiguous,ambiguous
+operator &=,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(T t),582,0,true,0,0,false,unique,medium
+operator (),f,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(const Point2D<T> & v) const,124,-1,true,0,-1,false,ambiguous,ambiguous
+operator (),f,o2::mch::raw::ChargeSumMode,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,() const,28,-1,true,0,-1,false,ambiguous,ambiguous
+operator *,f,o2::utils::BinCenterView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(),82,0,true,0,0,false,unique,medium
+operator +,f,o2::math_utils::detail::StatAccumulator,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/StatAccumulator.h,(const StatAccumulator & other) const,73,-1,true,0,-1,false,ambiguous,ambiguous
+operator +,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,"(BinCenterView<AxisIterator> lhs,int n)",152,-1,true,0,-1,false,ambiguous,ambiguous
+operator +,f,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,(const CTFIOSize & other) const,29,-1,true,0,-1,false,ambiguous,ambiguous
+operator ++,f,o2::utils::BinCenterView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(int),71,0,true,0,0,false,unique,medium
+operator +=,f,o2::math_utils::detail::StatAccumulator,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/StatAccumulator.h,(const StatAccumulator & other),64,-1,true,0,-1,false,ambiguous,ambiguous
+operator +=,f,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,(const CTFIOSize & other),32,-1,true,0,-1,false,ambiguous,ambiguous
+operator -,f,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,(const CTFIOSize & other) const,30,0,true,0,0,false,unique,medium
+operator -=,f,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,(const CTFIOSize & other),40,0,true,0,0,false,unique,medium
+operator <,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T other) const,48,-1,true,0,-1,false,ambiguous,ambiguous
+operator <,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const ANSHeader & other) const,46,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,"(std::ostream & os,const o2::math_utils::Rotation2Dd_t & t)",286,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,"(std::ostream & os,const EnumFlags<E> & f)",788,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(const Char_t * name),145,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(Int_t id),49,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFHeader.h,"(std::ostream & stream,const CTFHeader & c)",41,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,o2::dataformats,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/FileMetaData.h,"(std::ostream & stream,const FileMetaData & m)",53,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/DataFormats.h,"(std::ostream & os,const FEEID & f)",128,-1,true,0,-1,false,ambiguous,ambiguous
+operator <<,p,o2::mch::raw,/Users/miranov25/alicesw/O2/Detectors/MUON/MCH/Raw/Common/include/MCHRawCommon/SampaCluster.h,"(std::ostream & os,const SampaCluster & sc)",104,-1,true,0,-1,false,ambiguous,ambiguous
+operator <=,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const ANSHeader & other) const,49,0,true,0,0,false,unique,medium
+operator =,p,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(Rotation2D && src),76,-1,true,0,-1,false,ambiguous,ambiguous
+operator =,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(Bracket<T> && src),45,-1,true,0,-1,false,ambiguous,ambiguous
+operator =,p,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(EnumFlags && o),570,-1,true,0,-1,false,ambiguous,ambiguous
+operator =,f,o2::utils::RootSerializableKeyValueStore::SerializedInfo,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(SerializedInfo const & other),59,-1,true,0,-1,false,ambiguous,ambiguous
+operator =,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(const TreeStreamRedirector & tsr),57,-1,true,0,-1,false,ambiguous,ambiguous
+operator =,p,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(const DetMatrixCacheIndirect & geom),141,-1,true,0,-1,false,ambiguous,ambiguous
+operator ==,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(const Bracket<T> & other) const,53,-1,true,0,-1,false,ambiguous,ambiguous
+operator ==,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o) const,555,-1,true,0,-1,false,ambiguous,ambiguous
+operator ==,f,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(const ShmAllocator<T> &) const,105,-1,true,0,-1,false,ambiguous,ambiguous
+operator ==,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const ANSHeader & other) const,44,-1,true,0,-1,false,ambiguous,ambiguous
+operator ==,f,o2::ctf::CTFDictHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFDictHeader.h,(const CTFDictHeader & o) const,36,-1,true,0,-1,false,ambiguous,ambiguous
+operator ==,f,o2::ctf::CTFIOSize,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFIOSize.h,(const CTFIOSize & other) const,27,-1,true,0,-1,false,ambiguous,ambiguous
+operator >,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T other) const,49,-1,true,0,-1,false,ambiguous,ambiguous
+operator >,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const ANSHeader & other) const,47,-1,true,0,-1,false,ambiguous,ambiguous
+operator >=,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,(const ANSHeader & other) const,48,0,true,0,0,false,unique,medium
+operator TGeoHMatrix&,f,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,() const,189,0,true,0,0,false,unique,high
+operator [],f,o2::conf::EnumRegistry,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & key) const,129,-1,true,0,-1,false,ambiguous,ambiguous
+operator [],f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const T t) const,549,-1,true,0,-1,false,ambiguous,ambiguous
+operator ^,f,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(const Point3D<T> & p) const,212,-1,true,0,-1,false,ambiguous,ambiguous
+operator ^,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o) const,615,-1,true,0,-1,false,ambiguous,ambiguous
+operator ^=,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o),627,0,true,0,0,false,unique,medium
+operator bool,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,() const,542,3,true,0,0,false,unique,medium
+operator uint16_t,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,() const,32,0,true,0,0,false,unique,high
+operator |,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(StreamFlags a,StreamFlags b)",58,-1,true,0,-1,false,ambiguous,ambiguous
+operator |,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o) const,602,-1,true,0,-1,false,ambiguous,ambiguous
+operator |=,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(T t),574,0,true,0,0,false,unique,medium
+operator ~,f,o2::utils,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(StreamFlags a),63,-1,true,0,-1,false,ambiguous,ambiguous
+operator ~,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,() const,596,-1,true,0,-1,false,ambiguous,ambiguous
+output,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(std::ostream & out) const,289,-1,true,0,-1,false,ambiguous,ambiguous
+output,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(std::ostream & out) const,257,-1,true,0,-1,false,ambiguous,ambiguous
+outputMembersImpl,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::ostream & out,std::string const & mainkey,std::vector<ParamDataMember> const * members,bool showProv,bool useLogger,bool withPadding=false,bool showHash=false)",61,0,true,0,0,false,unique,high
+outputsize,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,472,0,true,0,0,false,unique,medium
+pack,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const input_IT srcBegin,const input_IT srcEnd,int slot,buffer_T * buffer=nullptr)",611,-1,true,0,-1,false,ambiguous,ambiguous
+pack,p,o2::ctf::internal::Packer,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/Packer.h,"(const source_T * __restrict srcBegin,size_t extent,dst_T * dstBegin,dst_T * dstEnd) const",53,-1,true,0,-1,false,ambiguous,ambiguous
+pair,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonAlgorithm.h,,156,315,true,0,25,false,unique,low
+parseFieldString,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::string const & fieldstring,int & fieldvalue,o2::conf::SimFieldMode & mode)",149,1,true,0,1,false,unique,high
+parseSimReconfigFromString,p,o2::conf,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::string const & argumentstring,SimReconfigData & config)",229,1,true,0,1,false,unique,high
+parseVertexModeString,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(std::string const & vertexstring,o2::conf::VertexMode & mode)",151,2,true,0,2,false,unique,high
+pathExists,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string_view p),155,0,true,0,0,false,unique,high
+pathIsDirectory,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string_view p),158,0,true,0,0,false,unique,high
+popFromQueue,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(bool discard=false),76,1,true,0,1,false,unique,high
+print,p,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,() const,248,-1,true,0,-1,false,ambiguous,ambiguous
+print,p,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,(bool lst=false) const,44,-1,true,0,-1,false,ambiguous,ambiguous
+print,p,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(bool includetypeinfo=false) const,156,-1,true,0,-1,false,ambiguous,ambiguous
+print,p,o2::ctf::CTFHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/CTFHeader.h,() const,36,-1,true,0,-1,false,ambiguous,ambiguous
+print,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const std::string & prefix="""",int verbosity=1) const",523,-1,true,0,-1,false,ambiguous,ambiguous
+printAllKeyValuePairs,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(bool useLogger=false),177,0,true,0,0,false,unique,high
+printAllRegisteredParamNames,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(),176,0,true,0,0,false,unique,high
+printKeyValues,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(bool showprov=true,bool useLogger=false,bool withPadding=false,bool showHash=false) const",165,-1,true,0,-1,false,ambiguous,ambiguous
+printKeyValues,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(bool showProv=true,bool useLogger=false,bool withPadding=true,bool showHash=true) const",240,-1,true,0,-1,false,ambiguous,ambiguous
+printMembersImpl,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::string const & mainkey,std::vector<ParamDataMember> const * members,bool showProv,bool useLogger,bool withPadding,bool showHash)",62,0,true,0,0,false,unique,high
+printSegInfo,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,() const,106,0,true,0,0,false,unique,high
+printWarning,p,o2::conf::_ParamHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(std::type_info const &),54,0,true,0,0,false,unique,high
+processDirectory,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(const std::string & name),85,0,true,0,0,false,unique,high
+processInput,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(const std::string & input),83,0,true,0,0,false,unique,high
+pstring,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(bool withNewline=false) const,510,0,true,0,0,false,unique,medium
+push,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,(Args &&...args),50,17,true,0,1,false,unique,low
+putKeyValues,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(boost::property_tree::ptree *),288,-1,true,0,-1,false,ambiguous,ambiguous
+putKeyValues,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(boost::property_tree::ptree * tree),291,-1,true,0,-1,false,ambiguous,ambiguous
+put_impl,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,"(std::string const & key,T const & value,GetState & state,...)",170,0,true,0,0,false,unique,high
+readFromTree,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(VD & vec,TTree & tree,const std::string & name,int ev=0)",496,18,true,0,0,false,unique,high
+readTreeBranch,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(TTree & tree,const std::string & brname,D & dt,int ev=0)",562,0,true,0,0,false,unique,high
+readURandom,f,o2::utils::RngHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RngHelper.h,(),46,0,true,0,0,false,unique,high
+readyToAllocate,f,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,() const,86,3,true,0,0,false,unique,high
+realignBlock,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),285,0,true,0,0,false,unique,high
+rebind,s,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,,96,0,true,0,0,false,unique,medium
+rectifyDirectory,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string_view p),164,2,true,0,0,false,unique,high
+release,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),83,37,true,0,2,false,unique,medium
+relocate,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const char * oldHead,char * newHead,char * wrapper,size_t newsize=0)",544,5,true,0,0,false,unique,medium
+relocatePointer,f,o2::ctf,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const char * oldBase,char * newBase,const T * ptr)",97,1,true,0,0,false,unique,high
+removeScope,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(std::string_view s),205,0,true,0,0,false,unique,high
+remove_entry,f,o2::utils::RootSerializableKeyValueStore,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(std::string const & key),265,0,true,0,0,false,unique,high
+replaceAll,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,"(std::string & s,const std::string & from,const std::string & to)",149,0,true,0,0,false,unique,high
+reset,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),442,228,true,0,16,false,unique,low
+resetFromArguments,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,"(int argc,char * argv[])",127,3,true,0,3,false,unique,high
+resetFromConfigData,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,(SimConfigData const & data),132,0,true,0,0,false,unique,high
+resetFromParsedMap,p,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,(boost::program_options::variables_map const &),130,0,true,0,0,false,unique,high
+rotateZ,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,"(float xL,float yL,float snAlp,float csAlp)",162,-1,true,0,-1,false,ambiguous,ambiguous
+rotateZ,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/trigonometric.h,"(T xL,T yL,T snAlp,T csAlp)",144,-1,true,0,-1,false,ambiguous,ambiguous
+rotateZInv,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,"(float xG,float yG,float snAlp,float csAlp)",142,2,true,0,0,false,unique,high
+rotateZInvd,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,"(double xG,double yG,double snAlp,double csAlp)",147,0,true,0,0,false,unique,high
+rotateZd,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,"(double xL,double yL,double snAlp,double csAlp)",167,0,true,0,0,false,unique,high
+rtrim,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(std::string & s),54,0,true,0,0,false,unique,low
+rtrim_copy,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string & s),100,0,true,0,0,false,unique,high
+scale,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T c),70,140,true,0,3,false,unique,low
+sector2Angle,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(int sect),193,3,true,0,1,false,unique,high
+sector2Angled,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(int sect),198,0,true,0,0,false,unique,high
+selKthMin,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/fit.h,"(int k,int np,T * arr)",719,0,true,0,0,false,unique,high
+serialize,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,() const,648,35,true,0,0,false,unique,medium
+serializeDictionary,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,(const container_T &),102,0,true,0,0,false,unique,high
+serializeTo,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(TFile *) const,291,-1,true,0,-1,false,ambiguous,ambiguous
+serializeTo,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(TFile * file) const,336,-1,true,0,-1,false,ambiguous,ambiguous
+setANSHeader,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(const ANSHeader & h),428,15,true,0,0,false,unique,high
+setArrayValue,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(const std::string &,const std::string &)",246,0,true,0,0,false,unique,high
+setChi2,f,o2::utils::fitResult,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(double chi2In),210,10,true,0,0,false,unique,high
+setDataTakingContext,p,o2::dataformats::FileMetaData,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/FileMetaData.h,(const o2::framework::DataTakingContext & dtc),49,1,true,0,0,false,unique,high
+setEnumValue,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(const std::string &,const std::string &)",245,0,true,0,0,false,unique,high
+setFailThreshold,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(float f),61,1,true,0,1,false,unique,high
+setGRandomSeed,f,o2::utils::RngHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RngHelper.h,(ULong_t seed=0),37,1,true,0,1,false,unique,high
+setHeader,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(const H & h),344,19,true,0,0,false,unique,high
+setID,f,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(int id),135,4,true,0,0,false,unique,high
+setImpl,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,"(const std::string & s,int base=2)",689,0,true,0,0,false,unique,high
+setMatrix,f,o2::detectors::MatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,"(const T & mat,int sensID)",54,1,true,0,0,false,unique,high
+setMatrixL2G,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,"(const Mat3D & matrix,int sensID)",160,0,true,0,0,false,unique,high
+setMatrixT2G,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,"(const Mat3D & matrix,int sensID)",159,0,true,0,0,false,unique,high
+setMatrixT2GRot,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,"(const Rot2D & matrix,int sensID)",161,0,true,0,0,false,unique,high
+setMatrixT2L,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,"(const Mat3D & matrix,int sensID)",158,0,true,0,0,false,unique,high
+setMax,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T v),56,0,true,0,0,false,unique,high
+setMaxFilesInQueue,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(size_t s),63,1,true,0,1,false,unique,high
+setMaxLoops,f,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(size_t v),64,1,true,0,1,false,unique,high
+setMin,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T v),57,0,true,0,0,false,unique,high
+setNData,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(int _ndata),191,0,true,0,0,false,unique,high
+setNDict,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(int _ndict),185,0,true,0,0,false,unique,high
+setNLiterals,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(int _nliterals),197,0,true,0,0,false,unique,high
+setOutputDir,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(const std::string & d),181,0,true,0,0,false,unique,high
+setOwnList,p,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,"(const std::vector<o2::dataformats::IRFrame> & lst,bool toBeSorted)",49,1,true,0,1,false,unique,high
+setParameter,f,o2::utils::fitResult,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(T parameter),203,2,true,0,0,false,unique,high
+setProvenance,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string const & mainkey,std::string const & subkey,EParamProvenance p)",225,0,true,0,0,false,unique,high
+setRegisterMode,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(bool b),307,8,true,0,0,false,unique,high
+setRun5,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,(bool value=true),177,3,true,0,3,false,unique,high
+setSelectedIRFrames,f,o2::utils::IRFrameSelector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/IRFrameSelector.h,"(const SPAN & sp,size_t bwd=0,size_t fwd=0,long shift=0,bool removeOverlaps=true)",32,3,true,0,1,false,unique,high
+setSize,p,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(int s),155,3,true,0,0,false,unique,high
+setStreamFlags,f,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,(const StreamFlags streamFlags),145,0,true,0,0,false,unique,high
+setStreamer,p,o2::utils::DebugStreamer,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/DebugStreamer.h,"(const char * outFile,const char * option,const size_t id=getCPUID ())",96,1,true,0,0,false,unique,high
+setValue,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string const & key,std::string const & valuestring)",244,27,true,0,4,false,unique,high
+setValues,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::vector<std::pair<std::string,std::string>> const & keyValues)",249,2,true,0,0,false,unique,high
+short2,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,66,2,true,0,0,false,unique,medium
+size,f,o2::utils::FIFO,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FIFO.h,() const,31,-1,true,0,-1,false,ambiguous,ambiguous
+size,f,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,() const,469,-1,true,0,-1,false,ambiguous,ambiguous
+start,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(),67,454,true,0,91,false,unique,low
+stop,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(),68,112,true,0,11,false,unique,low
+store,p,o2::ctf::EncodedBlocks,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(const input_IT srcBegin,const input_IT srcEnd,int slot,Metadata::OptStore opt,buffer_T * buffer=nullptr)",634,263,true,0,34,false,unique,low
+storeData,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(int _ndata,const W * _data)",249,0,true,0,0,false,unique,high
+storeDict,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(int _ndict,const W * _dict)",232,0,true,0,0,false,unique,high
+storeLiterals,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,"(int _nliterals,const W * _literals)",267,0,true,0,0,false,unique,high
+string,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,() const,502,-1,true,0,-1,false,ambiguous,ambiguous
+string,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,() const,39,-1,true,0,-1,false,ambiguous,ambiguous
+syncCCDBandRegistry,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(void * obj),272,-1,true,0,-1,false,ambiguous,ambiguous
+syncCCDBandRegistry,f,o2::conf::ConfigurableParamPromoter,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,(void * externalobj),320,-1,true,0,-1,false,ambiguous,ambiguous
+test,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(T t) const,456,114,true,0,10,false,unique,low
+to02PiGen,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float phi),70,-1,true,0,-1,false,ambiguous,ambiguous
+to02PiGen,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/trigonometric.h,(T phi),55,-1,true,0,-1,false,ambiguous,ambiguous
+to02PiGend,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double phi),75,0,true,0,0,false,unique,high
+toCCDB,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(std::string filename),255,0,true,0,0,false,unique,high
+toLower,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const unsigned char c),271,0,true,0,0,false,unique,high
+toPMPi,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float phi),90,2,true,0,0,false,unique,high
+toPMPiGen,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(float phi),50,-1,true,0,-1,false,ambiguous,ambiguous
+toPMPiGen,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/trigonometric.h,(T phi),94,-1,true,0,-1,false,ambiguous,ambiguous
+toPMPiGend,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double phi),55,0,true,0,0,false,unique,high
+toPMPid,f,o2::math_utils,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Utils.h,(double phi),95,0,true,0,0,false,unique,high
+toString,f,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(EParamProvenance p),155,-1,true,0,-1,false,ambiguous,ambiguous
+toString,p,o2::conf::ParamDataMember,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParamHelper.h,"(std::string const & prefix,bool showProv,size_t padding=0) const",37,-1,true,0,-1,false,ambiguous,ambiguous
+toString,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),255,-1,true,0,-1,false,ambiguous,ambiguous
+to_bit,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(E e) const,372,0,true,0,0,false,unique,high
+to_underlying,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(E e) const,366,0,true,0,0,false,unique,high
+toggle,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(T t),484,6,true,0,0,false,unique,medium
+tokenize,p,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,"(const std::string & src,char delim,bool trimToken=true,bool skipEmpty=true)",137,21,true,0,14,false,unique,medium
+tpeek,f,o2::utils::details::enum_flags::FlagsHelper,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),71,0,true,0,0,false,unique,low
+trim,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(std::string & s),70,32,true,0,1,false,unique,low
+trim_copy,f,o2::utils::Str,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/StringUtils.h,(const std::string & s),119,0,true,0,0,false,unique,high
+truncateFloatFraction,f,o2::math_utils::detail,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/TypeTruncation.h,"(float x,uint32_t mask=0xFFFFFF00)",30,111,true,0,103,false,unique,high
+tryAttach,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(bool & success),118,0,true,0,0,false,unique,high
+tsallisCharged,p,o2::math_utils::Tsallis,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Tsallis.h,"(float pt,float mass,float sqrts)",32,0,true,0,0,false,unique,high
+uchar2,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,65,0,true,0,0,false,unique,medium
+uint1,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,71,0,true,0,0,false,unique,low
+uint2,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,72,2,true,0,0,false,unique,low
+uint3,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,73,0,true,0,0,false,unique,low
+uint4,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,74,1,true,0,0,false,unique,low
+union_with,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(const EnumFlags & o) const,670,0,true,0,0,false,unique,high
+update,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(T v),74,154,true,0,19,false,unique,medium
+updateFromFile,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string const &,std::string const & paramsList="""",bool unchangedOnly=false)",268,11,true,0,11,false,unique,high
+updateFromString,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(std::string const &),263,97,true,0,97,false,unique,high
+updateThroughStorageMap,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string,std::string,std::type_info const &,void *)",282,0,true,0,0,false,unique,high
+updateThroughStorageMapWithConversion,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string const &,std::string const &)",283,0,true,0,0,false,unique,high
+upgradesEnabled,f,o2::detectors::DetID,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetID.h,(),163,0,true,0,0,false,unique,high
+useL2GCache,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),164,0,true,0,0,false,unique,high
+useT2GCache,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),163,0,true,0,0,false,unique,high
+useT2GRotCache,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),165,0,true,0,0,false,unique,high
+useT2LCache,f,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),162,0,true,0,0,false,unique,high
+ushort2,s,,/Users/miranov25/alicesw/O2/GPU/Common/GPUCommonDefAPI.h,,67,0,true,0,0,false,unique,medium
+value,f,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,() const,436,1601,true,0,193,false,unique,low
+version,f,o2::ctf::ANSHeader,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/ANSHeader.h,() const,43,358,true,0,12,false,unique,medium
+writeDictionary,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,"(dst_IT dstBegin,dst_IT dstEnd)",83,1,true,0,0,false,unique,high
+writeINI,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string const & filename,std::string const & keyOnly="""")",188,23,true,0,23,false,unique,high
+writeIncompressible,p,o2::ctf::internal::ExternalEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/ExternalEntropyCoder.h,"(dst_T * dstBegin,dst_T * dstEnd) const",59,-1,true,0,-1,false,ambiguous,ambiguous
+writeIncompressible,p,o2::ctf::internal::InplaceEntropyCoder,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/internal/InplaceEntropyCoder.h,"(dst_T * dstBegin,dst_T * dstEnd)",86,-1,true,0,-1,false,ambiguous,ambiguous
+writeJSON,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,"(std::string const & filename,std::string const & keyOnly="""")",186,0,true,0,0,false,unique,high
+writeToDisc,f,o2::conf::SimConfig,/Users/miranov25/alicesw/O2/Common/SimConfig/include/SimConfig/SimConfig.h,() const,179,1,true,0,1,false,unique,high
+~BinCenterView,p,o2::utils::BinCenterView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(),65,0,true,0,0,false,unique,high
+~BinLowerView,p,o2::utils::BinLowerView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(),127,0,true,0,0,false,unique,high
+~BinUpperView,p,o2::utils::BinUpperView,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/BoostHistogramUtils.h,(),95,0,true,0,0,false,unique,high
+~Block,f,o2::ctf::Block,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/EncodedBlocks.h,(),208,0,true,0,0,false,unique,high
+~Bracket,p,o2::math_utils::detail::Bracket,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/detail/Bracket.h,(),46,0,true,0,0,false,unique,high
+~ConfigurableParam,p,o2::conf::ConfigurableParam,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ConfigurableParam.h,(),285,0,true,0,0,false,unique,high
+~DetMatrixCache,p,o2::detectors::DetMatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),83,0,true,0,0,false,unique,high
+~DetMatrixCacheIndirect,p,o2::detectors::DetMatrixCacheIndirect,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),138,0,true,0,0,false,unique,high
+~EnumFlags,p,o2::utils::EnumFlags,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/EnumFlags.h,(),400,0,true,0,0,false,unique,high
+~Expr,p,o2::math_utils::detail::Expr,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(),417,0,true,0,0,false,unique,high
+~FileFetcher,p,o2::utils::FileFetcher,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/FileFetcher.h,(),58,0,true,0,0,false,unique,high
+~MatrixCache,p,o2::detectors::MatrixCache,/Users/miranov25/alicesw/O2/DataFormats/Detectors/Common/include/DetectorsCommonDataFormats/DetMatrixCache.h,(),39,0,true,0,0,false,unique,high
+~MatrixMulOpGPU,p,o2::math_utils::detail::MatrixMulOpGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(),727,0,true,0,0,false,unique,high
+~Rotation2D,p,o2::math_utils::Rotation2D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(),72,0,true,0,0,false,unique,high
+~SerializedInfo,f,o2::utils::RootSerializableKeyValueStore::SerializedInfo,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/RootSerializableKeyValueStore.h,(),65,0,true,0,0,false,unique,high
+~ShmAllocator,p,o2::utils::ShmAllocator,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmAllocator.h,(),55,0,true,0,0,false,unique,high
+~ShmManager,p,o2::utils::ShmManager,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/ShmManager.h,(),110,0,true,0,0,false,unique,high
+~Transform3D,p,o2::math_utils::Transform3D,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/Cartesian.h,(),173,0,true,0,0,false,unique,high
+~TransposeOpGPU,p,o2::math_utils::detail::TransposeOpGPU,/Users/miranov25/alicesw/O2/Common/MathUtils/include/MathUtils/SMatrixGPU.h,(),1462,0,true,0,0,false,unique,high
+~TreeStream,p,o2::utils::TreeStream,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStream.h,(),125,0,true,0,0,false,unique,high
+~TreeStreamRedirector,p,o2::utils::TreeStreamRedirector,/Users/miranov25/alicesw/O2/Common/Utils/include/CommonUtils/TreeStreamRedirector.h,(),45,0,true,0,0,false,unique,high
