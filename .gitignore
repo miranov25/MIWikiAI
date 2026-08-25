@@ -35,3 +35,10 @@ gitls.txt
 
 # Backups
 *.v0_*_backup
+
+# Delivery manifests are delivered inline as heredocs, never as files.
+# A committed manifest is a stale copy waiting to be run.
+*.manifest
+# macOS re-download artifacts
+* (1).*
+* (2).*
