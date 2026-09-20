@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 #
-# MIWikiAI/scripts/install_by_md5.sh — deliver a reviewed file into the MIWikiAI working tree,
+# scripts/install_by_md5.sh — deliver a reviewed file into the working tree,
 # but ONLY if it is byte-for-byte the file that was reviewed.
 #
 # WHY THIS EXISTS
@@ -15,14 +15,14 @@
 #   it. It belongs in the repository.
 #
 # USAGE
-#   source "$MIWIKIAI/scripts/install_by_md5.sh"   # once per shell
+#   source scripts/install_by_md5.sh          # once per shell
 #   install_by_md5 <src> <dst> <expected_md5>
 #   install_newest_by_md5 <glob> <dst> <expected_md5>
 #   check_ref <file> <expected_md5> [expected_sha256]
 #
-#   install_by_md5 "$Downloads/foo.md" "$MIWIKIAI/Alice/code/O2/foo.md" 3a57e2e4...
-#   install_newest_by_md5 'foo*.md' "$MIWIKIAI/Alice/code/O2/foo.md" 3a57e2e4...
-#   check_ref "$MIWIKIAI/Alice/code/O2/foo.md" <md5> <sha256>
+#   install_by_md5 "$Downloads/foo_rev3c.py" tests/foo.py 3a57e2e4...
+#   install_newest_by_md5 'foo_rev3c*.py' tests/foo.py 3a57e2e4...
+#   check_ref run_tests.sh <md5> <sha256>
 #
 # BEHAVIOUR
 #   install_by_md5:
@@ -30,6 +30,8 @@
 #   * refuses if <src> does not match <expected_md5>       -- nothing is copied
 #   * backs up an existing <dst> to <dst>.bak.<timestamp>
 #   * re-verifies <dst> after copying and refuses to report success otherwise
+#   * after success, removes only timestamped .bak.* files whose MD5 is
+#     identical to the installed destination; different-byte backups are kept
 #
 #   install_newest_by_md5:
 #   * searches $Downloads for the newest file matching <glob>
@@ -129,6 +131,38 @@ USAGE
     return 0
 }
 
+
+_ibm5_cleanup_same_byte_backups() {
+    local dst="$1" installed_md5="$2" backup backup_md5
+
+    # Narrow cleanup scope:
+    #   <dst>.bak.YYYYMMDD_HHMMSS
+    #
+    # Only remove a timestamped installer backup when its bytes are identical
+    # to the newly installed destination. Preserve different-byte backups and
+    # never touch unrelated files.
+    for backup in "${dst}".bak.*; do
+        [ -f "$backup" ] || continue
+
+        if [[ ! "$backup" =~ \.bak\.[0-9]{8}_[0-9]{6}$ ]]; then
+            continue
+        fi
+
+        backup_md5="$(_ibm5_md5 "$backup")" || {
+            echo "install_by_md5: WARNING: could not hash backup, preserving: $backup" >&2
+            continue
+        }
+
+        if [ "$backup_md5" = "$installed_md5" ]; then
+            rm -f -- "$backup" || {
+                echo "install_by_md5: WARNING: could not remove redundant backup: $backup" >&2
+                continue
+            }
+            echo "install_by_md5: removed redundant same-byte backup $backup"
+        fi
+    done
+}
+
 install_by_md5() {
     local src dst expected actual backup
 
@@ -182,6 +216,8 @@ USAGE
         return 1
     fi
 
+    _ibm5_cleanup_same_byte_backups "$dst" "$actual"
+
     echo "install_by_md5: OK  $dst  $actual"
     return 0
 }
@@ -231,6 +267,6 @@ fi
 
 if [ -n "${BASH_SOURCE:-}" ] && [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     echo "install_by_md5.sh defines a shell function; SOURCE it, do not run it:" >&2
-    echo "    source \"$MIWIKIAI/scripts/install_by_md5.sh\"" >&2
+    echo "    source scripts/install_by_md5.sh" >&2
     return 1 2>/dev/null || exit 1
 fi
